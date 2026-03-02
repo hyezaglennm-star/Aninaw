@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="bottom"
+    android:background="#FAF9F6">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Growth &amp; Impact"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#2E2621" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manage and reflect"
+        android:textSize="13sp"
+        android:textColor="#6B5D52"
+        android:alpha="0.85"
+        android:layout_marginTop="6dp" />
+
+</LinearLayout>

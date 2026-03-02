@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Left eye: Smaller size and centered with space -->
+    <item
+        android:drawable="@drawable/eye"
+        android:width="9dp"
+        android:height="8dp"
+        android:gravity="center"
+        android:right="15dp" />
+
+    <!-- Right eye: Smaller size and centered with space -->
+    <item
+        android:drawable="@drawable/eye"
+        android:width="9dp"
+        android:height="8dp"
+        android:gravity="center"
+        android:left="15dp" />
+</layer-list>

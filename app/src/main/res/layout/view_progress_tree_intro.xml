@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/progressTreeIntroHost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone">
+
+    <com.aninaw.views.SpotlightHoleView
+        android:id="@+id/progressTreeSpotlight"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/progressTreeIntroCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#EFFFFFFF"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tvProgressTreeIntro1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is your Progress Tree."
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#2E2621"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/tvProgressTreeIntro2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="It grows slowly, as you do."
+                android:textSize="15sp"
+                android:textColor="#2E2621"
+                android:alpha="0.85"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/tvProgressTreeIntro3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Discipline makes it strong."
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2E2621"
+                android:alpha="0.92"
+                android:includeFontPadding="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnProgressTreeIntroBegin"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:minWidth="140dp"
+                android:text="Begin"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                app:cornerRadius="18dp"
+                android:backgroundTint="#2E2621"
+                android:textColor="#FFFFFF"
+                app:rippleColor="#33FFFFFF"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

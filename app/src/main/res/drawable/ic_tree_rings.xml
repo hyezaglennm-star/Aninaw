@@ -1,0 +1,74 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer ring: slightly thicker, grounded -->
+    <path
+        android:name="outer_ring"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M50,12
+            C64,12.5 76,19 84,30
+            C91,40 92,54 86,66
+            C80,78 67,87 52,88
+            C38,89 25,82 17,71
+            C10,60 9,45 15,34
+            C21,23 33,15 50,12 Z" />
+
+    <!-- Middle ring: uneven spacing -->
+    <path
+        android:name="mid_ring_1"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M50,24
+            C61,25 70,30 75,38
+            C80,46 79,56 74,64
+            C69,72 60,77 50,78
+            C40,79 31,74 26,66
+            C21,58 21,47 26,39
+            C31,31 39,25 50,24 Z" />
+
+    <!-- Inner ring -->
+    <path
+        android:name="mid_ring_2"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="2.1"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M50,34
+            C58,35 65,39 69,45
+            C73,51 72,58 68,64
+            C64,70 58,73 50,74
+            C42,75 35,71 31,65
+            C27,59 28,52 32,46
+            C36,40 42,35 50,34 Z" />
+
+    <!-- Core ring -->
+    <path
+        android:name="inner_core"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M50,44
+            C55,45 59,48 61,52
+            C63,56 62,60 59,63
+            C56,66 53,67 50,67
+            C47,67 43,65 41,62
+            C39,59 39,54 42,50
+            C45,46 47,44.5 50,44 Z" />
+</vector>

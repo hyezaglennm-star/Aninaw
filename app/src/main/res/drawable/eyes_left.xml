@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Left eye (Inner/Further in perspective) -->
+    <item
+        android:drawable="@drawable/eye"
+        android:width="5dp"
+        android:height="8dp"
+        android:gravity="center"
+        android:right="15dp"
+        android:bottom="5dp" />
+
+    <!-- Right eye (Outer/Nearer in perspective) -->
+    <item
+        android:drawable="@drawable/eye"
+        android:width="9dp"
+        android:height="8dp"
+        android:gravity="center"
+        android:left="10dp" />
+</layer-list>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Soft base fog (vertical fade) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#00F8F6F2"
+                android:centerColor="#25F8F6F2"
+                android:endColor="#55F8F6F2" />
+        </shape>
+    </item>
+
+    <!-- Subtle inner bloom (radial-ish feel at center bottom) -->
+    <item android:bottom="-40dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="420dp"
+                android:centerX="0.5"
+                android:centerY="1.0"
+                android:startColor="#40FFFFFF"
+                android:centerColor="#18FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

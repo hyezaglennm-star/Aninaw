@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/menu_controls"
+            android:title="Your Controls"
+            android:icon="@drawable/ic_settings_soft" />
+
+        <item
+            android:id="@+id/menu_impact"
+            android:title="Your Impact"
+            android:icon="@drawable/ic_impact_soft" />
+
+        <item
+            android:id="@+id/menu_support"
+            android:title="Support"
+            android:icon="@drawable/ic_support_soft" />
+
+        <item
+            android:id="@+id/menu_nickname"
+            android:title="Nickname"
+            android:icon="@drawable/ic_settings_soft" />
+    </group>
+
+</menu>

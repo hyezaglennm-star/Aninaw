@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Top Eye -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="center"
+        android:bottom="10dp">
+        <rotate
+            android:fromDegrees="360"
+            android:toDegrees="90"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:drawable="@drawable/eye" />
+    </item>
+
+    <!-- Bottom Eye -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="center"
+        android:top="10dp">
+        <rotate
+            android:fromDegrees="360"
+            android:toDegrees="90"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:drawable="@drawable/eye" />
+    </item>
+</layer-list>

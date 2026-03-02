@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Aninaw</string>
+    <string name="next_underlined"><u>Next</u></string>
+    <string name="moment_halo_line">It’s okay that it’s here.</string>
+
+    <string name="moment_steady_hint">Feel where your body touches something solid.\nLet it support you for a moment.</string>
+
+    <string name="moment_stay_longer">Stay longer</string>
+
+    <string name="cd_back">Back</string>
+
+    <string name="notif_channel_checkin">Check-in reminders</string>
+    <string name="notif_channel_checkin_desc">Gentle reminders to do a quick check-in.</string>
+
+    <string name="rhythm_footer_hint">Tap a card to open a rhythm</string>
+
+</resources>

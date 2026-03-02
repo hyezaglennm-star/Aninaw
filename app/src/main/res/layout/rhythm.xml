@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootRhythm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_rhythm_layered"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <com.aninaw.views.ScreenHeaderView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:headerTitle="My Screen"
+        app:headerTitleColor="#5E8A7C"
+        app:headerSubtitleColor="#F2F5F4"
+        android:layout_marginTop="20dp"/>
+
+    <include
+        android:id="@+id/incBackRhythm"
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp"
+        android:translationZ="10dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollRhythm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:paddingBottom="24dp"
+        app:layout_constraintTop_toBottomOf="@id/incBackRhythm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rhythmContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="90dp"
+            android:paddingBottom="36dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/gridStage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="18dp"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#22FFFFFF"
+                app:cardBackgroundColor="#14FFFFFF"
+                app:layout_constraintTop_toBottomOf="@id/textProgress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/cardBodyItem"/>
+
+
+
+            <TextView
+                android:id="@+id/textSupport"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="One small rhythm is enough."
+                android:textColor="#E9FFFFFF"
+                android:textSize="14sp"
+                android:alpha="0.9"
+                app:layout_constraintTop_toBottomOf="@id/textSupport"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+
+                android:text="0 of 4 done today"
+                android:textColor="#DFFFFFFF"
+                android:textSize="13sp"
+                android:alpha="0.85"
+                app:layout_constraintTop_toBottomOf="@id/textSupport"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- ===================== ROW 1 ===================== -->
+
+            <include
+                android:id="@+id/cardNatureItem"
+                layout="@layout/item_rhythm_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toBottomOf="@id/textProgress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineMid"
+                />
+
+            <include
+                android:id="@+id/cardSoulItem"
+                layout="@layout/item_rhythm_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toBottomOf="@id/textProgress"
+                app:layout_constraintStart_toEndOf="@id/guidelineMid"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- ===================== ROW 2 ===================== -->
+
+            <include
+                android:id="@+id/cardMindItem"
+                layout="@layout/item_rhythm_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toBottomOf="@id/cardNatureItem"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineMid" />
+
+            <include
+                android:id="@+id/cardBodyItem"
+                layout="@layout/item_rhythm_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toBottomOf="@id/cardSoulItem"
+                app:layout_constraintStart_toEndOf="@id/guidelineMid"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/textFooterHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/rhythm_footer_hint"
+                android:textColor="#CFFFFFFF"
+                android:textSize="13sp"
+                android:alpha="0.7"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/cardBodyItem"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

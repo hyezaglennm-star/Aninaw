@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- This transparent view exists just to intercept touches outside the panel -->
+    <View
+        android:id="@+id/scrimTouchBlocker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/detailPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="#FAF9F6"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E6EFEA">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:title="System"
+                android:background="@android:color/transparent"
+                app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+                app:titleTextColor="@color/aninaw_text_primary"
+                app:titleTextAppearance="@style/ToolbarTitleSmall"
+                app:elevation="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/tvSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:paddingStart="110dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="0dp"
+                android:textSize="12sp"
+                android:alpha="0.72"
+                android:textColor="@color/aninaw_text_primary"
+                android:visibility="gone"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBlocks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="110dp"
+                android:clipToPadding="false"
+                android:padding="18dp"/>
+
+            <ImageView
+                android:id="@+id/fabCreateSystem"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="22dp"
+                android:contentDescription="Create Block"
+                android:src="@drawable/ic_input_add"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

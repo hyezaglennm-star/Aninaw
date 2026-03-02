@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <!-- Character Body: Fixed size matching all poses -->
+    <ImageView
+        android:id="@+id/liwanagBodyBase"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/body_standing"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Head Group relative to body (90dp x 90dp consistent size) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/liwanagHeadGroup"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:clipChildren="false"
+        app:layout_constraintTop_toTopOf="@id/liwanagBodyBase"
+        app:layout_constraintStart_toStartOf="@id/liwanagBodyBase"
+        app:layout_constraintEnd_toEndOf="@id/liwanagBodyBase"
+        app:layout_constraintBottom_toBottomOf="@id/liwanagBodyBase"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.15">
+
+        <ImageView
+            android:id="@+id/liwanagHeadBase"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/default_head"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Consolidated Eyes -->
+        <ImageView
+            android:id="@+id/liwanagEyes"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:src="@drawable/eye_pair"
+            app:layout_constraintStart_toStartOf="@id/liwanagHeadBase"
+            app:layout_constraintEnd_toEndOf="@id/liwanagHeadBase"
+            app:layout_constraintTop_toTopOf="@id/liwanagHeadBase"
+            app:layout_constraintBottom_toBottomOf="@id/liwanagHeadBase"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.60"/>
+
+        <ImageView
+            android:id="@+id/liwanagLeaf"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/liwanag_leaf"
+            app:layout_constraintBottom_toTopOf="@id/liwanagHeadBase"
+            app:layout_constraintStart_toStartOf="@id/liwanagHeadBase"
+            app:layout_constraintEnd_toEndOf="@id/liwanagHeadBase"
+            app:layout_constraintHorizontal_bias="0.6"
+            android:layout_marginBottom="-54dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

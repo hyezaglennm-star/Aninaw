@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Aninaw.Welcome" parent="Theme.Aninaw">
+        <item name="android:windowBackground">@color/welcome_bg</item>
+
+        <!-- Android 12+ system splash -->
+        <item name="android:windowSplashScreenBackground">@color/welcome_bg</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/welcome_bg</item>
+        <item name="android:windowSplashScreenAnimationDuration">0</item>
+    </style>
+
+</resources>

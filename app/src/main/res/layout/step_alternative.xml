@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="26dp"
+        android:paddingBottom="26dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Another possibility"
+            android:textColor="#795548"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="If your mind told one story, what else could be true?"
+            android:textColor="#8E6F63"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etAlternative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_journal_field_selector"
+            android:layout_marginTop="14dp"
+            android:minLines="4"
+            android:hint="A kinder explanation could be…"
+            android:textColor="#6E5A48"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF9F6"
+    android:layout_marginBottom="20dp">
+
+    <include
+        android:id="@+id/includeHeader"
+        layout="@layout/view_screen_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <include
+        android:id="@+id/btnBack"
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp"
+        android:translationZ="10dp"/>
+    <!-- Empty state container -->
+    <FrameLayout
+        android:id="@+id/emptyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvEmptySystems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="You haven’t added anything yet."
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="#6B6B6B"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"/>
+    </FrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSystems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:clipToPadding="false"
+        android:padding="18dp" />
+
+    <ImageView
+        android:id="@+id/fabCreateSystem"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="40dp"
+        android:contentDescription="Create System"
+        android:src="@drawable/ic_input_add"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="6dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

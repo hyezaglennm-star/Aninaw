@@ -1,0 +1,44 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- soft gear-ish: circle + small ticks -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2E2621"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M12,15.5
+                          c1.93,0 3.5,-1.57 3.5,-3.5
+                          S13.93,8.5 12,8.5
+                          8.5,10.07 8.5,12
+                          10.07,15.5 12,15.5Z" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2E2621"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M12,3.5 V5.2" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2E2621"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M12,18.8 V20.5" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2E2621"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M3.5,12 H5.2" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2E2621"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M18.8,12 H20.5" />
+</vector>

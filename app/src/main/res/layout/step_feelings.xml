@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="26dp"
+        android:paddingBottom="26dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How did that feel?"
+            android:textColor="#795548"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Emotions are signals, not verdicts."
+            android:textColor="#8E6F63"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Overall state"
+            android:textColor="#6E5A48"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipOverallEmotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCalm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Calm" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSteady"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Steady" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFoggy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Foggy" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMixed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Mixed" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHeavy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Heavy" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Tense" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Tired" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipUnsure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Unsure" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tvIntensityGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="How strong did that feel?"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#8E6F63"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderEmotionIntensity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:valueFrom="0"
+            android:valueTo="100"
+            android:stepSize="5"
+            android:value="60"
+            android:visibility="gone"
+            app:trackColorActive="#6E8B7A"
+            app:trackColorInactive="#E6DED3"
+            app:thumbColor="#6E8B7A"
+            app:haloColor="#336E8B7A"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Feelings (pick a few)"
+            android:textColor="#6E5A48"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/etFeelingsBefore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:hint="Example: Anxious, Rejected"
+            android:textColor="#6E5A48"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Body (optional)"
+            android:textColor="#6E5A48"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/etBodyBefore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Example: tight chest, tense shoulders"
+            android:textColor="#6E5A48"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</ScrollView>

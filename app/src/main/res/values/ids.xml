@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_base_rot" type="id"/>
+    <item name="tag_base_tx" type="id"/>
+    <item name="tag_base_ty" type="id"/>
+    <item name="tag_sway_side" type="id"/>
+</resources>

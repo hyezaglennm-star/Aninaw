@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Three gentle rhythm waves -->
+    <path
+        android:name="wave_1"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M18,42
+            C26,34 34,34 42,42
+            C50,50 58,50 66,42
+            C74,34 82,34 90,42" />
+
+    <path
+        android:name="wave_2"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M18,54
+            C26,46 34,46 42,54
+            C50,62 58,62 66,54
+            C74,46 82,46 90,54" />
+
+    <path
+        android:name="wave_3"
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#8A6B4E"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M18,66
+            C26,58 34,58 42,66
+            C50,74 58,74 66,66
+            C74,58 82,58 90,66" />
+</vector>

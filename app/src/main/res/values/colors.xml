@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="checkin_btn_bg">#F7F4EE</color>
+    <color name="checkin_btn_stroke">#1A6E5A48</color>
+    <color name="checkin_btn_text">#795548</color>
+    <color name="checkin_btn_ripple">#146E5A48</color>
+    <color name="an_surface">#FEF7D2</color>
+    <color name="an_on_surface">#795548</color>
+    <color name="an_touch_ripple_soft">#146E5A48</color>
+    <color name="aninaw_pause_green">#3E6F5F</color>
+    <!-- Surfaces -->
+    <color name="aninaw_bg_top">#F4F6F5</color>
+    <color name="aninaw_bg_bottom">#E9EFEC</color>
+
+    <!-- Text -->
+    <color name="aninaw_text_primary">#2E2E2E</color>
+    <color name="aninaw_text_secondary">#4B2E2E</color>
+
+    <!-- Frost / glass -->
+    <color name="aninaw_frost">#80FFFFFF</color>
+    <color name="aninaw_stroke_soft">#1A000000</color>
+
+    <color name="welcome_bg">#F6F2EA</color>
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Slight overall dim so the tree + fireflies pop -->
+    <item>
+        <shape>
+            <solid android:color="#10FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Bottom grounding fade (helps trunk/ground read) -->
+    <item android:gravity="bottom">
+        <shape>
+            <gradient
+                android:angle="90"
+                android:startColor="#00FFFFFF"
+                android:endColor="#22FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Very soft vignette -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:centerX="0.5"
+                android:centerY="0.45"
+                android:gradientRadius="420dp"
+                android:startColor="#00FFFFFF"
+                android:endColor="#12FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

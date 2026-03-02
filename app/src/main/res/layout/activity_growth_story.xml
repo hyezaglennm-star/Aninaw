@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootGrowthStory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF9F6"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <include
+        android:id="@+id/includeHeader"
+        layout="@layout/view_screen_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Back include -->
+    <include
+        android:id="@+id/btnBack"
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/includeHeader"
+        android:elevation="8dp"/>
+
+    <!-- Scroll content -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="18dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/includeHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="28dp">
+
+            <!-- ===== Emotional Weather ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Emotional Weather"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#7A645B"
+                android:alpha="0.9"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="This reflects your recent emotional patterns."
+                android:textSize="13sp"
+                android:textColor="#8B7A72"
+                android:alpha="0.9"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <com.aninaw.views.EmotionalWeatherView
+                        android:id="@+id/emotionalWeatherView"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textSelectedDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="12sp"
+                        android:textColor="#7A645B"
+                        android:alpha="0.85"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/textSelectedMood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:text=""/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Rhythm Radar ===== -->
+            <TextView
+                android:id="@+id/textRhythmRadarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Your Rhythm Balance"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#7A645B"
+                android:alpha="0.9"/>
+
+            <TextView
+                android:id="@+id/textRhythmRadarSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="A weekly snapshot of how you cared for your Body, Mind, Soul, and Environment."
+                android:textSize="13sp"
+                android:textColor="#8B7A72"
+                android:alpha="0.9"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRhythmRadar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.aninaw.views.RadarRhythmView
+                        android:id="@+id/radarRhythmView"
+                        android:layout_width="match_parent"
+                        android:layout_height="260dp"
+                        android:layout_marginTop="6dp"/>
+
+                    <TextView
+                        android:id="@+id/textRhythmInsight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13sp"
+                        android:textColor="#7A645B"
+                        android:alpha="0.95"
+                        android:lineSpacingExtra="5dp"
+                        android:text=""/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="18dp"
+                android:background="#1A6B5A52" />
+
+            <!-- ===== Life Snapshot ===== -->
+            <TextView
+                android:id="@+id/textLifeSnapshotTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Life Snapshot"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#7A645B"
+                android:alpha="0.9"/>
+
+            <TextView
+                android:id="@+id/textLifeSnapshotSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="A calm way to see how your life is shifting over time."
+                android:textSize="13sp"
+                android:textColor="#8B7A72"
+                android:alpha="0.9"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLifeBaseline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Starting Season"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <TextView
+                        android:id="@+id/textBaselineDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="12sp"
+                        android:textColor="#8B7A72"
+                        android:alpha="0.9"
+                        android:text="Not set yet" />
+
+                    <TextView
+                        android:id="@+id/textBaselineSummary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13sp"
+                        android:textColor="#7A645B"
+                        android:alpha="0.95"
+                        android:text="Save your starting season once. It becomes your anchor point." />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBaselineAction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Save Starting Season"
+                        style="@style/Widget.MaterialComponents.Button" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLifeCurrent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Current Season"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <TextView
+                        android:id="@+id/textCurrentState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="12sp"
+                        android:textColor="#8B7A72"
+                        android:alpha="0.9"
+                        android:text="Available after 30 days of steady growth." />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressToUnlock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:indeterminate="false"
+                        android:max="30"
+                        android:progress="0" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCurrentAction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Reflect on Current Season"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCompare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="View Growth Comparison"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="18dp"
+                android:background="#1A6B5A52" />
+
+            <!-- ===== Growth Story (Proof / ThenNow / Milestones) ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Growth Story"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#7A645B"
+                android:alpha="0.9"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="A calm summary of how you’ve been showing up."
+                android:textSize="13sp"
+                android:textColor="#8B7A72"
+                android:alpha="0.9"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGrowthStory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Story"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <TextView
+                        android:id="@+id/storyText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13sp"
+                        android:textColor="#7A645B"
+                        android:alpha="0.95"
+                        android:text=""/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardProof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Proof"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/proofRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardThenNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Then and Now"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="First 14 days"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.95"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Active days"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.85"/>
+
+                            <TextView
+                                android:id="@+id/thenDays"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#6B5A52"
+                                android:text="0"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Longest momentum"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.85"/>
+
+                            <TextView
+                                android:id="@+id/thenStreak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#6B5A52"
+                                android:text="0"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Last 14 days"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.95"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Active days"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.85"/>
+
+                            <TextView
+                                android:id="@+id/nowDays"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#6B5A52"
+                                android:text="0"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Longest momentum"
+                                android:textSize="12sp"
+                                android:textColor="#8B7A72"
+                                android:alpha="0.85"/>
+
+                            <TextView
+                                android:id="@+id/nowStreak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#6B5A52"
+                                android:text="0"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMilestones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1A6B5A52"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moments That Mattered"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B5A52"
+                        android:alpha="0.95"/>
+
+                    <TextView
+                        android:id="@+id/milestonesText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13sp"
+                        android:textColor="#7A645B"
+                        android:alpha="0.95"
+                        android:lineSpacingExtra="6dp"
+                        android:text=""/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

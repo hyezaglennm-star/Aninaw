@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="26dp"
+        android:paddingBottom="26dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What did your mind say?"
+            android:textColor="#795548"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Write it exactly as it came."
+            android:textColor="#8E6F63"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etThought"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_journal_field_selector"
+            android:hint="What went through your mind?"
+            android:minLines="4"
+            android:textColor="#6E5A48"
+            android:textSize="18sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipStarters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:singleLine="false">
+
+            <com.google.android.material.chip.Chip
+                android:text="I'm not enough."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="They're upset with me."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="I messed this up."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="This will go badly."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="I always do this."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+</ScrollView>

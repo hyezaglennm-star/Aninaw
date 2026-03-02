@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootMoment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F1EC">
+
+    <include
+        android:id="@+id/includeHeader"
+        layout="@layout/view_screen_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/pulseField"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/soft_pulse_field"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textHaloLine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:textColor="#5A5A54"
+        android:textSize="19sp"
+        android:lineSpacingExtra="4dp"
+        app:layout_constraintStart_toStartOf="@id/pulseField"
+        app:layout_constraintEnd_toEndOf="@id/pulseField"
+        app:layout_constraintTop_toTopOf="@id/pulseField"
+        app:layout_constraintBottom_toBottomOf="@id/pulseField"/>
+
+
+    <TextView
+        android:id="@+id/textSofterHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"
+        android:textColor="#6B6B65"
+        android:textSize="14sp"
+        android:lineSpacingExtra="3dp"
+        app:layout_constraintTop_toBottomOf="@id/textHaloLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/choicePanel" />
+
+    <LinearLayout
+        android:id="@+id/choicePanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/bg_moment_choice_panel"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textChoiceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Notice your energy. Then choose your pace."
+            android:textColor="#4A4A44"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSteadyFocused"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#EEECE6"
+            android:text="Steady &amp; Focused"
+            android:textAllCaps="false"
+            android:textColor="#4A4A44" />
+
+        <Button
+            android:id="@+id/btnCalmRelease"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#EEECE6"
+            android:text="Calm &amp; Release"
+            android:textAllCaps="false"
+            android:textColor="#4A4A44" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

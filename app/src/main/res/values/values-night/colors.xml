@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Surfaces (twilight, not black) -->
+    <color name="aninaw_bg_top">#121615</color>
+    <color name="aninaw_bg_bottom">#0E1211</color>
+
+    <!-- Text -->
+    <color name="aninaw_text_primary">#E9E6E1</color>
+    <color name="aninaw_text_secondary">#CBBEB3</color>
+
+    <!-- Frost / glass -->
+    <color name="aninaw_frost">#1FFFFFFF</color>
+    <color name="aninaw_stroke_soft">#26FFFFFF</color>
+</resources>

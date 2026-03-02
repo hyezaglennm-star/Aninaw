@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="26dp"
+        android:paddingBottom="26dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A moment that stood out"
+            android:textColor="#795548"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="One specific moment. Not your whole day."
+            android:textColor="#8E6F63"
+            android:textSize="16sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:text="School"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="Family"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="Friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="Relationship"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="Self"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:text="Other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                />
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSituationField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <EditText
+                android:id="@+id/etSituation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_journal_field_selector"                android:gravity="top|start"
+                android:hint="Write what happened…"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minLines="4"
+                android:maxLines="6"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:textColor="#5D4037"
+                android:textColorHint="#B9AA9B"
+                android:textSize="16sp"
+                android:fontFamily="serif"
+                android:importantForAutofill="no"
+                android:autofillHints=""
+                android:overScrollMode="never" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+</ScrollView>

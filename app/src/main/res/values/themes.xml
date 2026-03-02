@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Theme.Aninaw" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#00000000</item>
+
+        <!-- Global Font Setting -->
+        <item name="fontFamily">@font/nunito_sans</item>
+        <item name="android:fontFamily">@font/nunito_sans</item>
+
+        <!-- No Title -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Theme.Aninaw.Transparent" parent="Theme.Aninaw">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ChoiceButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">@drawable/bg_choice_unselected</item>
+        <item name="android:textColor">#795548</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="ChoiceButtonStyleSelected">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">@drawable/bg_choice_selected</item>
+        <item name="android:textColor">#795548</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CheckInButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">56dp</item>
+
+        <!-- Background + stroke -->
+        <item name="backgroundTint">@color/checkin_btn_bg</item>
+        <item name="strokeColor">@color/checkin_btn_stroke</item>
+        <item name="strokeWidth">1dp</item>
+
+        <!-- Text -->
+        <item name="android:textColor">@color/checkin_btn_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+
+        <!-- Ripple (must be soft) -->
+        <item name="rippleColor">@color/checkin_btn_ripple</item>
+
+        <!-- No harsh animation -->
+        <item name="android:stateListAnimator">@null</item>
+
+        <!-- Gentle corners -->
+        <item name="cornerRadius">24dp</item>
+
+        <!-- Padding for calm tap target -->
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+    </style>
+
+    <!-- Overlay theme for TreeRingActivity (true overlay vibe, not a dialog pop-up) -->
+    <style name="Theme.Aninaw.TreeRingOverlay" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!-- Prevent default overlay artifacts -->
+        <item name="android:windowContentOverlay">@null</item>
+
+        <!-- Let your in-layout fade handle animations -->
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <!-- Optional dim behind (works alongside your scrim) -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.Aninaw.SystemDetailOverlay" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <item name="android:windowAnimationStyle">@style/Theme.Aninaw.SystemDetailOverlay</item>
+    </style>
+
+    <style name="Aninaw.SystemDetailAnimation">
+        <item name="android:activityOpenEnterAnimation">@animator/slide_up</item>
+        <item name="android:activityOpenExitAnimation">@animator/stay</item>
+        <item name="android:activityCloseEnterAnimation">@animator/stay</item>
+        <item name="android:activityCloseExitAnimation">@animator/slide_down</item>
+    </style>
+
+    <style name="Aninaw" parent="Theme.Aninaw" />
+
+    <style name="Theme.Aninaw.Welcome" parent="Theme.Aninaw">
+        <item name="android:windowBackground">@color/welcome_bg</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FEF7D2"
+    android:clickable="true"
+    android:focusable="true"
+    android:alpha="0"
+    tools:alpha="1">
+
+    <TextView
+        android:id="@+id/textViewAffirmation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="55dp"
+        android:fontFamily="@font/font_title"
+        android:gravity="start"
+        android:text="This is for gentle noticing."
+        android:textColor="#5D4037"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

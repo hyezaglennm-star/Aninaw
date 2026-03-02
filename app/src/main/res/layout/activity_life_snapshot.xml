@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF9F6">
+
+    <include
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="35dp"
+        android:text="Life Snapshot"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#6B5A52"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="28dp">
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="There’s no right answer. Just be honest."
+                android:textSize="13sp"
+                android:textColor="#8B7A72"
+                android:alpha="0.9"/>
+
+            <!-- Emotional Regulation -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Emotional Regulation"
+                android:textStyle="bold"
+                android:textColor="#6B5A52"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I get overwhelmed easily  →  I can sit with difficult emotions"
+                android:textSize="12sp"
+                android:textColor="#8B7A72"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderEmotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="1"
+                android:valueTo="5"
+                android:stepSize="1"
+                android:value="3"/>
+
+            <!-- Habit Awareness -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Habit Awareness"
+                android:textStyle="bold"
+                android:textColor="#6B5A52"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I don’t think about my habits  →  I know which habits help or hurt me"
+                android:textSize="12sp"
+                android:textColor="#8B7A72"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderHabits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="1"
+                android:valueTo="5"
+                android:stepSize="1"
+                android:value="3"/>
+
+            <!-- Healthy Rhythm -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Healthy Rhythm"
+                android:textStyle="bold"
+                android:textColor="#6B5A52"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My days feel random  →  My days feel steady"
+                android:textSize="12sp"
+                android:textColor="#8B7A72"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderRhythm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="1"
+                android:valueTo="5"
+                android:stepSize="1"
+                android:value="3"/>
+
+            <!-- Self Leadership -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Self-Leadership"
+                android:textStyle="bold"
+                android:textColor="#6B5A52"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I react to life  →  I choose how I respond"
+                android:textSize="12sp"
+                android:textColor="#8B7A72"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderLeadership"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="1"
+                android:valueTo="5"
+                android:stepSize="1"
+                android:value="3"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Save Snapshot"
+                style="@style/Widget.MaterialComponents.Button"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScreenHeaderView">
+        <attr name="headerTitle" format="string"/>
+        <attr name="headerTitleColor" format="color"/>
+        <attr name="headerSubtitle" format="string"/>
+        <attr name="headerSubtitleColor" format="color"/>
+    </declare-styleable>
+
+</resources>
+

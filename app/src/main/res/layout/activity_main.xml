@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:background="@drawable/bg_home">
+
+        <!-- ================= SCENE ================= -->
+
+
+        <!-- NAV PANEL -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sceneCanvas"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="1"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingBottom="44dp"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavPanel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:id="@+id/btnMenu"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:alpha="0.9"
+                android:background="@drawable/bg_menu_pill"
+                android:clickable="true"
+                android:contentDescription="Menu"
+                android:focusable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_menu"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineGroundScene"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.86" />
+
+            <!-- ================= DAILY GREETING ================= -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/greetingGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                android:alpha="1"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:importantForAccessibility="yes"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnMenu">
+
+                <TextView
+                    android:id="@+id/textTimeGreeting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_regular"
+                    android:gravity="start"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="0.0"
+                    android:text="Good afternoon."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/aninaw_text_primary"
+                    android:textSize="26sp"
+                    android:lineSpacingExtra="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDayCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.72"
+                    android:text="Day 1"
+                    android:letterSpacing="0.06"
+                    android:textColor="#4B2E2E"
+                    android:textSize="12sp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintStart_toStartOf="@id/textTimeGreeting"
+                    app:layout_constraintTop_toBottomOf="@id/textTimeGreeting" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- ================= TREE HOLDER ================= -->
+            <FrameLayout
+                android:id="@+id/treeHolderCard"
+                android:layout_width="280dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/greetingGroup">
+
+                <!-- Glow -->
+                <View
+                    android:layout_width="260dp"
+                    android:layout_height="260dp"
+                    android:background="@drawable/bg_tree_glow"
+                    android:layout_gravity="center" />
+
+                <!-- The tree -->
+                <com.aninaw.views.HybridTreeView
+                    android:id="@+id/hybridTreeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <!-- Optional: soft halo behind the tree (subtle spotlight) -->
+                <View
+                    android:id="@+id/treeHalo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/tree_halo_soft"
+                    android:alpha="1.0" />
+
+                <!-- Ground shadow (keep subtle) -->
+                <View
+                    android:id="@+id/treeGroundShadow"
+                    android:layout_width="150dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="5dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/tree_ground_shadow" />
+
+                <TextView
+                    android:id="@+id/tvTreeNarrative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="230dp"
+                    android:alpha="0.86"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="24dp"
+                    android:text="You showed up."
+                    android:textAlignment="center"
+                    android:textColor="#5A4A42"
+                    android:textSize="13sp" />
+
+
+            </FrameLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/homeGuidanceGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:paddingHorizontal="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/liwanagGroup"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="-20dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="@id/treeHolderCard"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bubbleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:visibility="gone">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLiwanagBubble"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#CCFFFFFF"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/textLiwanagPrompt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="12dp"
+                            android:textColor="#5D4037"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <ImageView
+                        android:id="@+id/bubbleTail"
+                        android:layout_width="20dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="-1dp"
+                        android:src="@drawable/speech_bubble_tail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cardLiwanagBubble" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <FrameLayout
+                    android:id="@+id/liwanagContainer"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="bottom|start"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <FrameLayout
+                        android:id="@+id/liwanagPoseContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bottomNavPanel"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="10dp"
+            android:clipToOutline="false"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- Frost background -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/bottomNavFrost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bottom_nav_frost_gradient"
+                    android:clipToOutline="true"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bottomNavGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <!-- CHECK-IN -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tilePause"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginEnd="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:clipToOutline="true"
+                        android:stateListAnimator="@animator/press_scale_card"
+                        app:cardCornerRadius="28dp"
+                        app:cardElevation="6dp"
+                        app:cardUseCompatPadding="false"
+                        app:cardPreventCornerOverlap="false"
+                        app:strokeWidth="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tileRhythm"
+                        app:layout_constraintHorizontal_chainStyle="spread">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/tile_checkin_bg"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Check-in"
+                                android:textColor="@color/aninaw_text_primary"
+                                android:textSize="18sp"/>
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- RHYTHM -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tileRhythm"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:clipToOutline="true"
+                        android:stateListAnimator="@animator/press_scale_card"
+                        app:cardCornerRadius="28dp"
+                        app:cardElevation="6dp"
+                        app:cardUseCompatPadding="false"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeWidth="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tilePause"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/tile_rhythm_bg"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rhythm"
+                                android:textColor="@color/aninaw_text_primary"
+                                android:textSize="18sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- ANALYZE YOUR GROWTH -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tileTreeRing"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:clipToOutline="true"
+                        android:stateListAnimator="@animator/press_scale_card"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="6dp"
+                        app:cardUseCompatPadding="false"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeWidth="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/tilePause"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tileSystems"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/tile_growth_bg"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Analyze your Growth"
+                                android:textColor="@color/aninaw_text_primary"
+                                android:textSize="14sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- MY SYSTEMS -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tileSystems"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:clipToOutline="true"
+                        android:stateListAnimator="@animator/press_scale_card"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="6dp"
+                        app:cardUseCompatPadding="false"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeWidth="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/tileRhythm"
+                        app:layout_constraintStart_toEndOf="@id/tileTreeRing"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/tile_my_rhythms"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="My Systems"
+                                android:textColor="@color/aninaw_text_primary"
+                                android:textSize="18sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= TREE RING OVERLAY ================= -->
+        <FrameLayout
+            android:id="@+id/treeRingOverlayHost"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:id="@+id/treeRingOverlayScrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000"
+                android:alpha="0.0"
+                android:clickable="true"
+                android:focusable="true"
+                android:importantForAccessibility="no" />
+
+            <com.aninaw.TreeRingView
+                android:id="@+id/treeRingOverlayView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <View
+                android:id="@+id/treeRingFocusLayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000"
+                android:alpha="0.0"
+                android:visibility="gone"
+                android:clickable="false"
+                android:focusable="false"
+                android:importantForAccessibility="no" />
+
+            <FrameLayout
+                android:id="@+id/treeRingHintOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:alpha="0"
+                android:clickable="false"
+                android:focusable="false"
+                android:importantForAccessibility="no">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <FrameLayout
+                        android:layout_width="140dp"
+                        android:layout_height="90dp">
+
+                        <View
+                            android:id="@+id/gesturePulse"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/gesture_finger_dot"
+                            android:alpha="0.10" />
+
+                        <View
+                            android:id="@+id/fingerLeft"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/gesture_finger_dot"
+                            android:translationX="-16dp"
+                            android:translationY="12dp"
+                            android:rotation="-24"
+                            android:alpha="0.92" />
+
+                        <View
+                            android:id="@+id/fingerRight"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/gesture_finger_dot"
+                            android:translationX="16dp"
+                            android:translationY="-12dp"
+                            android:rotation="24"
+                            android:alpha="0.92" />
+                    </FrameLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#55FFFFFF">
+
+                        <TextView
+                            android:id="@+id/treeRingHintText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:maxWidth="260dp"
+                            android:text="Pinch to zoom • Drag • Two fingers to rotate"
+                            android:textSize="12sp"
+                            android:textColor="#2E2621"
+                            android:alpha="0.92"
+                            android:gravity="center"
+                            android:includeFontPadding="false" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+        <include
+            layout="@layout/view_progress_tree_intro" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ================= DRAWER ================= -->
+    <FrameLayout
+        android:id="@+id/drawerContainer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FAF9F6">
+
+        <include layout="@layout/drawer_content" />
+    </FrameLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/liwanagRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F141A">
+
+    <FrameLayout
+        android:id="@+id/liwanagContainer"
+        android:layout_width="240dp"
+        android:layout_height="360dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Body (base) -->
+        <ImageView
+            android:id="@+id/liwanagBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="-0.60"
+            android:scaleY="0.60"
+            android:src="@drawable/body"
+            android:translationX="0dp"
+            android:translationY="110dp" />
+
+        <!-- Leg -->
+        <ImageView
+            android:id="@+id/liwanagLeg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.150"
+            android:scaleY="0.1"
+            android:src="@drawable/leg"
+            android:translationX="0dp"
+            android:translationY="190dp" />
+
+        <!-- Arm -->
+        <ImageView
+            android:id="@+id/liwanagArm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.250"
+            android:scaleY="0.250"
+            android:src="@drawable/arm"
+            android:translationX="-40dp"
+            android:translationY="90dp" />
+
+        <!-- Head -->
+        <ImageView
+            android:id="@+id/liwanagHead"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="-0.70"
+            android:scaleY="0.67"
+            android:src="@drawable/default_head"
+            android:translationX="0dp"
+            android:translationY="-60dp" />
+
+        <!-- Eyes (overlay) -->
+        <ImageView
+            android:id="@+id/liwanagEyes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.120"
+            android:scaleY="0.120"
+            android:src="@drawable/eye_pair"
+            android:translationX="0dp"
+            android:translationY="0dp" />
+
+        <!-- Leaf (overlay) -->
+        <ImageView
+            android:id="@+id/liwanagLeaf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:src="@drawable/liwanag_leaf"
+            android:translationX="0dp"
+            android:translationY="-250dp" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/buttonCheckIn"
+        android:icon="@drawable/pause_button"
+        android:title="Pause" />
+
+    <item
+        android:id="@+id/rhythmButton"
+        android:icon="@drawable/rhythm_icon"
+        android:title="Rhythm" />
+
+    <item
+        android:id="@+id/navTreeRing"
+        android:icon="@drawable/ic_tree_rings"
+        android:title="Tree Ring" />
+
+</menu>

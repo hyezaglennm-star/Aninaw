@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Soft top haze -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="270"
+                android:startColor="#66FFFFFF"
+                android:centerColor="#22FFFFFF"
+                android:endColor="@android:color/transparent"
+                android:centerY="0.45" />
+        </shape>
+    </item>
+
+    <!-- Subtle vignette to push edges back -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:gradientRadius="320dp"
+                android:centerX="0.5"
+                android:centerY="0.55"
+                android:startColor="@android:color/transparent"
+                android:endColor="#1A000000" />
+        </shape>
+    </item>
+
+</layer-list>

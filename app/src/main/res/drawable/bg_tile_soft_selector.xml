@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pressed / focused: slightly darker veil -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="28dp"/>
+            <solid android:color="#14000000"/>
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="28dp"/>
+            <solid android:color="#12000000"/>
+        </shape>
+    </item>
+
+    <!-- Default: subtle glass highlight -->
+    <item>
+        <layer-list>
+            <!-- top highlight -->
+            <item android:top="0dp" android:left="0dp" android:right="0dp" android:bottom="0dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="28dp"/>
+                    <gradient
+                        android:angle="270"
+                        android:startColor="#26FFFFFF"
+                        android:centerColor="#10FFFFFF"
+                        android:endColor="#00FFFFFF"/>
+                </shape>
+            </item>
+
+            <!-- inner soft shadow edge -->
+            <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="26dp"/>
+                    <stroke android:width="1dp" android:color="#14FFFFFF"/>
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

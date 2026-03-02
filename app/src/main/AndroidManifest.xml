@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Android 13+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Android 12+ exact alarm capability (optional but helps reliability) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Aninaw"
+        android:largeHeap="true">
+
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Aninaw.Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".lifesnapshot.LifeSnapshotActivity" />
+        <activity android:name=".lifesnapshot.LifeSnapshotCompareActivity" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CheckInAnchorActivity"
+            android:exported="false" />
+
+        <activity android:name=".MomentActivity" />
+
+        <activity android:name=".UntangleActivity" />
+
+        <activity android:name=".GrowthStoryActivity" />
+
+        <activity
+            android:name=".RhythmActivity"
+            android:exported="false" />
+
+        <activity android:name=".feature.liwanag.LiwanagActivity" />
+
+        <activity
+            android:name=".TreeRingActivity"
+            android:theme="@style/Theme.Aninaw.TreeRingOverlay" />
+
+        <receiver
+            android:name=".CheckInReminderReceiver"
+            android:exported="false" />
+
+        <activity android:name=".SystemsActivity" />
+
+        <activity
+            android:name=".SystemDetailActivity"
+            android:theme="@style/Theme.Aninaw.SystemDetailOverlay" />
+
+        <receiver
+            android:name=".reminders.ReminderReceiver"
+            android:exported="false" />
+
+        <activity android:name=".CrisisResourcesActivity" />
+
+    </application>
+
+</manifest>

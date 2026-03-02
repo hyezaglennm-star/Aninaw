@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base vertical gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#A8C3B3"
+                android:centerColor="#68A583"
+                android:endColor="#6FA58E" />
+        </shape>
+    </item>
+
+    <!-- Soft radial halo behind header/cards -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="520dp"
+                android:centerX="0.5"
+                android:centerY="0.22"
+                android:startColor="#55FFFFFF"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Bottom grounding fade -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#00000000"
+                android:endColor="#33000000" />
+        </shape>
+    </item>
+
+</layer-list>

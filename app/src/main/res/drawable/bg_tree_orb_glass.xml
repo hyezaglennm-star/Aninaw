@@ -1,0 +1,49 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base soft glass body -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:centerX="0.45"
+                android:centerY="0.35"
+                android:gradientRadius="280dp"
+                android:startColor="#E9FFF7"
+                android:endColor="#CFEFE0"/>
+        </shape>
+    </item>
+
+    <!-- Inner glow (makes it feel thick like glass) -->
+    <item android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:centerX="0.35"
+                android:centerY="0.25"
+                android:gradientRadius="220dp"
+                android:startColor="#AAFFFFFF"
+                android:endColor="#00FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Rim shadow / edge depth -->
+    <item>
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="#3A6AAE9A"/>
+        </shape>
+    </item>
+
+    <!-- Soft highlight blob (top-right shine) -->
+    <item android:left="170dp" android:top="70dp" android:right="40dp" android:bottom="170dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:centerX="0.35"
+                android:centerY="0.35"
+                android:gradientRadius="90dp"
+                android:startColor="#BFFFFFFF"
+                android:endColor="#00FFFFFF"/>
+        </shape>
+    </item>
+
+</layer-list>

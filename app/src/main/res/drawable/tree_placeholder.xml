@@ -1,0 +1,61 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Ancient Thick Trunk -->
+    <path
+        android:pathData="M45,100 L55,100 L53,70 C53,70 60,60 65,55 L68,52 C68,52 60,58 52,58 C44,58 36,52 36,52 L39,55 C44,60 47,70 47,70 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="55"
+                android:endY="100"
+                android:startX="45"
+                android:startY="60"
+                android:type="linear">
+                <item android:color="#2D1B0E" android:offset="0.0"/>
+                <item android:color="#4E342E" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Wide Canopy Layer 1 (Base) -->
+    <path
+        android:pathData="M50,10 C20,10 5,30 5,50 C5,70 20,85 50,85 C80,85 95,70 95,50 C95,30 80,10 50,10 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="50"
+                android:centerY="45"
+                android:gradientRadius="45"
+                android:type="radial">
+                <item android:color="#2E7D32" android:offset="0.0"/>
+                <item android:color="#1B5E20" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Glowing Canopy Layer 2 (Glowing Green) -->
+    <path
+        android:pathData="M50,18 C30,18 15,30 15,48 C15,66 30,78 50,78 C70,78 85,66 85,48 C85,30 70,18 50,18 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="50"
+                android:centerY="40"
+                android:gradientRadius="35"
+                android:type="radial">
+                <item android:color="#81C784" android:offset="0.0"/>
+                <item android:color="#002E7D32" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Firefly Lights (Integrated into tree canopy) -->
+    <path android:fillColor="#FFFF8D" android:pathData="M30,40h1v1h-1zM70,35h1v1h-1zM50,25h1v1h-1zM40,60h1v1h-1zM65,55h1v1h-1z"/>
+    
+    <!-- Grounding shadow -->
+    <path
+        android:fillColor="#20000000"
+        android:pathData="M25,98 Q50,94 75,98 Q50,102 25,98" />
+</vector>
