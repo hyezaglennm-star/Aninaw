@@ -17,6 +17,8 @@
     import com.aninaw.data.systems.BlocksDao
     import com.aninaw.data.growth.GrowthDao
     import com.aninaw.data.growth.GrowthEntity
+    import com.aninaw.data.journal.JournalDao
+    import com.aninaw.data.journal.JournalEntity
 
     @Database(
         entities = [
@@ -26,8 +28,9 @@
             SystemEntity::class,
             BlockEntity::class,
             GrowthEntity::class,
+            JournalEntity::class,
         ],
-        version = 8,
+        version = 9,
         exportSchema = true
     )
     abstract class AninawDb : RoomDatabase() {
@@ -37,6 +40,7 @@
         abstract fun blocksDao(): BlocksDao
         abstract fun rhythmDao(): RhythmDao
         abstract fun treeRingMemoryDao(): TreeRingMemoryDao
+        abstract fun journalDao(): JournalDao
 
         abstract fun lifeSnapshotDao(): LifeSnapshotDao
 

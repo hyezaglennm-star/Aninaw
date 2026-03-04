@@ -1474,15 +1474,33 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
+        // Journal
+        req<MaterialCardView>(R.id.tileJournal).setOnClickListener {
+            startActivity(Intent(this, JournalActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
+        // Whole My Systems tile clickable
+        req<MaterialCardView>(R.id.tileSystems).setOnClickListener {
+            startActivity(Intent(this, SystemsActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
+        // Breathe
+        req<MaterialCardView>(R.id.tileBreathe).setOnClickListener {
+            startActivity(Intent(this, MomentActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
         // Whole Tree Ring tile clickable
         req<MaterialCardView>(R.id.tileTreeRing).setOnClickListener {
             openGrowthImpact()
             playSound(sfxTap)
         }
 
-        // Whole My Systems tile clickable
-        req<MaterialCardView>(R.id.tileSystems).setOnClickListener {
-            startActivity(Intent(this, SystemsActivity::class.java))
+        // My Roots
+        req<MaterialCardView>(R.id.tileRoots).setOnClickListener {
+            startActivity(Intent(this, UntangleActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }

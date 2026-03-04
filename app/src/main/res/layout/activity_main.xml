@@ -233,35 +233,308 @@
                 </LinearLayout>
 
                 <!-- NAVIGATION GRID (Scrollable) -->
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:id="@+id/bottomNavPanel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-40dp"
                     android:padding="16dp"
                     android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:clipToPadding="false"
+                    android:orientation="vertical">
 
-                    <!-- CHECK-IN -->
+                    <!-- ROW 1: Check-in | Rhythm -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- CHECK-IN -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tilePause"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_checkin_bg"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/love"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom|start"
+                                    android:text="Check-in"
+                                    android:textColor="@color/text_home_checkin"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"/>
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- RHYTHM -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tileRhythm"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_rhythm_bg"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/shy"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rhythm"
+                                    android:textColor="@color/text_home_rhythm"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="bottom|start" />
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <!-- ROW 2: Journal | My Routines -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- JOURNAL -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tileJournal"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_growth_bg"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/journaling"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Journal"
+                                    android:textColor="@color/text_home_growth"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="bottom|start" />
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- MY ROUTINES (formerly Systems) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tileSystems"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_my_rhythms"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/happy"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="My\nroutines"
+                                    android:textColor="@color/text_home_systems"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="bottom|start" />
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <!-- ROW 3: Breathe | Your Tree Ring -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- BREATHE -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tileBreathe"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_rhythm_bg"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/wings_open"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Breathe"
+                                    android:textColor="@color/text_home_rhythm"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="bottom|start" />
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- YOUR TREE RING (formerly Analyze Growth) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tileTreeRing"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:clipToOutline="true"
+                            android:stateListAnimator="@animator/press_scale_card"
+                            app:cardCornerRadius="24dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="false"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeWidth="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/tile_growth_bg"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="top|end"
+                                    android:src="@drawable/smile"
+                                    android:alpha="1.0" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Your tree\nring"
+                                    android:textColor="@color/text_home_growth"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="bottom|start" />
+                            </FrameLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <!-- ROW 4: My Roots (Full Width) -->
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/tilePause"
-                        android:layout_width="0dp"
-                        android:layout_height="140dp"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/tileRoots"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:clipToOutline="true"
                         android:stateListAnimator="@animator/press_scale_card"
-                        app:cardCornerRadius="28dp"
+                        app:cardCornerRadius="24dp"
                         app:cardElevation="0dp"
                         app:cardUseCompatPadding="false"
                         app:cardPreventCornerOverlap="false"
-                        app:strokeWidth="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tileRhythm"
-                        app:layout_constraintHorizontal_chainStyle="spread">
+                        app:strokeWidth="0dp">
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -270,162 +543,24 @@
                             android:padding="16dp">
 
                             <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_gravity="top|end"
-                                android:src="@drawable/love"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:src="@drawable/mature_tree"
                                 android:alpha="1.0" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|start"
-                                android:text="Check-in"
+                                android:text="My Roots"
                                 android:textColor="@color/text_home_checkin"
-                                android:textSize="20sp"
-                                android:textStyle="bold"/>
-                        </FrameLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- RHYTHM -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/tileRhythm"
-                        android:layout_width="0dp"
-                        android:layout_height="140dp"
-                        android:layout_marginStart="8dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:clipToOutline="true"
-                        android:stateListAnimator="@animator/press_scale_card"
-                        app:cardCornerRadius="28dp"
-                        app:cardElevation="0dp"
-                        app:cardUseCompatPadding="false"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:strokeWidth="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tilePause"
-                        app:layout_constraintEnd_toEndOf="parent">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/tile_rhythm_bg"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_gravity="top|end"
-                                android:src="@drawable/shy"
-                                android:alpha="1.0" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Rhythm"
-                                android:textColor="@color/text_home_rhythm"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
-                                android:layout_gravity="bottom|start" />
+                                android:layout_gravity="center_vertical|start" />
                         </FrameLayout>
                     </com.google.android.material.card.MaterialCardView>
 
-                    <!-- ANALYZE YOUR GROWTH -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/tileTreeRing"
-                        android:layout_width="0dp"
-                        android:layout_height="140dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:clipToOutline="true"
-                        android:stateListAnimator="@animator/press_scale_card"
-                        app:cardCornerRadius="28dp"
-                        app:cardElevation="0dp"
-                        app:cardUseCompatPadding="false"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:strokeWidth="0dp"
-                        app:layout_constraintTop_toBottomOf="@id/tilePause"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tileSystems"
-                        app:layout_constraintHorizontal_chainStyle="spread">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/tile_growth_bg"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_gravity="top|end"
-                                android:src="@drawable/smile"
-                                android:alpha="1.0" />     
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Analyze\nGrowth"
-                                android:textColor="@color/text_home_growth"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:layout_gravity="bottom|start" />
-                        </FrameLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- MY SYSTEMS -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/tileSystems"
-                        android:layout_width="0dp"
-                        android:layout_height="140dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="8dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:clipToOutline="true"
-                        android:stateListAnimator="@animator/press_scale_card"
-                        app:cardCornerRadius="28dp"
-                        app:cardElevation="0dp"
-                        app:cardUseCompatPadding="false"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:strokeWidth="0dp"
-                        app:layout_constraintTop_toBottomOf="@id/tileRhythm"
-                        app:layout_constraintStart_toEndOf="@id/tileTreeRing"
-                        app:layout_constraintEnd_toEndOf="parent">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/tile_my_rhythms"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_gravity="top|end"
-                                android:src="@drawable/happy"
-                                android:alpha="1.0" />      
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="My\nSystems"
-                                android:textColor="@color/text_home_systems"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:layout_gravity="bottom|start" />
-                        </FrameLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

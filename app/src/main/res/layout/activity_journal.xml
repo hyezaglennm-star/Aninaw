@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/aninaw_bg_top">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <!-- HEADER -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi, User"
+                android:textColor="@color/aninaw_text_primary"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_heart_smile"
+                android:background="@drawable/bg_menu_pill"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvGreeting"
+                app:layout_constraintBottom_toBottomOf="@id/tvGreeting" />
+
+            <!-- CALENDAR STRIP -->
+            <LinearLayout
+                android:id="@+id/calendarStrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
+
+            <!-- MY JOURNAL HEADER -->
+            <TextView
+                android:id="@+id/tvMyJournalHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Journal"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/aninaw_text_primary"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendarStrip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all"
+                android:textColor="@color/aninaw_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMyJournalHeader" />
+
+            <!-- MORNING CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMorning"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardEmotions"
+                app:layout_constraintTop_toBottomOf="@id/tvMyJournalHeader"
+                app:layout_constraintHorizontal_weight="2">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_journal_morning">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Let's start your day"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#3E2723"
+                        android:layout_marginTop="48dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Begin with a mindful morning reflection."
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="#5D4037"
+                        android:layout_marginTop="80dp"
+                        android:paddingHorizontal="16dp" />
+
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- EMOTIONS CARD (Was Evening) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEmotions"
+                android:layout_width="60dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMyJournalHeader">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_journal_evening">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emotions"
+                        android:rotation="270"
+                        android:textSize="16sp"
+                        android:textColor="#616161"
+                        android:layout_gravity="center" />
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- QUICK JOURNAL HEADER -->
+            <TextView
+                android:id="@+id/tvQuickJournalHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Journal"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/aninaw_text_primary"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardMorning" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all"
+                android:textColor="@color/aninaw_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvQuickJournalHeader" />
+
+            <!-- PAUSE CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuickPause"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardQuickIntention"
+                app:layout_constraintTop_toBottomOf="@id/tvQuickJournalHeader">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_journal_quick_pink"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pause &amp; reflect"
+                        android:textStyle="bold"
+                        android:textColor="#880E4F" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="What are you grateful for today?"
+                        android:textSize="12sp"
+                        android:textColor="#880E4F"
+                        android:layout_marginTop="28dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:text="Personal"
+                        android:textColor="#880E4F"
+                        android:clickable="false"
+                        android:focusable="false"
+                        style="@style/Widget.MaterialComponents.Chip.Action"
+                        app:chipBackgroundColor="#F48FB1"
+                        app:chipMinHeight="24dp" />
+
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- INTENTION CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuickIntention"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toEndOf="@id/cardQuickPause"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvQuickJournalHeader">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_journal_quick_purple"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set Intentions"
+                        android:textStyle="bold"
+                        android:textColor="#4A148C" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How do you want to feel?"
+                        android:textSize="12sp"
+                        android:textColor="#4A148C"
+                        android:layout_marginTop="28dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:text="Family"
+                        android:textColor="#4A148C"
+                        android:clickable="false"
+                        android:focusable="false"
+                        style="@style/Widget.MaterialComponents.Chip.Action"
+                        app:chipBackgroundColor="#CE93D8"
+                        app:chipMinHeight="24dp" />
+
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
