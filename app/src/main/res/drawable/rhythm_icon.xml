@@ -8,7 +8,7 @@
     <path
         android:name="wave_1"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -21,7 +21,7 @@
     <path
         android:name="wave_2"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -34,7 +34,7 @@
     <path
         android:name="wave_3"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"

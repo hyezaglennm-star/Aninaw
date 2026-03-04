@@ -1,23 +1,23 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- base soft gradient -->
+    <!-- Base: Warm Red-Orange -->
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="28dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#F1E7DF"
-                android:endColor="#E8DBD2" /> />
+                android:startColor="#FF7043"
+                android:endColor="#F4511E" />
         </shape>
     </item>
 
-    <!-- subtle top highlight -->
-    <item android:top="1dp" android:left="1dp" android:right="1dp">
-        <shape>
+    <!-- Subtle inner highlight -->
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
             <corners android:radius="27dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#55FFFFFF"
+                android:startColor="#22FFFFFF"
                 android:endColor="#00FFFFFF" />
         </shape>
     </item>

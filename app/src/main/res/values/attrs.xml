@@ -7,5 +7,9 @@
         <attr name="headerSubtitleColor" format="color"/>
     </declare-styleable>
 
+    <!-- Attributes for item_emotion_grid.xml binding -->
+    <attr name="emotionColor" format="color|reference" />
+    <attr name="emotionLabel" format="string" />
+
 </resources>
 

@@ -1,5 +1,5 @@
 <!-- bg_nav_frost.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#D9FFFFFF"/>
+    <solid android:color="@color/aninaw_frost"/>
     <corners android:radius="32dp"/>
 </shape>

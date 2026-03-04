@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Base: soft cool sky -->
+    <!-- Base: Vivid Blue -->
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="28dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#E6EEF3"
-                android:centerColor="#DEE8EF"
-                android:endColor="#D6E2EA" />/>
+                android:startColor="#2979FF"
+                android:centerColor="#2962FF"
+                android:endColor="#1565C0" />
         </shape>
     </item>
 
@@ -19,19 +19,8 @@
             <corners android:radius="27dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#55FFFFFF"
+                android:startColor="#22FFFFFF"
                 android:endColor="#00FFFFFF" />
-        </shape>
-    </item>
-
-    <!-- Hairline stroke (keeps it crisp on light backgrounds) -->
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="28dp" />
-            <stroke
-                android:width="1dp"
-                android:color="#1A1F2A33" />
-            <solid android:color="@android:color/transparent" />
         </shape>
     </item>
 

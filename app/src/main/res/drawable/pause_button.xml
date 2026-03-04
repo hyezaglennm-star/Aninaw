@@ -10,7 +10,7 @@
     <path
         android:name="ring"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -30,7 +30,7 @@
     <path
         android:name="pulse"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3.4"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"

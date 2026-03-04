@@ -1,30 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F2EA">
+    android:background="#FFF9F0"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="48dp">
-
+        android:padding="24dp">
 
         <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Aninaw"
-            android:textSize="30sp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Check-in time:\nHow are you today?"
+            android:textColor="#263238"
+            android:textSize="28sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:columnOrderPreserved="false"
+            android:useDefaultMargins="true">
+
+            <!-- Row 1 -->
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_excited"
+                app:emotionLabel="Excited" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_joyful"
+                app:emotionLabel="Joyful" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_grateful"
+                app:emotionLabel="Grateful" />
+
+            <!-- Row 2 -->
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_energized"
+                app:emotionLabel="Energized" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_sensitive"
+                app:emotionLabel="Sensitive" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_confused"
+                app:emotionLabel="Confused" />
+
+            <!-- Row 3 -->
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_bored"
+                app:emotionLabel="Bored" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_stressed"
+                app:emotionLabel="Stressed" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_angry"
+                app:emotionLabel="Angry" />
+
+            <!-- Row 4 -->
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_insecure"
+                app:emotionLabel="Insecure" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_hurt"
+                app:emotionLabel="Hurt" />
+
+            <include
+                layout="@layout/item_emotion_grid"
+                app:emotionColor="@color/emotion_guilty"
+                app:emotionLabel="Guilty" />
+
+        </GridLayout>
+        
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#3E4A3F"
-            android:layout_marginBottom="10dp" />
+            app:cornerRadius="28dp"
+            app:backgroundTint="#263238"/>
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

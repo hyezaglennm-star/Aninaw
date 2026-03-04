@@ -1,32 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="checkin_btn_bg">#F7F4EE</color>
-    <color name="checkin_btn_stroke">#1A6E5A48</color>
-    <color name="checkin_btn_text">#795548</color>
-    <color name="checkin_btn_ripple">#146E5A48</color>
-    <color name="an_surface">#FEF7D2</color>
-    <color name="an_on_surface">#795548</color>
-    <color name="an_touch_ripple_soft">#146E5A48</color>
-    <color name="aninaw_pause_green">#3E6F5F</color>
+    <color name="purple_200">#A3C4BC</color> <!-- Soft Sage -->
+    <color name="purple_500">#6B8E7C</color> <!-- Sage Green -->
+    <color name="purple_700">#4A6356</color> <!-- Dark Sage -->
+    <color name="teal_200">#E6CCB2</color> <!-- Soft Sand -->
+    <color name="teal_700">#D4A373</color> <!-- Warm Terracotta -->
+    <color name="black">#2C3E36</color> <!-- Dark Green-Grey -->
+    <color name="white">#FDFCF8</color> <!-- Warm White -->
+    
+    <color name="checkin_btn_bg">#FDFCF8</color>
+    <color name="checkin_btn_stroke">#336B8E7C</color>
+    <color name="checkin_btn_text">#4A6356</color>
+    <color name="checkin_btn_ripple">#1A6B8E7C</color>
+    
+    <color name="an_surface">#F7F9F8</color>
+    <color name="an_on_surface">#2C3E36</color>
+    <color name="an_touch_ripple_soft">#1A4A6356</color>
+    <color name="aninaw_pause_green">#557C6C</color>
+    
     <!-- Surfaces -->
-    <color name="aninaw_bg_top">#F4F6F5</color>
-    <color name="aninaw_bg_bottom">#E9EFEC</color>
+    <color name="aninaw_bg_top">#FDFCF8</color> <!-- Warm White Top -->
+    <color name="aninaw_bg_bottom">#E3E8E5</color> <!-- Muted Sage Bottom -->
 
     <!-- Text -->
-    <color name="aninaw_text_primary">#2E2E2E</color>
-    <color name="aninaw_text_secondary">#4B2E2E</color>
+    <color name="aninaw_text_primary">#2C3E36</color>
+    <color name="aninaw_text_secondary">#5F7168</color>
 
     <!-- Frost / glass -->
-    <color name="aninaw_frost">#80FFFFFF</color>
-    <color name="aninaw_stroke_soft">#1A000000</color>
+    <color name="aninaw_frost">#99FDFCF8</color>
+    <color name="aninaw_stroke_soft">#1A2C3E36</color>
 
-    <color name="welcome_bg">#F6F2EA</color>
+    <color name="welcome_bg">#F0F4F2</color> <!-- Soft Sage-Grey -->
+
+    <!-- Home Tile Text Colors -->
+    <color name="text_home_checkin">#FFFFFF</color> <!-- White on vivid -->
+    <color name="text_home_rhythm">#FFFFFF</color> <!-- White on vivid -->
+    <color name="text_home_growth">#263238</color> <!-- Dark on bright yellow -->
+    <color name="text_home_systems">#FFFFFF</color> <!-- White on vivid -->
+
+    <!-- Headspace Vivid Palette -->
+    <color name="hs_orange_primary">#FF9800</color> <!-- Vivid Orange -->
+    <color name="hs_orange_light">#FFB74D</color> <!-- Soft Orange -->
+    <color name="hs_yellow_bright">#FFD600</color> <!-- Sunshine Yellow -->
+    <color name="hs_blue_bright">#2979FF</color> <!-- Vivid Blue -->
+    <color name="hs_green_bright">#00C853</color> <!-- Vivid Green -->
+    <color name="hs_bg_gradient_start">#FFD180</color> <!-- Soft Sunrise -->
+    <color name="hs_bg_gradient_end">#FFA726</color> <!-- Light Orange -->
+
+    <color name="hs_card_blue">#448AFF</color>
+    <color name="hs_card_green">#00E676</color>
+    <color name="hs_card_yellow">#FFEA00</color>
+    <color name="hs_card_red">#FF5252</color>
+
+    <!-- Emotion Palette (Headspace-inspired) -->
+    <color name="emotion_excited">#FF80AB</color> <!-- Pink -->
+    <color name="emotion_joyful">#FF4081</color> <!-- Hot Pink -->
+    <color name="emotion_grateful">#BA68C8</color> <!-- Purple -->
+    <color name="emotion_energized">#9575CD</color> <!-- Deep Lavender -->
+    <color name="emotion_sensitive">#29B6F6</color> <!-- Light Blue -->
+    <color name="emotion_confused">#2962FF</color> <!-- Royal Blue -->
+    <color name="emotion_bored">#00C853</color> <!-- Green -->
+    <color name="emotion_stressed">#00BFA5</color> <!-- Teal -->
+    <color name="emotion_angry">#FF3D00</color> <!-- Deep Orange/Red -->
+    <color name="emotion_insecure">#FF6D00</color> <!-- Orange -->
+    <color name="emotion_hurt">#FFAB00</color> <!-- Amber -->
+    <color name="emotion_guilty">#FFD600</color> <!-- Yellow -->
 
 </resources>

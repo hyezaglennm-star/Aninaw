@@ -8,7 +8,7 @@
     <path
         android:name="outer_ring"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="3.2"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -25,7 +25,7 @@
     <path
         android:name="mid_ring_1"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="2.4"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -42,7 +42,7 @@
     <path
         android:name="mid_ring_2"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="2.1"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
@@ -59,7 +59,7 @@
     <path
         android:name="inner_core"
         android:fillColor="@android:color/transparent"
-        android:strokeColor="#8A6B4E"
+        android:strokeColor="@color/aninaw_text_secondary"
         android:strokeWidth="1.8"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
