@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootStretch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F1EC">
+
+    <include
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Quick Stretch"
+        android:textColor="#4A4A44"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:paddingHorizontal="22dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="88dp"/>
+
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Small movements. Gentle release."
+        android:textColor="#6B6B65"
+        android:textSize="14sp"
+        android:paddingHorizontal="22dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/panelStretch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_soft_panel"
+        android:orientation="vertical"
+        android:padding="14dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHint"
+        app:layout_constraintBottom_toTopOf="@id/panelBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvStepCounter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Step 1 of 4"
+            android:textColor="#6B6B65"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvStepTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shoulder roll"
+            android:textColor="#4A4A44"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvStepDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Roll your shoulders slowly. No force."
+            android:textColor="#6B6B65"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/illustrationCard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="14dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E7E2DA"
+            app:cardBackgroundColor="#EEECE6">
+
+            <ImageView
+                android:id="@+id/imgStretch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Stretch illustration"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:src="@drawable/ill_stretch_shoulder_roll"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00:10"
+            android:textColor="#6B6B65"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_marginTop="12dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_soft_panel"
+        android:orientation="horizontal"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStart"
+            style="@style/CalmPrimaryButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Start"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            style="@style/CalmSecondaryButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:text="Next"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

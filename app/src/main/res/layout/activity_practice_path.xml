@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootPracticePath"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Back Button -->
+    <include
+        android:id="@+id/btnBack"
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvPracticeTitle"
+        style="@style/PracticePathTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Body Practice Path"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvPracticeSubtitle"
+        style="@style/PracticePathSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="21 small sessions. Continue at your own rhythm."
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvPracticeTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Progress chip-like pill -->
+    <TextView
+        android:id="@+id/tvProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6 sessions practiced"
+        android:textSize="13sp"
+        android:textColor="@color/aninaw_text_primary"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@drawable/bg_session_tile"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvPracticeSubtitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Gentle hint -->
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Choose a session to begin."
+        android:textSize="12sp"
+        android:textColor="@color/aninaw_text_secondary"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvProgress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 21 tiles grid -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridSessions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        app:alignmentMode="alignMargins"
+        app:columnCount="3"
+        app:rowCount="7"
+        app:useDefaultMargins="false"
+        app:layout_constraintTop_toBottomOf="@id/tvHint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- DONE -->
+        <TextView
+            android:id="@+id/tile1"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="1"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <TextView
+            android:id="@+id/tile2"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="2"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <TextView
+            android:id="@+id/tile3"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="3"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <TextView
+            android:id="@+id/tile4"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="4"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <TextView
+            android:id="@+id/tile5"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="5"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <TextView
+            android:id="@+id/tile6"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="6"
+            android:background="@drawable/bg_session_tile_done"/>
+
+        <!-- CURRENT -->
+        <TextView
+            android:id="@+id/tile7"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@color/purple_700"
+            android:background="@drawable/bg_session_tile_current"/>
+
+        <!-- UPCOMING (quieter text) -->
+        <TextView
+            android:id="@+id/tile8"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="8"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile9"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="9"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile10"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="10"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile11"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="11"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile12"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="12"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile13"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="13"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile14"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="14"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile15"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="15"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile16"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="16"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile17"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="17"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile18"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="18"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile19"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="19"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile20"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="20"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+        <TextView
+            android:id="@+id/tile21"
+            style="@style/SessionTileNumber"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            android:gravity="center"
+            android:text="21"
+            android:textColor="@color/aninaw_text_secondary"
+            android:background="@drawable/bg_session_tile"/>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <!-- CTA (kept hidden since bottom sheet handles start) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBeginPractice"
+        style="@style/CheckInButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="Begin practice"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintTop_toBottomOf="@id/gridSessions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

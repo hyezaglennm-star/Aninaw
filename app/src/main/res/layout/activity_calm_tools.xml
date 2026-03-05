@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootCalmTools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F1EC">
+
+    <include
+        layout="@layout/view_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/calm_tools_title"
+        android:textColor="#4A4A44"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingHorizontal="22dp"
+        android:paddingTop="18dp"
+        android:layout_marginTop="78dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/calm_tools_subtitle"
+        android:textColor="#6B6B65"
+        android:textSize="14sp"
+        android:paddingHorizontal="22dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/scrollTools"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/panelTools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_soft_panel"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- Start Here (recommendation) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStartHere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E3E0D9"
+                app:cardBackgroundColor="#F7F5F1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvStartHereTitle"
+                        style="@style/CalmCardTitle"
+                        android:text="@string/calm_start_here_title"/>
+
+                    <TextView
+                        android:id="@+id/tvStartHereSub"
+                        style="@style/CalmCardSub"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/calm_start_here_sub"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnStartStretch"
+                        style="@style/CalmPrimaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/calm_start_here_button"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 1) Stretch (lowest cognitive load) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStretch"
+                style="@style/CalmCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    style="@style/CalmCardInnerRow"
+                    android:minHeight="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/badgeStretch"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="14dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E3E0D9"
+                        app:cardBackgroundColor="#F7F5F1">
+
+                        <ImageView
+                            android:id="@+id/iconStretch"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_stretch"
+                            android:contentDescription="@string/cd_stretch"
+                            android:alpha="0.9"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvStretchTitle"
+                            style="@style/CalmCardTitle"
+                            android:text="@string/tool_stretch_title"/>
+
+                        <TextView
+                            android:id="@+id/tvStretchSub"
+                            style="@style/CalmCardSub"
+                            android:text="@string/tool_stretch_sub"/>
+
+                        <TextView
+                            android:id="@+id/tvStretchMeta"
+                            style="@style/CalmCardMeta"
+                            android:text="@string/tool_stretch_meta"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chevronStretch"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="@string/cd_open_stretch"
+                        android:alpha="0.35"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 2) Grounding -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGrounding"
+                style="@style/CalmCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    style="@style/CalmCardInnerRow"
+                    android:minHeight="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/badgeGrounding"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="14dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E3E0D9"
+                        app:cardBackgroundColor="#F7F5F1">
+
+                        <ImageView
+                            android:id="@+id/iconGrounding"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_ground"
+                            android:contentDescription="@string/cd_grounding"
+                            android:alpha="0.9"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvGroundingTitle"
+                            style="@style/CalmCardTitle"
+                            android:text="@string/tool_ground_title"/>
+
+                        <TextView
+                            android:id="@+id/tvGroundingSub"
+                            style="@style/CalmCardSub"
+                            android:text="@string/tool_ground_sub"/>
+
+                        <TextView
+                            android:id="@+id/tvGroundingMeta"
+                            style="@style/CalmCardMeta"
+                            android:text="@string/tool_ground_meta"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chevronGrounding"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="@string/cd_open_grounding"
+                        android:alpha="0.35"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 3) Breathing -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBreathing"
+                style="@style/CalmCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    style="@style/CalmCardInnerRow"
+                    android:minHeight="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/badgeBreathing"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="14dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E3E0D9"
+                        app:cardBackgroundColor="#F7F5F1">
+
+                        <ImageView
+                            android:id="@+id/iconBreathing"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_breath"
+                            android:contentDescription="@string/cd_breathing"
+                            android:alpha="0.9"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvBreathingTitle"
+                            style="@style/CalmCardTitle"
+                            android:text="@string/tool_breathe_title"/>
+
+                        <TextView
+                            android:id="@+id/tvBreathingSub"
+                            style="@style/CalmCardSub"
+                            android:text="@string/tool_breathe_sub"/>
+
+                        <TextView
+                            android:id="@+id/tvBreathingMeta"
+                            style="@style/CalmCardMeta"
+                            android:text="@string/tool_breathe_meta"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chevronBreathing"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="@string/cd_open_breathing"
+                        android:alpha="0.35"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4) Journal -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardJournal"
+                style="@style/CalmCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    style="@style/CalmCardInnerRow"
+                    android:minHeight="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/badgeJournal"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="14dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E3E0D9"
+                        app:cardBackgroundColor="#F7F5F1">
+
+                        <ImageView
+                            android:id="@+id/iconJournal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_journal"
+                            android:contentDescription="@string/cd_journal"
+                            android:alpha="0.9"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvJournalTitle"
+                            style="@style/CalmCardTitle"
+                            android:text="@string/tool_journal_title"/>
+
+                        <TextView
+                            android:id="@+id/tvJournalSub"
+                            style="@style/CalmCardSub"
+                            android:text="@string/tool_journal_sub"/>
+
+                        <TextView
+                            android:id="@+id/tvJournalMeta"
+                            style="@style/CalmCardMeta"
+                            android:text="@string/tool_journal_meta"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chevronJournal"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="@string/cd_open_journal"
+                        android:alpha="0.35"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 5) CBT -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCbt"
+                style="@style/CalmCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    style="@style/CalmCardInnerRow"
+                    android:minHeight="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/badgeCbt"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="14dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E3E0D9"
+                        app:cardBackgroundColor="#F7F5F1">
+
+                        <ImageView
+                            android:id="@+id/iconCbt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_reflect"
+                            android:contentDescription="@string/cd_cbt_reflection"
+                            android:alpha="0.9"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvCbtTitle"
+                            style="@style/CalmCardTitle"
+                            android:text="@string/tool_cbt_title"/>
+
+                        <TextView
+                            android:id="@+id/tvCbtSub"
+                            style="@style/CalmCardSub"
+                            android:text="@string/tool_cbt_sub"/>
+
+                        <TextView
+                            android:id="@+id/tvCbtMeta"
+                            style="@style/CalmCardMeta"
+                            android:text="@string/tool_cbt_meta"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chevronCbt"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="@string/cd_open_cbt"
+                        android:alpha="0.35"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

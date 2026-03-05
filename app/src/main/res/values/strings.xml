@@ -1,17 +1,77 @@
 <resources>
+
     <string name="app_name">Aninaw</string>
     <string name="next_underlined"><u>Next</u></string>
     <string name="moment_halo_line">It’s okay that it’s here.</string>
 
-    <string name="moment_steady_hint">Feel where your body touches something solid.\nLet it support you for a moment.</string>
+    <string name="moment_steady_hint">
+        Feel where your body touches something solid.
+        Let it support you for a moment.
+    </string>
 
     <string name="moment_stay_longer">Stay longer</string>
 
     <string name="cd_back">Back</string>
 
     <string name="notif_channel_checkin">Check-in reminders</string>
-    <string name="notif_channel_checkin_desc">Gentle reminders to do a quick check-in.</string>
+    <string name="notif_channel_checkin_desc">
+        Gentle reminders to do a quick check-in.
+    </string>
 
     <string name="rhythm_footer_hint">Tap a card to open a rhythm</string>
+
+    <!-- Calm Tools screen -->
+    <string name="calm_tools_title">Calm Tools</string>
+    <string name="calm_tools_subtitle">
+        Short practices for grounding and release.
+    </string>
+
+    <!-- Cards -->
+    <string name="tool_breathe_title">Breathe</string>
+    <string name="tool_breathe_sub">
+        A quick nervous system reset.
+    </string>
+    <string name="tool_breathe_meta">30 seconds</string>
+
+    <string name="tool_ground_title">Ground</string>
+    <string name="tool_ground_sub">
+        Return to the present through your senses.
+    </string>
+    <string name="tool_ground_meta">1 minute</string>
+
+    <string name="tool_journal_title">1-Minute Journal</string>
+    <string name="tool_journal_sub">
+        One honest paragraph. No pressure.
+    </string>
+    <string name="tool_journal_meta">1 minute</string>
+
+    <string name="tool_stretch_title">Quick Stretch</string>
+    <string name="tool_stretch_sub">
+        Release tension in under a minute.
+    </string>
+    <string name="tool_stretch_meta">1 minute</string>
+
+    <string name="tool_cbt_title">CBT Reflection</string>
+    <string name="tool_cbt_sub">
+        Notice → reframe → soften.
+    </string>
+    <string name="tool_cbt_meta">2–3 minutes</string>
+
+    <!-- Accessibility -->
+    <string name="cd_breathing">Breathing</string>
+    <string name="cd_grounding">Grounding</string>
+    <string name="cd_journal">Journal</string>
+    <string name="cd_stretch">Stretch</string>
+    <string name="cd_cbt_reflection">CBT reflection</string>
+
+    <string name="cd_open_breathing">Open breathing</string>
+    <string name="cd_open_grounding">Open grounding</string>
+    <string name="cd_open_journal">Open journal</string>
+    <string name="cd_open_stretch">Open stretch</string>
+    <string name="cd_open_cbt">Open CBT reflection</string>
+
+    <string name="calm_start_here_title">Not sure where to begin?</string>
+    <string name="calm_start_here_sub">Try a quick stretch to release tension, then return to the breath.</string>
+    <string name="calm_start_here_button">Start with Stretch</string>
 
 </resources>
