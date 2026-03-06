@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Face Background -->
+    <path
+        android:fillColor="#F48FB1"
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z"/>
+    <!-- Blush -->
+    <path
+        android:fillColor="#E91E63"
+        android:fillAlpha="0.3"
+        android:pathData="M6,13a1.5,1.5 0,1 0,3 0a1.5,1.5 0,1 0,-3 0z M15,13a1.5,1.5 0,1 0,3 0a1.5,1.5 0,1 0,-3 0z"/>
+    <!-- Eyes -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M15.5,9c-0.83,0 -1.5,0.67 -1.5,1.5S14.67,12 15.5,12 17,11.33 17,10.5 16.33,9 15.5,9zM8.5,9C7.67,9 7,9.67 7,10.5S7.67,12 8.5,12 10,11.33 10,10.5 9.33,9 8.5,9z"/>
+    <!-- Mouth -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M12,16c-1.66,0 -3,-0.67 -3,-1.5S10.34,13 12,13s3,0.67 3,1.5S13.66,16 12,16z"/>
+</vector>

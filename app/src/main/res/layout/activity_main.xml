@@ -286,7 +286,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="bottom|start"
                                     android:text="Check-in"
-                                    android:textColor="@color/text_home_checkin"
+                                    android:textColor="#3E2723"
                                     android:textSize="18sp"
                                     android:textStyle="bold"/>
                             </FrameLayout>
@@ -327,7 +327,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Rhythm"
-                                    android:textColor="@color/text_home_rhythm"
+                                    android:textColor="#616161"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />
@@ -378,7 +378,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Journal"
-                                    android:textColor="@color/text_home_growth"
+                                    android:textColor="#880E4F"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />
@@ -420,7 +420,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="My\nroutines"
-                                    android:textColor="@color/text_home_systems"
+                                    android:textColor="#4A148C"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />
@@ -456,7 +456,7 @@
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/tile_rhythm_bg"
+                                android:background="@drawable/tile_breathe_bg"
                                 android:padding="16dp">
 
                                 <ImageView
@@ -470,7 +470,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Breathe"
-                                    android:textColor="@color/text_home_rhythm"
+                                    android:textColor="#0277BD"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />
@@ -512,7 +512,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Your tree\nring"
-                                    android:textColor="@color/text_home_growth"
+                                    android:textColor="#880E4F"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />
@@ -539,7 +539,7 @@
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/tile_checkin_bg"
+                            android:background="@drawable/tile_roots_bg"
                             android:padding="16dp">
 
                             <ImageView
@@ -553,7 +553,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="My Roots"
-                                android:textColor="@color/text_home_checkin"
+                                android:textColor="#E65100"
                                 android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:layout_gravity="center_vertical|start" />

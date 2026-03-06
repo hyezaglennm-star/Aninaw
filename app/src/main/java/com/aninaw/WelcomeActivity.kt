@@ -21,7 +21,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         // If already shown once, skip instantly
         if (prefs.getBoolean(KEY_SEEN, false)) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, QuickCheckInGateActivity::class.java))
             overridePendingTransition(0, 0)
             finish()
             return
@@ -49,7 +49,7 @@ class WelcomeActivity : AppCompatActivity() {
                         .alpha(0f)
                         .setDuration(600L)
                         .withEndAction {
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, QuickCheckInGateActivity::class.java))
                             overridePendingTransition(0, 0)
                             finish()
                         }

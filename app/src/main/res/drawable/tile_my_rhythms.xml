@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Base: Vivid Green -->
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="28dp" />
-            <gradient
-                android:angle="270"
-                android:startColor="#00E676"
-                android:centerColor="#00C853"
-                android:endColor="#00C853" />
-        </shape>
-    </item>
-
-    <!-- Subtle inner highlight -->
-    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
-        <shape android:shape="rectangle">
-            <corners android:radius="27dp" />
-            <gradient
-                android:angle="270"
-                android:startColor="#33FFFFFF"
-                android:endColor="#00FFFFFF" />
-        </shape>
-    </item>
-
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="24dp" />
+    <solid android:color="@color/home_blush" />
+</shape>

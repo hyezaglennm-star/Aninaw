@@ -61,7 +61,8 @@ class CheckInAnchorActivity : AppCompatActivity() {
 
         // Quick Check-in opens bottom sheet
         val openQuickCheckIn = View.OnClickListener {
-            QuickCheckInBottomSheet { entry ->
+            QuickCheckInBottomSheet(
+                onSaved = { entry ->
 
                 // 1) Convert 1/2/3 intensity -> 0..1 float (same mapping you had)
                 val intensityFloat = when (entry.intensity) {
@@ -116,7 +117,9 @@ class CheckInAnchorActivity : AppCompatActivity() {
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 }
 
-            }.show(supportFragmentManager, "quick_checkin")
+            },
+                onSkip = { /* no-op: just close sheet */ }
+            ).show(supportFragmentManager, "quick_checkin")
         }
 
         optionQuick.setOnClickListener(openQuickCheckIn)

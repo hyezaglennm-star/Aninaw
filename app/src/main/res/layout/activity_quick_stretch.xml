@@ -105,7 +105,7 @@
                 android:contentDescription="Stretch illustration"
                 android:scaleType="centerInside"
                 android:padding="18dp"
-                android:src="@drawable/ill_stretch_shoulder_roll"/>
+                android:src="@drawable/ic_stretch"/>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView

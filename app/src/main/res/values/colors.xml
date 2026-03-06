@@ -66,4 +66,11 @@
     <color name="emotion_hurt">#FFAB00</color> <!-- Amber -->
     <color name="emotion_guilty">#FFD600</color> <!-- Yellow -->
 
+    <color name="home_rust">#D98D67</color>
+    <color name="home_blush">#E5C5BD</color>
+    <color name="home_mustard">#E2A55E</color>
+    <color name="home_steel">#8E9CAE</color>
+    <color name="home_sage">#96AA9A</color>
+    <color name="home_cloud">#B4BFC5</color>
+
 </resources>

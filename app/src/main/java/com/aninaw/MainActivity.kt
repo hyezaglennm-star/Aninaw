@@ -580,6 +580,8 @@ class MainActivity : AppCompatActivity() {
         consumePauseReinforcementIfAny()
     }
 
+    
+
     override fun onPause() {
         super.onPause()
 
@@ -1301,15 +1303,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupTreeTapToOpenTreeRing() {
-        val open = View.OnClickListener { openTreeRingFromTree() }
+        treeHolder.isClickable = false
+        treeHolder.isFocusable = false
+        treeHolder.setOnClickListener(null)
 
-        treeHolder.isClickable = true
-        treeHolder.isFocusable = true
-        treeHolder.setOnClickListener(open)
-
-        hybridTreeView.isClickable = true
-        hybridTreeView.isFocusable = true
-        hybridTreeView.setOnClickListener(open)
+        hybridTreeView.isClickable = false
+        hybridTreeView.isFocusable = false
+        hybridTreeView.setOnClickListener(null)
     }
 
     // --------------------------------------------
@@ -1494,14 +1494,13 @@ class MainActivity : AppCompatActivity() {
 
         // Whole Tree Ring tile clickable
         req<MaterialCardView>(R.id.tileTreeRing).setOnClickListener {
-            openGrowthImpact()
+            openTreeRingFromTree()
             playSound(sfxTap)
         }
 
         // My Roots
         req<MaterialCardView>(R.id.tileRoots).setOnClickListener {
-            startActivity(Intent(this, UntangleActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            openGrowthImpact()
         }
     }
 

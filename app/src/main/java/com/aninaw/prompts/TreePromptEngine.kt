@@ -113,6 +113,9 @@ object TreePromptEngine {
         }
 
         val stagePool = stageLines(stage)
+        if (stagePool.isEmpty()) {
+            return ""
+        }
 
         // Keep tree lines subtle when the user is fragile/high intensity
         val stageTake = when {
@@ -128,73 +131,7 @@ object TreePromptEngine {
         return blended[idx]
     }
 
-    private fun stageLines(stage: TreeStage): List<String> = when (stage) {
-        TreeStage.SEED -> listOf(
-            "Alive in the dark.",
-            "Waiting, intact.",
-            "Holding its own life.",
-            "Alive beneath the surface.",
-            "Whole, even unseen.",
-            "Quiet and intact.",
-            "Carrying its own future.",
-            "Still, but living."
-        )
-
-        TreeStage.SPROUT -> listOf(
-            "Alive and upright.",
-            "Small, but breathing.",
-            "Rooted and reaching.",
-            "A living rise.",
-            "Thin, but real.",
-            "Fresh to the air.",
-            "Holding its first light.",
-            "Soft and standing."
-        )
-
-        TreeStage.YOUNG_TREE -> listOf(
-            "Alive in the wind.",
-            "Growing into its ground.",
-            "Standing, still soft.",
-            "Alive in its own space.",
-            "Growing into height.",
-            "Roots pressing downward.",
-            "Learning the air.",
-            "Standing without noise."
-        )
-
-        TreeStage.GROWING_TREE -> listOf(
-            "Alive through weather.",
-            "Rings forming within.",
-            "Rooted, widening.",
-            "Alive in motion.",
-            "Expanding quietly.",
-            "Holding weight now.",
-            "Stretching through seasons.",
-            "Thickening with time."
-        )
-
-        TreeStage.MATURE_TREE -> listOf(
-            "Fully alive.",
-            "Deep in the soil.",
-            "Steady in its place.",
-            "Alive and grounded.",
-            "Full in its trunk.",
-            "Deep where it stands.",
-            "Carrying its years.",
-            "Present and rooted."
-        )
-
-        TreeStage.FLOURISHING_TREE -> listOf(
-            "Alive and open.",
-            "Branches wide.",
-            "Present in the light.",
-            "Alive in fullness.",
-            "Branches alive with movement.",
-            "Open to the sky.",
-            "Wide and steady.",
-            "Breathing in its place."
-        )
-    }
+    private fun stageLines(stage: TreeStage): List<String> = emptyList()
 
     private fun computeTrend(last: List<Float>): Trend {
         if (last.size < 2) return Trend.UNKNOWN

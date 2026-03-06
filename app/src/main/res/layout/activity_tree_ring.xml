@@ -15,12 +15,12 @@
         android:focusable="true" />
 
     <!-- LAYER 2: UI overlay floats above the ring -->
-    <FrameLayout
+    <com.aninaw.views.OverlayPassThroughLayout
         android:id="@+id/uiOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
+        android:clickable="false"
+        android:focusable="false"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="40dp"
@@ -35,117 +35,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp" />
 
-        <!-- Header (top-center) -->
-        <LinearLayout
-            android:id="@+id/ringHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="18dp"
-            android:paddingStart="72dp"
-            android:paddingEnd="72dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="false"
-            android:focusable="false"
-            android:elevation="40dp"
-            android:translationZ="40dp">
-
-            <TextView
-                android:id="@+id/tvRingTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Growth Rings"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#3A312B"
-                android:includeFontPadding="false"
-                android:gravity="center"
-                android:layout_marginTop="90dp" />
-
-            <TextView
-                android:id="@+id/tvRingHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Each ring holds a day. Scrub to move through time. Tap to revisit your check-ins."
-                android:textSize="13sp"
-                android:textColor="#6A5F57"
-                android:includeFontPadding="false"
-                android:gravity="center"
-                android:maxLines="3"
-                android:ellipsize="end" />
-        </LinearLayout>
-
-        <!-- Scrubber (right-center) -->
-        <com.aninaw.views.TreeRingScrubberView
-            android:id="@+id/ringScrubber"
-            android:layout_width="80dp"
-            android:layout_height="360dp"
-            android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="18dp"
-            android:alpha="0.92"
-            android:elevation="40dp"
-            android:translationZ="40dp" />
-
-        <!-- ✅ Day pill (bottom-center, always visible) -->
-        <TextView
-            android:id="@+id/tvScrubDayLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="90dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:background="@drawable/bg_scrub_label_pill"
-            android:text="Day 1 · Jan 1, 2026"
-            android:textSize="14sp"
-            android:textColor="#3A312B"
-            android:alpha="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:elevation="40dp"
-            android:translationZ="40dp" />
-
-        <!-- Shortcuts (bottom-right) -->
-        <LinearLayout
-            android:id="@+id/ringShortcuts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="90dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:elevation="40dp"
-            android:translationZ="40dp">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnJumpToday"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:background="@drawable/bg_ring_shortcut_fab"
-                android:contentDescription="Jump to Today"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                android:tint="#3A312B" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnJumpDay1"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_ring_shortcut_fab"
-                android:contentDescription="Jump to Day 1"
-                android:src="@android:drawable/ic_menu_revert"
-                android:tint="#3A312B" />
-
-        </LinearLayout>
-
-    </FrameLayout>
+    </com.aninaw.views.OverlayPassThroughLayout>
 
 </FrameLayout>

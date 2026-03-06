@@ -35,6 +35,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".QuickCheckInGateActivity"
+            android:exported="false" />
+        <activity
             android:name=".CheckInAnchorActivity"
             android:exported="false" />
 

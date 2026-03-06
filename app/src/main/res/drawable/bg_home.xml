@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Vibrant Sunshine Gradient -->
     <item>
         <shape android:shape="rectangle">
             <gradient
                 android:angle="270"
-                android:startColor="#66FFD180"
-                android:centerColor="#66FFB74D"
-                android:endColor="#66FFA726"/>
+                android:startColor="@color/home_blush"
+                android:centerColor="@color/home_sage"
+                android:endColor="@color/home_cloud"/>
         </shape>
     </item>
-
-    <!-- Subtle Radial Glow -->
     <item>
         <shape android:shape="rectangle">
             <gradient
@@ -24,5 +20,4 @@
                 android:endColor="#00FFFFFF"/>
         </shape>
     </item>
-
 </layer-list>

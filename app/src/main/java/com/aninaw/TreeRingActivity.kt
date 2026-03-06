@@ -8,6 +8,9 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.aninaw.data.AninawDb
 import com.aninaw.data.treering.TreeRingMemoryRepository
 import kotlinx.coroutines.Dispatchers
@@ -24,13 +27,9 @@ import androidx.core.graphics.drawable.DrawableCompat
 
 class TreeRingActivity : AppCompatActivity() {
 
-    private lateinit var ringHeader: View
-    private var headerHidden = false
-
-    private var currentRingIndex: Int = 0
     private var currentMemoryList: List<DailyMemory> = emptyList()
-
-    private lateinit var tvScrubDayLabel: TextView
+    private lateinit var rvMemories: RecyclerView
+    private lateinit var adapter: TreeRingAdapter
 
     private val dateFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.getDefault())
 
@@ -76,20 +75,6 @@ class TreeRingActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_tree_ring)
 
-        ringHeader = findViewById(R.id.ringHeader)
-
-        ringHeader.alpha = 1f
-        ringHeader.visibility = View.VISIBLE
-        headerHidden = false
-
-        tvScrubDayLabel = findViewById(R.id.tvScrubDayLabel)
-
-        // Pill is ALWAYS visible (your XML must NOT set visibility=gone)
-        tvScrubDayLabel.alpha = 1f
-        tvScrubDayLabel.visibility = View.VISIBLE
-        tvScrubDayLabel.isClickable = true
-        tvScrubDayLabel.isFocusable = true
-
         // Make top UI safe from status bar / notch
         val root = findViewById<View>(R.id.treeRingOverlayRoot)
         root.setOnApplyWindowInsetsListener { v, insets ->
@@ -117,64 +102,15 @@ class TreeRingActivity : AppCompatActivity() {
         val startDayIndex = (daysElapsed - (visibleRingCount - 1)).coerceAtLeast(0)
         val visibleDaysElapsed = visibleRingCount - 1
 
-        val affirmations = buildAffirmationsForRings(
-            startDayIndex = startDayIndex,
-            ringCount = visibleRingCount
-        )
+        val affirmations = List(visibleRingCount) { "" }
 
         val ringView = findViewById<TreeRingView>(R.id.treeRingView)
         ringView.bind(stageName, visibleDaysElapsed, affirmations)
 
-        val scrubber = findViewById<com.aninaw.views.TreeRingScrubberView>(R.id.ringScrubber)
-
-        // Start at Today (outermost)
-        scrubber.progress = 1f
-        updateBottomDayPill(start, visibleRingCount - 1)
-
-        // Pill tap opens details for CURRENT selected ring
-        tvScrubDayLabel.setOnClickListener {
-            val mem = currentMemoryList.getOrNull(currentRingIndex)
-            if (mem != null && mem.hasCheckIn) {
-                showTreeRingMemory(mem)
-            } else {
-                android.app.AlertDialog.Builder(this)
-                    .setTitle("No check-in recorded")
-                    .setMessage("There’s no check-in saved for this day.")
-                    .setPositiveButton("Okay", null)
-                    .show()
-            }
-        }
-
-        findViewById<View>(R.id.btnJumpDay1).setOnClickListener {
-            ringView.focusDay1()
-            scrubber.progress = 0f
-            updateBottomDayPill(start, 0)
-        }
-
-        findViewById<View>(R.id.btnJumpToday).setOnClickListener {
-            ringView.focusToday()
-            scrubber.progress = 1f
-            updateBottomDayPill(start, visibleRingCount - 1)
-        }
-
-        // Scrubber updates pill always; commit only when released
-        scrubber.onScrub = { p, isDragging ->
-
-            if (isDragging && !headerHidden) {
-                hideHeader()
-            }
-
-            ringView.previewRingFromProgress(p, fromScrubberDragging = isDragging)
-
-            val idx = ((p.coerceIn(0f, 1f) * (visibleRingCount - 1))
-                .roundToInt())
-                .coerceIn(0, visibleRingCount - 1)
-
-            updateBottomDayPill(start, idx)
-
-            if (!isDragging) {
-                ringView.commitRingFromProgressNoSnap(p)
-            }
+        // Also handle taps on the main ring visualization
+        ringView.onRingTapped = { mem ->
+             TreeRingDetailFragment.newInstance(mem.dateIso)
+                .show(supportFragmentManager, "TreeRingDetail")
         }
 
         // ✅ Load tree memory for the visible range (date-based)
@@ -216,58 +152,7 @@ class TreeRingActivity : AppCompatActivity() {
             ringView.setDailyMemory(memoryList)
         }
 
-        ringView.onRingTapped = { mem ->
-            // When user taps a ring directly, sync the pill to that ring
-            val idx = currentMemoryList.indexOfFirst { it.dateIso == mem.dateIso }
-            if (idx != -1) updateBottomDayPill(start, idx)
-
-            showTreeRingMemory(mem)
-        }
-
-        maybePulseTodayAffirmation(
-            ringView = ringView,
-            todayRingIndex = visibleDaysElapsed,
-            todayText = affirmations.lastOrNull().orEmpty()
-        )
-    }
-
-    private fun updateBottomDayPill(start: LocalDate, idx: Int) {
-        currentRingIndex = idx.coerceAtLeast(0)
-        val date = start.plusDays(currentRingIndex.toLong())
-
-        val dayNumber = currentRingIndex + 1
-        tvScrubDayLabel.text =
-            "Day $dayNumber · ${date.format(dateFormatter)}   ›"
-
-        val hasCheckIn = currentMemoryList
-            .getOrNull(currentRingIndex)
-            ?.hasCheckIn == true
-
-        if (hasCheckIn) {
-            // Strong, confident presence
-            tvScrubDayLabel.alpha = 1.0f
-            tvScrubDayLabel.scaleX = 1f
-            tvScrubDayLabel.scaleY = 1f
-        } else {
-            // Clearly dimmed (obvious difference)
-            tvScrubDayLabel.alpha = 0.35f
-            tvScrubDayLabel.scaleX = 0.98f
-            tvScrubDayLabel.scaleY = 0.98f
-        }
-
-        tvScrubDayLabel.visibility = View.VISIBLE
-    }
-
-    private fun hideHeader() {
-        if (headerHidden) return
-        headerHidden = true
-
-        ringHeader.animate().cancel()
-        ringHeader.animate()
-            .alpha(0f)
-            .setDuration(160L)
-            .withEndAction { ringHeader.visibility = View.GONE }
-            .start()
+        // Suppress any affirmation pulse text on the ring
     }
 
     private fun maybePulseTodayAffirmation(

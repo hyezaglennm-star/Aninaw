@@ -1,23 +1,17 @@
-//QuickCheckInBottomSheet.kt
 package com.aninaw
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.ImageView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import java.time.Instant
 
 class QuickCheckInBottomSheet(
-    private val onSaved: (QuickCheckInEntry) -> Unit
+    private val onSaved: (QuickCheckInEntry) -> Unit,
+    private val onSkip: (() -> Unit)? = null
 ) : BottomSheetDialogFragment() {
 
     data class QuickCheckInEntry(
@@ -28,125 +22,82 @@ class QuickCheckInBottomSheet(
         val note: String?
     )
 
-    private val emotions = listOf(
-        "Calm", "Okay", "Tense", "Heavy", "Tired",
-        "Anxious", "Sad", "Angry", "Grateful", "Numb"
-    )
+    private var selectedEmotion: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // IMPORTANT: must match your file name in res/layout
         return inflater.inflate(R.layout.bottomsheet_quick_checkin, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Views
-        val chipGroup = view.findViewById<ChipGroup>(R.id.chipGroupEmotion)
+        val btnConfirm = view.findViewById<MaterialButton>(R.id.btnConfirm)
+        val tvSelectedEmotion = view.findViewById<android.widget.TextView>(R.id.tvSelectedEmotion)
+        val tvSkip = view.findViewById<android.widget.TextView>(R.id.tvSkip)
 
-        val toggleIntensity = view.findViewById<MaterialButtonToggleGroup>(R.id.toggleIntensity)
-        val toggleCapacity = view.findViewById<MaterialButtonToggleGroup>(R.id.toggleCapacity)
+        val faces = mapOf(
+            view.findViewById<ImageView>(R.id.faceHappy) to "Happy",
+            view.findViewById<ImageView>(R.id.faceShy) to "Shy",
+            view.findViewById<ImageView>(R.id.faceNeutral) to "Neutral",
+            view.findViewById<ImageView>(R.id.faceAnxious) to "Anxious",
+            view.findViewById<ImageView>(R.id.faceSad) to "Sad"
+        )
 
-        val tvAddNote = view.findViewById<View>(R.id.tvAddNote)
-        val noteContainer = view.findViewById<TextInputLayout>(R.id.noteContainer)
-        val etNote = view.findViewById<TextInputEditText>(R.id.etNote)
-
-        val btnSave = view.findViewById<MaterialButton>(R.id.btnSave)
-
-        // Build emotion chips dynamically (preview will look empty, runtime will be fine)
-        chipGroup.removeAllViews()
-        emotions.forEach { label ->
-            val chip = Chip(requireContext()).apply {
-                text = label
-                isCheckable = true
-                isClickable = true
+        fun updateSelection(selectedView: ImageView) {
+            faces.keys.forEach { face ->
+                if (face == selectedView) {
+                    face.alpha = 1.0f
+                    face.scaleX = 1.2f
+                    face.scaleY = 1.2f
+                    selectedEmotion = faces[face]
+                    tvSelectedEmotion.text = selectedEmotion
+                    tvSelectedEmotion.visibility = View.VISIBLE
+                } else {
+                    face.alpha = 0.5f
+                    face.scaleX = 0.9f
+                    face.scaleY = 0.9f
+                }
             }
-            chipGroup.addView(chip)
+            btnConfirm.isEnabled = true
         }
 
-        // Defaults
-        toggleIntensity.check(R.id.btnIntensityMedium) // medium default
-        toggleCapacity.check(R.id.btnCapSteady)        // steady required default
-
-        // Optional note toggle
-        tvAddNote.setOnClickListener {
-            noteContainer.isVisible = !noteContainer.isVisible
-            if (!noteContainer.isVisible) etNote.setText("")
+        faces.keys.forEach { face ->
+            face.setOnClickListener { updateSelection(face) }
         }
 
-        // Enable save only if an emotion is selected
-        fun updateSaveEnabled() {
-            btnSave.isEnabled = chipGroup.checkedChipId != View.NO_ID
+        tvSkip.setOnClickListener {
+            onSkip?.invoke()
+            dismissAllowingStateLoss()
         }
-        chipGroup.setOnCheckedStateChangeListener { _, _ -> updateSaveEnabled() }
-        updateSaveEnabled()
 
-        // Calm checked-state tint for toggle buttons (compatible approach)
-        val checkedColor = Color.parseColor("#CFE8D6")
-        val uncheckedColor = Color.parseColor("#FFFFFF")
-        setupToggleTint(toggleIntensity, checkedColor, uncheckedColor)
-        setupToggleTint(toggleCapacity, checkedColor, uncheckedColor)
+        btnConfirm.setOnClickListener {
+            val emotion = selectedEmotion ?: return@setOnClickListener
 
-        // Save
-        btnSave.setOnClickListener {
-            val checkedChipId = chipGroup.checkedChipId
-            if (checkedChipId == View.NO_ID) return@setOnClickListener
-
-            val emotion = chipGroup.findViewById<Chip>(checkedChipId)
-                ?.text?.toString()?.trim().orEmpty()
-            if (emotion.isBlank()) return@setOnClickListener
-
-            val intensity = when (toggleIntensity.checkedButtonId) {
-                R.id.btnIntensityLight -> 1
-                R.id.btnIntensityStrong -> 3
-                else -> 2
+            // Default mappings based on emotion
+            val (intensity, capacity) = when (emotion) {
+                "Happy" -> 2 to "STEADY"
+                "Shy" -> 2 to "STEADY"
+                "Neutral" -> 1 to "STEADY"
+                "Anxious" -> 3 to "LOW"
+                "Sad" -> 2 to "LOW"
+                else -> 2 to "STEADY"
             }
-
-            val capacity = when (toggleCapacity.checkedButtonId) {
-                R.id.btnCapLow -> "LOW"
-                R.id.btnCapStrong -> "STRONG"
-                else -> "STEADY"
-            }
-
-            val note = etNote.text?.toString()?.trim()?.takeIf { it.isNotBlank() }
 
             val entry = QuickCheckInEntry(
                 timestampMs = Instant.now().toEpochMilli(),
                 emotion = emotion,
                 intensity = intensity,
                 capacity = capacity,
-                note = note
+                note = null
             )
 
-
-// ✅ TREE GROWTH: count daily quick check-in once
+            // ✅ TREE GROWTH: count daily quick check-in once
             TreeGrowthManager(requireContext()).onQuickCheckInCompleted()
 
             onSaved(entry)
             dismissAllowingStateLoss()
-
         }
-    }
-
-    // Put this at CLASS LEVEL (not inside onViewCreated)
-    private fun setupToggleTint(
-        group: MaterialButtonToggleGroup,
-        checkedColor: Int,
-        uncheckedColor: Int
-    ) {
-        fun refresh() {
-            for (i in 0 until group.childCount) {
-                val child = group.getChildAt(i)
-                if (child is MaterialButton) {
-                    val isChecked = child.id == group.checkedButtonId
-                    child.setBackgroundColor(if (isChecked) checkedColor else uncheckedColor)
-                }
-            }
-        }
-
-        group.addOnButtonCheckedListener { _, _, _ -> refresh() }
-        refresh()
     }
 }

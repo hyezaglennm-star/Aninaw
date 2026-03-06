@@ -126,6 +126,11 @@ class EmotionDayAdapter(
             Emotion.TIRED -> Triple(184, 173, 156)
             Emotion.UNSURE -> Triple(176, 170, 164)
             Emotion.UNDISCLOSED -> Triple(235, 232, 225)
+            Emotion.HAPPY -> Triple(255, 213, 79)
+            Emotion.SHY -> Triple(244, 143, 177)
+            Emotion.NEUTRAL -> Triple(165, 214, 167)
+            Emotion.ANXIOUS -> Triple(255, 204, 128)
+            Emotion.SAD -> Triple(144, 202, 249)
         }
         return Color.argb(alpha.coerceIn(0, 255), r, g, b)
     }

@@ -81,7 +81,14 @@ class TreeRingMemoryBottomSheet : BottomSheetDialogFragment() {
         val tvType = view.findViewById<TextView>(R.id.tvType)
         val tvNote = view.findViewById<TextView>(R.id.tvNote)
 
-        tvDate.text = memory.dateIso
+        // Modern Date Format
+        try {
+            val date = java.time.LocalDate.parse(memory.dateIso)
+            val formatter = java.time.format.DateTimeFormatter.ofPattern("MMM d, yyyy", java.util.Locale.getDefault())
+            tvDate.text = date.format(formatter).uppercase()
+        } catch (e: Exception) {
+            tvDate.text = memory.dateIso
+        }
 
         val mood = memory.emotion?.takeIf { it.isNotBlank() } ?: "No mood saved"
         val intensity = memory.intensity?.let { " • ${(it * 100).toInt()}%" } ?: ""

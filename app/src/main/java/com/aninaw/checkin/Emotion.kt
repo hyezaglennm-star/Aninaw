@@ -1,10 +1,10 @@
-//Emotion.kt
 package com.aninaw.checkin
 
 enum class Emotion {
     CALM, STEADY, FOGGY, MIXED,
     HEAVY, TENSE, TIRED, UNSURE,
-    UNDISCLOSED;
+    UNDISCLOSED,
+    HAPPY, SHY, NEUTRAL, ANXIOUS, SAD;
 
     companion object {
         fun fromLabel(raw: String?): Emotion {
@@ -21,6 +21,11 @@ enum class Emotion {
                 "tired" -> TIRED
                 "unsure" -> UNSURE
                 "undisclosed" -> UNDISCLOSED
+                "happy" -> HAPPY
+                "shy" -> SHY
+                "neutral" -> NEUTRAL
+                "anxious" -> ANXIOUS
+                "sad" -> SAD
                 else -> UNDISCLOSED
             }
         }

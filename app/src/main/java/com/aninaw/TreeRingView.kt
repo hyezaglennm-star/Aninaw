@@ -768,10 +768,20 @@ class TreeRingView @JvmOverloads constructor(
 
         val inner = cachedInner.takeIf { it > 0f } ?: return false
         val outer = cachedOuter.takeIf { it > 0f } ?: return false
+        val woodR = cachedDiscR.takeIf { it > 0f } ?: (outer * 1.1f)
 
-        // Tolerance helps inner rings when zoomed
-        val tapPad = (6f * resources.displayMetrics.density) / scale
-        if (dist < inner - tapPad || dist > outer + tapPad) return false
+        // If tap is outside the visual wood disc, ignore it (background)
+        if (dist > woodR) return false
+
+        // If tap is inside pith (center), treat as first ring
+        if (dist < inner) {
+            return selectRingIndex(0)
+        }
+
+        // If tap is inside wood but outside rings (bark), treat as last ring
+        if (dist > outer) {
+            return selectRingIndex(rings.size - 1)
+        }
 
         val t = ((dist - inner) / (outer - inner)).coerceIn(0f, 1f)
         val idx = (t * (rings.size - 1)).roundToInt().coerceIn(0, rings.size - 1)
@@ -1083,8 +1093,8 @@ class TreeRingView @JvmOverloads constructor(
         val cool = ringBaseCool
 
         return when {
-            e.contains("grateful") || e.contains("joy") || e.contains("happy") -> warm
-            e.contains("calm") || e.contains("okay") || e.contains("steady") -> if (idx % 2 == 0) warm else cool
+            e.contains("grateful") || e.contains("joy") || e.contains("happy") || e.contains("shy") -> warm
+            e.contains("calm") || e.contains("okay") || e.contains("steady") || e.contains("neutral") -> if (idx % 2 == 0) warm else cool
             e.contains("tired") || e.contains("numb") || e.contains("foggy") -> cool
             e.contains("heavy") || e.contains("sad") || e.contains("anxious") -> cool
             e.contains("angry") || e.contains("tense") -> warm
