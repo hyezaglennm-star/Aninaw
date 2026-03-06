@@ -24,4 +24,7 @@ interface TreeRingMemoryDao {
         ORDER BY timestamp ASC
     """)
     suspend fun getByDate(iso: String): List<TreeRingMemoryEntity>
+
+    @Query("SELECT * FROM tree_ring_log ORDER BY timestamp DESC LIMIT 1")
+    fun getLatestLog(): kotlinx.coroutines.flow.Flow<TreeRingMemoryEntity?>
 }

@@ -517,7 +517,13 @@ class MainActivity : AppCompatActivity() {
 
         updateDayCounterText()
 
-        refreshTreeFromDb(animate = false)
+        // Make this observe changes in real-time
+        lifecycleScope.launch {
+            val db = AninawDb.getDatabase(this@MainActivity)
+            db.treeRingMemoryDao().getLatestLog().collect { 
+                refreshTreeFromDb(animate = false) 
+            }
+        }
 
         ensureGreetingAnimationRunning()
 
@@ -1716,7 +1722,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshTreeFromDb(animate: Boolean) {
         val tree = findViewById<HybridTreeView>(R.id.hybridTreeView)
-        val tv = findViewById<TextView>(R.id.tvTreeNarrative)
+        val tvTop = findViewById<TextView>(R.id.tvTopPrompt) // New top prompt
+        val tvBottom = findViewById<TextView>(R.id.tvTreeNarrative) // Old bottom prompt (keep or hide?)
         val db = AninawDb.getDatabase(this)
 
         lifecycleScope.launch {
@@ -1726,8 +1733,8 @@ class MainActivity : AppCompatActivity() {
             val stage = growthToStage(safeGrowth)
 
             val adaptive = withContext(Dispatchers.IO) {
-                val repo = com.aninaw.data.treering.TreeRingMemoryRepository(db)
-                val profile = TreePromptEngine.buildProfile(repo)
+                // val repo = com.aninaw.data.treering.TreeRingMemoryRepository(db) // No longer needed for buildProfile
+                val profile = TreePromptEngine.buildProfile(db)
                 val daySeed = TreeVisualEngine.compute(prefs).daySinceInstall
                 TreePromptEngine.pickPrompt(profile, daySeed, stage)
             }
@@ -1737,7 +1744,8 @@ class MainActivity : AppCompatActivity() {
             if (!animate) {
                 // Don't let a fresh/empty DB force the tree to 0 and hide the sprout.
                 tree.growth = safeGrowth
-                tv.text = line
+                tvTop.text = line
+                tvBottom.visibility = View.GONE
                 return@launch
             }
 
@@ -1753,10 +1761,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             // 2) animate narrative (fade in, no cheesy pop)
-            tv.animate().cancel()
-            tv.alpha = 0f
-            tv.text = line
-            tv.animate().alpha(0.86f).setDuration(380L).start()
+            tvTop.animate().cancel()
+            tvTop.alpha = 0f
+            tvTop.text = line
+            tvTop.animate().alpha(0.86f).setDuration(380L).start()
+            
+            tvBottom.visibility = View.GONE
         }
     }
     private fun maybeShowProgressTreeIntro() {
