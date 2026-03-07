@@ -1,0 +1,93 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <group>
+        <!-- Soft Background Haze -->
+        <path android:pathData="M0,0 L100,0 L100,100 L0,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="0" android:startY="0"
+                    android:endX="50" android:endY="100"
+                    android:startColor="#15FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+
+        <!-- Beam 1: Wide & Hazy (Left) -->
+        <path android:pathData="M-10,0 L30,0 L60,100 L10,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="10" android:startY="0"
+                    android:endX="35" android:endY="100"
+                    android:startColor="#40FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+
+        <!-- Beam 2: Strong Center Shaft -->
+        <path android:pathData="M25,0 L55,0 L85,100 L45,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="40" android:startY="0"
+                    android:endX="65" android:endY="100"
+                    android:startColor="#60FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+
+        <!-- Beam 3: Overlapping "Messy" Streak -->
+        <path android:pathData="M40,0 L50,0 L65,100 L50,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="45" android:startY="0"
+                    android:endX="55" android:endY="100"
+                    android:startColor="#50FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+
+        <!-- Beam 4: Right Side Wash -->
+        <path android:pathData="M60,0 L90,0 L110,80 L90,100 L70,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="75" android:startY="0"
+                    android:endX="90" android:endY="100"
+                    android:startColor="#30FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+
+        <!-- Beam 5: Sharp Highlight (Crossing) -->
+        <path android:pathData="M15,0 L25,0 L40,100 L28,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="20" android:startY="0"
+                    android:endX="35" android:endY="100"
+                    android:startColor="#45FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+        
+         <!-- Beam 6: Extra "Messy" Filler -->
+        <path android:pathData="M35,0 L65,0 L70,100 L30,100 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="50" android:startY="0"
+                    android:endX="50" android:endY="100"
+                    android:startColor="#20FFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </aapt:attr>
+        </path>
+    </group>
+</vector>

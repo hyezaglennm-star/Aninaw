@@ -17,6 +17,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -59,6 +60,13 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             // no need to do anything; if denied, reminders won't show notifications
         }
+
+    // HELPER: LIMIT TO 2 SENTENCES
+    private fun limitToTwoSentences(text: String): String {
+        // Regex to split by sentence endings (. ! ?) followed by space or end of string
+        val parts = text.split(Regex("(?<=[.!?])\\s+"))
+        return parts.take(2).joinToString(" ")
+    }
 
     // --------------------------------------------
     // Growth signals (so other screens can nudge growth safely)
@@ -287,6 +295,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gesturePulse: View
     private lateinit var fingerLeft: View
     private lateinit var fingerRight: View
+
+    private var ivSunRays: ImageView? = null
+    private val sunRayAnimators = mutableListOf<ValueAnimator>()
 
     private val treeRingIdleDelayMs = 2000L
     private val treeRingIdleHandler = Handler(Looper.getMainLooper())
@@ -739,6 +750,8 @@ class MainActivity : AppCompatActivity() {
         gesturePulse = req(R.id.gesturePulse)
         fingerLeft = req(R.id.fingerLeft)
         fingerRight = req(R.id.fingerRight)
+
+        ivSunRays = opt(R.id.ivSunRays)
 
         drawerLayout = req(R.id.drawerLayout)
         btnMenu = req(R.id.btnMenu)
@@ -1615,8 +1628,61 @@ class MainActivity : AppCompatActivity() {
     private fun applySilentPoseRefreshesIfNeeded() {}
     private fun getCurrentDailyPose(): LiwanagPose = LiwanagPose.LEANING
     private fun setPose(pose: LiwanagPose, restartLeafLoop: Boolean = true) {}
-    private fun startAmbient() {}
-    private fun stopAmbient() {}
+    
+    private fun startAmbient() {
+        startSunRaysAnimation()
+    }
+
+    private fun stopAmbient() {
+        stopSunRaysAnimation()
+    }
+
+    private fun startSunRaysAnimation() {
+        val rays = ivSunRays ?: return
+        if (sunRayAnimators.isNotEmpty()) return // already running
+
+        // 1) Alpha Pulse (Breathing)
+        val alphaAnim = ObjectAnimator.ofFloat(rays, "alpha", 0.3f, 0.6f).apply {
+            duration = 5000L
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
+        // 2) Slow Rotation (Sway)
+        val rotateAnim = ObjectAnimator.ofFloat(rays, "rotation", -1.5f, 1.5f).apply {
+            duration = 12000L
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = LinearInterpolator()
+        }
+
+        // 3) Scale (Subtle Zoom)
+        val scaleX = ObjectAnimator.ofFloat(rays, "scaleX", 1.0f, 1.08f).apply {
+            duration = 8000L
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        val scaleY = ObjectAnimator.ofFloat(rays, "scaleY", 1.0f, 1.08f).apply {
+            duration = 8000L
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
+        sunRayAnimators.add(alphaAnim)
+        sunRayAnimators.add(rotateAnim)
+        sunRayAnimators.add(scaleX)
+        sunRayAnimators.add(scaleY)
+
+        sunRayAnimators.forEach { it.start() }
+    }
+
+    private fun stopSunRaysAnimation() {
+        sunRayAnimators.forEach { it.cancel() }
+        sunRayAnimators.clear()
+    }
 
     // --------------------------------------------
     // DEBUG
@@ -1741,10 +1807,13 @@ class MainActivity : AppCompatActivity() {
 
             val line = ui.milestone ?: adaptive
 
+            // Limit to 2 sentences
+            val truncatedLine = limitToTwoSentences(line)
+
             if (!animate) {
                 // Don't let a fresh/empty DB force the tree to 0 and hide the sprout.
                 tree.growth = safeGrowth
-                tvTop.text = line
+                tvTop.text = truncatedLine
                 tvBottom.visibility = View.GONE
                 return@launch
             }
@@ -1763,7 +1832,7 @@ class MainActivity : AppCompatActivity() {
             // 2) animate narrative (fade in, no cheesy pop)
             tvTop.animate().cancel()
             tvTop.alpha = 0f
-            tvTop.text = line
+            tvTop.text = truncatedLine
             tvTop.animate().alpha(0.86f).setDuration(380L).start()
             
             tvBottom.visibility = View.GONE
