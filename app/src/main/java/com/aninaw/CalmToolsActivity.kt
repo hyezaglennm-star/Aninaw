@@ -27,8 +27,11 @@ class CalmToolsActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // 2) Grounding (Placeholder)
-        // findViewById<View>(R.id.cardGrounding)?.setOnClickListener { ... }
+        // 2) Grounding
+        findViewById<View>(R.id.cardGrounding)?.setOnClickListener {
+            startActivity(Intent(this, GroundingActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 
         // 3) Breathe -> MomentActivity
         findViewById<View>(R.id.cardBreathing)?.setOnClickListener {

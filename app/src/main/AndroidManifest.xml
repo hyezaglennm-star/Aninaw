@@ -36,6 +36,7 @@
             android:exported="false" />
         <activity android:name=".CalmToolsActivity" />
         <activity android:name=".QuickStretchActivity" />
+        <activity android:name=".GroundingActivity" />
         <activity
             android:name=".QuickCheckInGateActivity"
             android:exported="false" />
