@@ -39,9 +39,9 @@ class CalmToolsActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // 4) Journal -> JournalActivity
+        // 4) Journal -> OneMinuteJournalActivity
         findViewById<View>(R.id.cardJournal)?.setOnClickListener {
-            startActivity(Intent(this, JournalActivity::class.java))
+            startActivity(Intent(this, OneMinuteJournalActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 

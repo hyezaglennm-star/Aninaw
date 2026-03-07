@@ -76,6 +76,7 @@
 
         <activity android:name=".CrisisResourcesActivity" />
         <activity android:name=".JournalActivity" />
+        <activity android:name=".OneMinuteJournalActivity" />
         <activity android:name=".JournalEditorActivity" />
         <activity android:name=".EmotionStatsActivity" />
 
