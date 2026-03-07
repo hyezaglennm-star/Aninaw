@@ -125,14 +125,21 @@
                     <!-- Text at the top -->
                     <TextView
                         android:id="@+id/tvTopPrompt"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top|center_horizontal"
                         android:layout_marginTop="24dp"
                         android:alpha="0.86"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:includeFontPadding="false"
+                        android:breakStrategy="balanced"
+                        android:hyphenationFrequency="full"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
                         android:text=""
                         android:textColor="@color/aninaw_text_secondary"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="italic" />
 
                     <!-- The Tree -->
@@ -163,8 +170,8 @@
                 <FrameLayout
                     android:id="@+id/liwanagGroup"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="-60dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="-40dp"
                     android:layout_marginStart="20dp"
                     android:clipChildren="false"
                     android:clipToPadding="false">
@@ -180,31 +187,43 @@
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardLiwanagBubble"
-                            android:layout_width="120dp"
+                        android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                             app:cardBackgroundColor="@color/aninaw_frost"
                             app:cardCornerRadius="16dp"
-                            app:cardElevation="4dp"
+                        app:cardElevation="6dp"
+                        app:cardUseCompatPadding="true"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/textLiwanagPrompt"
-                                android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:padding="12dp"
+                            android:gravity="start"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:maxWidth="320dp"
+                            android:breakStrategy="balanced"
+                            android:hyphenationFrequency="full"
+                            android:justificationMode="inter_word"
+                            android:lineSpacingExtra="2dp"
+                            android:includeFontPadding="false"
                                 android:textColor="@color/aninaw_text_secondary"
-                                android:textSize="12sp"
-                                android:textStyle="italic" />
+                            android:textSize="14sp"
+                            android:textAlignment="viewStart" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <ImageView
                             android:id="@+id/bubbleTail"
                             android:layout_width="20dp"
                             android:layout_height="10dp"
-                            android:layout_marginTop="-1dp"
+                        android:layout_marginTop="-2dp"
                             android:src="@drawable/speech_bubble_tail"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

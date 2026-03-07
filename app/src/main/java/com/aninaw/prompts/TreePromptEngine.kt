@@ -22,6 +22,7 @@ data class PromptProfile(
 enum class Trend { UP, DOWN, FLAT, UNKNOWN }
 
 enum class TreeStage { SEED, SPROUT, YOUNG_TREE, GROWING_TREE, MATURE_TREE, FLOURISHING_TREE }
+
 object TreePromptEngine {
 
     suspend fun buildProfile(db: AninawDb): PromptProfile {
@@ -84,10 +85,10 @@ object TreePromptEngine {
         // THEN show gratitude or growth reflection prompts
         if (lastEmo in setOf("CALM", "HAPPY", "JOYFUL", "GRATEFUL", "ENERGIZED", "STEADY", "POSITIVE")) {
              return listOf(
-                "What are you grateful for right now?",
-                "How can you share this light?",
-                "Growth is happening.",
-                "Savor this moment."
+                "Take a deep breath and let this feeling settle into your bones. Moments like this are precious reminders of the light that exists within you. What specific part of this joy are you most grateful for right now?",
+                "Your positive energy is a gift, not just to yourself but to everyone around you. Consider how you might share this warmth today—perhaps a smile, a kind word, or simply holding onto this inner light.",
+                "You are growing in ways you might not even see yet. This feeling is proof that your roots are deepening and your branches are reaching higher. Trust the process and celebrate this beautiful progress.",
+                "Pause for a moment and truly savor this feeling. Let it fill you up completely, knowing that you deserve this peace and happiness. This is a moment to cherish and remember."
             ).randomFresh()
         }
 
@@ -104,10 +105,10 @@ object TreePromptEngine {
             // Use current timestamp as seed to make it change with every check-in/load
             // instead of once per day (daySeed).
             return listOf(
-                "You’ve been carrying a heavy load. It’s okay to ask for support.",
-                "This feels big. Is there someone you can talk to?",
-                "You don't have to do this alone.",
-                "Gentle reminder: seeking help is a strength."
+                "You’ve been carrying such a heavy load lately, and I want you to know it’s completely okay to set it down. Please remember that asking for support isn't a weakness; it's a brave step toward healing.",
+                "This feeling seems overwhelming right now, but you don't have to navigate this storm by yourself. Is there a trusted friend, family member, or professional you can reach out to? You deserve to be heard.",
+                "Please remember that you do not have to walk this path alone. There are hands ready to hold yours and hearts willing to listen. Reaching out is an act of kindness to yourself.",
+                "A gentle reminder from your tree: seeking help is a profound strength, not a failure. You are valuable, and your well-being matters deeply. Please consider letting someone in to help you carry this."
             ).randomFresh() 
         }
 
@@ -117,10 +118,10 @@ object TreePromptEngine {
         // THEN suggest simple emotional check-in first
         if (profile.daysSinceCheckIn >= 7) {
             return listOf(
-                "Welcome back. Start small with just one feeling.",
-                "No pressure. Just notice how you are right now.",
-                "It's good to see you. How are you holding up?",
-                "A fresh start. One breath is enough."
+                "Welcome back. It takes courage to return, and I'm so glad you're here. There is absolutely no pressure to do everything at once; just start small by naming one thing you're feeling right now.",
+                "No matter how much time has passed, this space is always here for you without judgment. Let go of any guilt and simply notice how you are in this present moment. You are exactly where you need to be.",
+                "It is so good to see you again. Life can be a whirlwind, and I hope you've been treating yourself with kindness. How are you holding up today? Take your time.",
+                "Consider this a fresh start, a clean slate. You don't need to catch up on anything. Just one conscious breath is enough to reconnect with yourself. You are doing just fine."
             ).randomFresh()
         }
 
@@ -128,10 +129,10 @@ object TreePromptEngine {
         // THEN show gentle welcome-back prompt
         if (profile.daysSinceCheckIn >= 3) {
             return listOf(
-                "Gentle welcome back.",
-                "No catching up needed. Just be here.",
-                "You can always return.",
-                "Softly stepping back in."
+                "A gentle welcome back to you. Your tree has been waiting patiently, and it's wonderful to have you return. Take a moment to settle in and breathe.",
+                "There is no need to rush or catch up on missed days. The only moment that matters is right now. Just be here, fully present with yourself and your feelings.",
+                "Remember that you can always return, no matter how far you drift. This is your safe harbor. Let yourself arrive gently, without expectation.",
+                "Softly stepping back in is a beautiful way to resume your journey. Be proud of yourself for showing up today. That small act is a victory in itself."
             ).randomFresh()
         }
 
@@ -145,10 +146,10 @@ object TreePromptEngine {
              // But we can force a generic prompt if it's been > 1 day but < 3 days.
              if (profile.daysSinceCheckIn >= 1) {
                  return listOf(
-                     "How are you feeling today?",
-                     "Take a moment to check in.",
-                     "What's alive in you right now?",
-                     "Pause and notice your breath."
+                     "Take a gentle pause in your day to ask yourself: How am I truly feeling right now? There is no right or wrong answer, just the truth of your experience.",
+                     "The world moves fast, but you can choose to slow down. Take a quiet moment to check in with yourself. Your feelings are valid and deserve your attention.",
+                     "Close your eyes for a second and look inward. What is alive in you right now? Whatever it is, welcome it with curiosity and kindness.",
+                     "Pause and simply notice your breath flowing in and out. It’s a constant anchor you can always return to. How does your body and mind feel in this stillness?"
                  ).randomFresh()
              }
         }
@@ -158,7 +159,7 @@ object TreePromptEngine {
         if (profile.hasCheckInToday) {
              // We can be more specific here based on habits
              if (profile.streakDays > 5) {
-                 return "You've checked in. Keep the rhythm going."
+                 return "You have already taken time for yourself today, and that is a wonderful act of self-care. Keep this gentle rhythm going, knowing that every check-in strengthens your inner growth."
              }
              // Or fall through to show positive reinforcement or growth prompts
         }
@@ -171,10 +172,10 @@ object TreePromptEngine {
         // THEN suggest release or clarity prompts
         if (lastEmo in setOf("ANGRY", "FRUSTRATED", "ANGER", "CONFUSED")) {
              return listOf(
-                "Release what you cannot control.",
-                "What does your anger want to protect?",
-                "Write it down, then let it go.",
-                "Clarity comes after the storm."
+                "Sometimes holding on hurts more than letting go. Try to release what you cannot control, and trust that you have the strength to handle what remains.",
+                "Anger often stands guard over something precious. Ask yourself: what is my anger trying to protect? Understanding its message can bring you a sense of peace.",
+                "Get it all out—write it down, speak it to the air, or scribble it on paper. Once it's out of your head, you might find it easier to let it go and breathe freely again.",
+                "Even the fiercest storms eventually give way to clear skies. Allow yourself to feel this, knowing that clarity and calm are waiting for you on the other side."
             ).randomFresh()
         }
 
@@ -183,10 +184,10 @@ object TreePromptEngine {
         // (Checking current emotion first for immediate relevance)
         if (lastEmo in setOf("STRESSED", "ANXIOUS", "TENSE", "WORRIED", "NERVOUS")) {
             return listOf(
-                "Take a deep breath. Ground yourself.",
-                "Focus on your breath for a moment.",
-                "Feel your feet on the ground.",
-                "Inhale slowly, exhale deeply."
+                "Take a deep, slow breath and let your shoulders drop. Ground yourself in this moment, knowing that you are safe and that this feeling will pass.",
+                "Everything else can wait. For just this moment, focus entirely on your breath. Watch the rise and fall of your chest, and let it anchor you to the here and now.",
+                "Feel your feet firmly planted on the ground. You are supported by the earth beneath you. You are steady, you are present, and you can handle this.",
+                "Inhale slowly, counting to four, and exhale deeply, counting to six. Let your breath create a space of calm within you. You are doing the best you can."
             ).randomFresh()
         }
 
@@ -194,10 +195,10 @@ object TreePromptEngine {
         // THEN show supportive reflection prompts
         if (lastEmo in setOf("SAD", "SADNESS", "HEAVY", "TIRED")) {
             return listOf(
-                "Be gentle with yourself today.",
-                "It's okay to feel this way.",
-                "Your feelings are valid.",
-                "Rest is also productive."
+                "Please be extra gentle with yourself today. Treat yourself with the same kindness and compassion you would offer to a dear friend who is hurting.",
+                "It is completely okay to feel this way. Sadness is a natural part of being human, and you don't need to fix it right away. Just let it be.",
+                "This is just one day, and tomorrow you have a chance to make it all better. And the truth is, you will make your situation better because you are strong and incredibly capable.",
+                "Remember that rest is not laziness; it is a vital part of healing. Giving yourself permission to rest is one of the most productive things you can do right now."
             ).randomFresh()
         }
 
@@ -207,10 +208,10 @@ object TreePromptEngine {
         // THEN prioritize grounding tools or calming exercises
         if (intensity >= 0.8f) {
             return listOf(
-                "Breathe. Just breathe.",
-                "Ground yourself in this moment.",
-                "You are safe here.",
-                "Let the intensity pass like a wave."
+                "Breathe. Just breathe. Deep, steady breaths. You are stronger than this moment, and you will make it through, one breath at a time.",
+                "The storm may be loud, but you can find a quiet center. Ground yourself in this moment by noticing five things you can see and four things you can touch.",
+                "You are safe here. This feeling is intense, but it cannot hurt you. Wrap yourself in a sense of safety and know that you are okay.",
+                "Imagine this intense emotion as a wave in the ocean. It rises and crashes, but eventually, it recedes. Let it pass through you, knowing the water will settle again."
             ).randomFresh()
         }
 
@@ -220,18 +221,18 @@ object TreePromptEngine {
              // Combine with reflection activity rules if applicable
              if (profile.avgReflectionLength > 50) {
                  return listOf(
-                     "What specifically is bringing this feeling up?",
-                     "Describe the texture of this emotion.",
-                     "What does this feeling need from you?",
-                     "Listen to the quiet voice inside."
+                     "If you look a little deeper, what specifically is bringing this feeling to the surface? Understanding the root can be the first step toward greater clarity.",
+                     "Try to describe the texture of this emotion. Is it heavy, sharp, or flowing? Giving it a shape or name can sometimes make it easier to understand.",
+                     "Ask yourself gently: What does this feeling need from me right now? It might need comfort, action, or simply to be heard. Listen to what it says.",
+                     "In the quiet of this moment, listen to the small voice inside you. It often holds the wisdom we need most. What is it whispering to you today?"
                  ).randomFresh()
              }
              
              return listOf(
-                "What is one thing you learned about yourself?",
-                "How does your body feel right now?",
-                "What really matters to you today?",
-                "Notice what you’re carrying today."
+                "Reflect on one thing you have learned about yourself recently. Every emotion, even the quiet ones, has a lesson to teach us about who we are.",
+                "Scan your body from head to toe. How does your body feel right now? Often, our physical sensations hold the key to understanding our emotional state.",
+                "Amidst everything going on, what really matters to you today? Reconnecting with your core values can provide a compass when things feel uncertain.",
+                "Take a moment to notice what you’re carrying today. Is there anything you can set down, even just for a little while, to lighten your step?"
             ).randomFresh()
         }
 
@@ -248,10 +249,10 @@ object TreePromptEngine {
             
         if (mostFrequent != null && mostFrequent.value >= 3) {
              return listOf(
-                "You've been feeling ${mostFrequent.key.lowercase()} lately. What is it telling you?",
-                "Notice the pattern. Be curious.",
-                "Is there a rhythm to this feeling?",
-                "What does this recurring feeling need?"
+                "You've been feeling ${mostFrequent.key.lowercase()} quite a bit lately. Instead of pushing it away, ask yourself: what is this feeling trying to tell me?",
+                "Notice this pattern with curiosity rather than judgment. Patterns often emerge to show us something important about our lives or our needs.",
+                "Is there a rhythm to this feeling? Does it arrive at certain times or in certain places? Observing the flow can help you navigate it better.",
+                "What does this recurring feeling need from you? Perhaps it's asking for a change, a boundary, or simply more compassion. Listen closely."
             ).randomFresh()
         }
 
@@ -261,10 +262,10 @@ object TreePromptEngine {
         // THEN show positive reinforcement message
         if (profile.streakDays >= 3) {
             return listOf(
-                "You are building momentum.",
-                "Your consistency is showing.",
-                "Small steps add up.",
-                "Keep going. You are growing."
+                "You are building incredible momentum. Every day you show up, you are casting a vote for the person you want to become. Be proud of this.",
+                "Your consistency is showing, and it is beautiful to witness. These daily actions are weaving a strong fabric of resilience and self-care.",
+                "Never underestimate the power of small steps. They add up to mountains climbed and oceans crossed. You are making progress, one day at a time.",
+                "Keep going. You are growing in ways that may be invisible now but will be undeniable later. Trust in the power of your own persistence."
             ).randomFresh()
         }
 
@@ -272,10 +273,10 @@ object TreePromptEngine {
         // THEN suggest smaller or easier habits
         if (profile.streakDays < 2 && profile.totalCheckIns > 5) {
              return listOf(
-                "It's okay to start small again.",
-                "One small habit is enough.",
-                "Be gentle with your rhythm.",
-                "Focus on just one thing today."
+                "It is completely okay to start small again. In fact, starting small is often the bravest way to begin. Be kind to yourself as you find your footing.",
+                "You don't need to do it all. One small habit, done with intention, is enough to shift your day. Focus on quality over quantity.",
+                "Be gentle with your rhythm. Life is not a straight line, and neither is growth. Listen to what your body and mind need today.",
+                "Focus on just one thing today. Let go of the rest. Mastering one small act of care is a victory worth celebrating."
             ).randomFresh()
         }
 
@@ -285,10 +286,10 @@ object TreePromptEngine {
         // THEN show short simple prompts
         if (profile.avgReflectionLength < 10 && profile.totalCheckIns > 3) {
             return listOf(
-                "One word describes today.",
-                "Name one feeling.",
-                "Just a quick note.",
-                "Simple is good."
+                "If you could only use one word to describe today, what would it be? Sometimes, a single word can hold a universe of meaning.",
+                "Name one feeling that is present for you right now. You don't need to explain it or fix it—just naming it is enough.",
+                "Just a quick note is all it takes. Capture a fleeting thought or emotion before it passes. Your future self will thank you.",
+                "Simple is good. You don't need profound paragraphs to make a meaningful reflection. A simple truth is powerful."
             ).randomFresh()
         }
 
@@ -298,20 +299,20 @@ object TreePromptEngine {
         // THEN show encouraging message
         if (profile.streakDays > 0) {
             return listOf(
-                "Your tree is growing stronger.",
-                "Roots take time to deepen.",
-                "Every check-in nourishes you.",
-                "Slow growth is still growth."
+                "With every check-in, your tree is growing stronger and more resilient. You are nurturing something beautiful within yourself.",
+                "Remember that roots take time to deepen. What you are building is a foundation that will support you for years to come.",
+                "Every time you check in, you nourish your mind and spirit. It's like watering a plant—the effects are cumulative and life-giving.",
+                "Slow growth is still growth. In nature, the mightiest trees grow slowly. Trust your own pace; you are exactly where you need to be."
             ).randomFresh()
         }
 
         // IF user shows inconsistent activity (streak == 0)
         // THEN show compassionate encouragement
         return listOf(
-            "It’s never too late to begin again.",
-            "Your tree waits for you.",
-            "Rest is part of growth.",
-            "Start where you are."
+            "It is never, ever too late to begin again. Each moment offers a new beginning, a chance to reset and choose kindness for yourself.",
+            "Your tree waits for you patiently. It doesn't judge your absence; it only celebrates your return. You are always welcome here.",
+            "Rest is an essential part of growth. Winter is necessary for spring to bloom. Allow yourself the grace to rest when you need it.",
+            "Start exactly where you are. You don't need to be perfect or 'ready.' You just need to take one small step. That is enough."
         ).randomFresh()
     }
 

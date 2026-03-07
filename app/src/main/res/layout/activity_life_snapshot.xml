@@ -35,6 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:clipToPadding="false"
         android:overScrollMode="never"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="18dp"
@@ -57,7 +58,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="There’s no right answer. Just be honest."
-                android:textSize="13sp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:breakStrategy="balanced"
+                android:hyphenationFrequency="full"
+                android:justificationMode="inter_word"
                 android:textColor="#8B7A72"
                 android:alpha="0.9"/>
 
@@ -74,7 +79,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="I get overwhelmed easily  →  I can sit with difficult emotions"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:breakStrategy="balanced"
+                android:hyphenationFrequency="full"
+                android:justificationMode="inter_word"
                 android:textColor="#8B7A72"/>
 
             <com.google.android.material.slider.Slider
@@ -99,7 +108,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="I don’t think about my habits  →  I know which habits help or hurt me"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:breakStrategy="balanced"
+                android:hyphenationFrequency="full"
+                android:justificationMode="inter_word"
                 android:textColor="#8B7A72"/>
 
             <com.google.android.material.slider.Slider
@@ -124,7 +137,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My days feel random  →  My days feel steady"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:breakStrategy="balanced"
+                android:hyphenationFrequency="full"
+                android:justificationMode="inter_word"
                 android:textColor="#8B7A72"/>
 
             <com.google.android.material.slider.Slider
@@ -149,7 +166,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="I react to life  →  I choose how I respond"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:breakStrategy="balanced"
+                android:hyphenationFrequency="full"
+                android:justificationMode="inter_word"
                 android:textColor="#8B7A72"/>
 
             <com.google.android.material.slider.Slider

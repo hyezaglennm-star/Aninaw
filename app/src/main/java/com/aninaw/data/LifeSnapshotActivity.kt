@@ -21,7 +21,7 @@ class LifeSnapshotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_life_snapshot)
 
-        com.aninaw.util.BackButton.bind(this)
+          com.aninaw.util.BackButton.bind(this)
 
         val kind = intent.getStringExtra("KIND") ?: "BASELINE"
         findViewById<View>(R.id.btnBack).setOnClickListener { finish() }
