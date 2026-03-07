@@ -118,6 +118,18 @@
             android:gravity="center"
             android:layout_marginTop="12dp"/>
 
+        <TextView
+            android:id="@+id/tvMotivation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You are doing great!"
+            android:textColor="#557C6C"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
     <LinearLayout

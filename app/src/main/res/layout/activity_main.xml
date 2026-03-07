@@ -316,7 +316,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="bottom|start"
-                                    android:text="Check-in"
+                                    android:text="Calm Tools"
                                     android:textColor="#3E2723"
                                     android:textSize="18sp"
                                     android:textStyle="bold"/>
@@ -367,54 +367,12 @@
 
                     </LinearLayout>
 
-                    <!-- ROW 2: Journal | My Routines -->
+                    <!-- ROW 2: My Routines | Your Tree Ring -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginBottom="12dp">
-
-                        <!-- JOURNAL -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/tileJournal"
-                            android:layout_width="0dp"
-                            android:layout_height="120dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="6dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackgroundBorderless"
-                            android:clipToOutline="true"
-                            android:stateListAnimator="@animator/press_scale_card"
-                            app:cardCornerRadius="24dp"
-                            app:cardElevation="0dp"
-                            app:cardUseCompatPadding="false"
-                            app:cardPreventCornerOverlap="false"
-                            app:strokeWidth="0dp">
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/tile_growth_bg"
-                                android:padding="16dp">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="top|end"
-                                    android:src="@drawable/journaling"
-                                    android:alpha="1.0" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Journal"
-                                    android:textColor="#880E4F"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:layout_gravity="bottom|start" />
-                            </FrameLayout>
-                        </com.google.android.material.card.MaterialCardView>
 
                         <!-- MY ROUTINES (formerly Systems) -->
                         <com.google.android.material.card.MaterialCardView
@@ -422,7 +380,7 @@
                             android:layout_width="0dp"
                             android:layout_height="120dp"
                             android:layout_weight="1"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
                             android:clickable="true"
                             android:focusable="true"
                             android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -452,56 +410,6 @@
                                     android:layout_height="wrap_content"
                                     android:text="My\nroutines"
                                     android:textColor="#4A148C"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:layout_gravity="bottom|start" />
-                            </FrameLayout>
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
-
-                    <!-- ROW 3: Breathe | Your Tree Ring -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="12dp">
-
-                        <!-- BREATHE -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/tileBreathe"
-                            android:layout_width="0dp"
-                            android:layout_height="120dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="6dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackgroundBorderless"
-                            android:clipToOutline="true"
-                            android:stateListAnimator="@animator/press_scale_card"
-                            app:cardCornerRadius="24dp"
-                            app:cardElevation="0dp"
-                            app:cardUseCompatPadding="false"
-                            app:cardPreventCornerOverlap="false"
-                            app:strokeWidth="0dp">
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/tile_breathe_bg"
-                                android:padding="16dp">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="top|end"
-                                    android:src="@drawable/wings_open"
-                                    android:alpha="1.0" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Breathe"
-                                    android:textColor="#0277BD"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="bottom|start" />

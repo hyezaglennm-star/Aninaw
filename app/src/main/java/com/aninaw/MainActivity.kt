@@ -1481,9 +1481,9 @@ class MainActivity : AppCompatActivity() {
     // --------------------------------------------
     private fun setupNavigation() {
 
-        // WHOLE Check-in tile clickable (recommended)
+        // WHOLE Check-in tile clickable (recommended) -> NOW Calm Tools
         req<MaterialCardView>(R.id.tilePause).setOnClickListener {
-            startActivity(Intent(this, CheckInAnchorActivity::class.java))
+            startActivity(Intent(this, CalmToolsActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
@@ -1493,21 +1493,9 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Journal
-        req<MaterialCardView>(R.id.tileJournal).setOnClickListener {
-            startActivity(Intent(this, JournalActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-
         // Whole My Systems tile clickable
         req<MaterialCardView>(R.id.tileSystems).setOnClickListener {
             startActivity(Intent(this, SystemsActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-
-        // Breathe
-        req<MaterialCardView>(R.id.tileBreathe).setOnClickListener {
-            startActivity(Intent(this, MomentActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
