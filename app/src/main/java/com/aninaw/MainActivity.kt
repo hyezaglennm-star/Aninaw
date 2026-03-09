@@ -248,21 +248,21 @@ class MainActivity : AppCompatActivity() {
     // --------------------------------------------
     // VIEWS
     // --------------------------------------------
-    private lateinit var progressTreeIntroHost: View
-    private lateinit var progressTreeSpotlight: SpotlightHoleView
-    private lateinit var btnProgressTreeIntroBegin: View
+    private lateinit var progressTreeIntroHost: View 
+    private lateinit var progressTreeSpotlight: SpotlightHoleView 
+    private lateinit var btnProgressTreeIntroBegin: View 
 
-    private lateinit var progressTreeIntroCard: View
+    private lateinit var progressTreeIntroCard: View 
 
-    private lateinit var sceneCanvas: View
-    private lateinit var liwanagPoseContainer: FrameLayout
+    private lateinit var sceneCanvas: View 
+    private lateinit var liwanagPoseContainer: FrameLayout 
 
-    private var bubbleGroup: View? = null
-    private var bubbleCard: MaterialCardView? = null
-    private var bubbleTail: ImageView? = null
-    private var bubbleText: TextView? = null
+    private var bubbleGroup: View? = null 
+    private var bubbleCard: MaterialCardView? = null 
+    private var bubbleTail: ImageView? = null 
+    private var bubbleText: TextView? = null 
 
-    private var fireflyLayer: FrameLayout? = null
+    private var fireflyLayer: FrameLayout? = null 
 
     private lateinit var treeHolder: View
     private lateinit var hybridTreeView: HybridTreeView
@@ -390,7 +390,7 @@ class MainActivity : AppCompatActivity() {
     // --------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.homescreen2)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val granted = ContextCompat.checkSelfPermission(
@@ -404,10 +404,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         requestPostNotificationsIfNeeded()
-
-        findViewById<View>(R.id.treeHolderCard).setOnClickListener {
-            // open tree ring overlay OR open full-scene activity/dialog
-        }
 
         bindViews()
 
@@ -588,13 +584,13 @@ class MainActivity : AppCompatActivity() {
         cancelTreeRingIdleHint()
         hideTreeRingIdleHint()
 
-        if (treeRingOverlayHost.visibility == View.VISIBLE) {
-            treeRingOverlayHost.visibility = View.GONE
-            treeRingOverlayScrim?.alpha = 0f
-            treeRingFocusLayer.alpha = 0f
-            treeRingFocusLayer.visibility = View.GONE
-            animateHomeDrawIn(false)
-        }
+        // if (treeRingOverlayHost.visibility == View.VISIBLE) {
+        //    treeRingOverlayHost.visibility = View.GONE
+        //    treeRingOverlayScrim?.alpha = 0f
+        //    treeRingFocusLayer.alpha = 0f
+        //    treeRingFocusLayer.visibility = View.GONE
+        //    animateHomeDrawIn(false)
+        // }
 
         stopAmbient()
         cancelIntroSequence()
@@ -617,12 +613,12 @@ class MainActivity : AppCompatActivity() {
         if (ev.actionMasked == MotionEvent.ACTION_DOWN) {
 
             // Hide pinch hint immediately on any tap
-            if (::treeRingOverlayHost.isInitialized &&
-                treeRingOverlayHost.visibility == View.VISIBLE) {
+            // if (::treeRingOverlayHost.isInitialized &&
+            //    treeRingOverlayHost.visibility == View.VISIBLE) {
 
-                cancelTreeRingIdleHint()
-                hideTreeRingIdleHintNow()
-            }
+            //    cancelTreeRingIdleHint()
+            //    hideTreeRingIdleHintNow()
+            // }
 
             nudgeControlsVisible()
         }
@@ -696,7 +692,7 @@ class MainActivity : AppCompatActivity() {
     private fun <T : View> req(id: Int): T {
         return findViewById<T?>(id)
             ?: throw IllegalStateException(
-                "Missing view id: ${resources.getResourceEntryName(id)} in activity_main.xml"
+                "Missing view id: ${resources.getResourceEntryName(id)} in homescreen2.xml"
             )
     }
 
@@ -707,19 +703,18 @@ class MainActivity : AppCompatActivity() {
         liwanagPoseContainer = req(R.id.liwanagPoseContainer)
 
         greetingGroup = req(R.id.greetingGroup)
-        textTimeGreeting = req(R.id.textTimeGreeting)
+        textTimeGreeting = req(R.id.tvGreeting)
 
         bubbleGroup = opt(R.id.bubbleGroup)
         bubbleCard = opt(R.id.cardLiwanagBubble)
         bubbleTail = opt(R.id.bubbleTail)
         bubbleText = opt(R.id.textLiwanagPrompt)
 
-        treeHolder = req(R.id.treeHolderCard)
+        treeHolder = req(R.id.layoutTreeHero)
         hybridTreeView = req(R.id.hybridTreeView)
 
-        bottomNavPanel = req(R.id.bottomNavPanel)
+        bottomNavPanel = req(R.id.cardBottomNav)
 
-// This exists inside tilePause
         treeRingOverlayHost = req(R.id.treeRingOverlayHost)
         treeRingOverlayScrim = opt(R.id.treeRingOverlayScrim)
         treeRingOverlayView = req(R.id.treeRingOverlayView)
@@ -747,7 +742,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerBackButton: View
 
     private fun setupDrawerControls() {
-
         drawerBackButton.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
@@ -1461,46 +1455,43 @@ class MainActivity : AppCompatActivity() {
     // NAVIGATION
     // --------------------------------------------
     private fun setupNavigation() {
-
-        // WHOLE Check-in tile clickable (recommended)
-        req<MaterialCardView>(R.id.tilePause).setOnClickListener {
+        opt<MaterialCardView>(R.id.tilePause)?.setOnClickListener {
             startActivity(Intent(this, CheckInAnchorActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Whole Rhythm tile clickable
-        req<MaterialCardView>(R.id.tileRhythm).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileRhythm)?.setOnClickListener {
             startActivity(Intent(this, RhythmActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Journal
-        req<MaterialCardView>(R.id.tileJournal).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileJournal)?.setOnClickListener {
             startActivity(Intent(this, JournalActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Whole My Systems tile clickable
-        req<MaterialCardView>(R.id.tileSystems).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileSystems)?.setOnClickListener {
             startActivity(Intent(this, SystemsActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Breathe
-        req<MaterialCardView>(R.id.tileBreathe).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileBreathe)?.setOnClickListener {
             startActivity(Intent(this, MomentActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        // Whole Tree Ring tile clickable
-        req<MaterialCardView>(R.id.tileTreeRing).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileTreeRing)?.setOnClickListener {
             openGrowthImpact()
             playSound(sfxTap)
         }
 
-        // My Roots
-        req<MaterialCardView>(R.id.tileRoots).setOnClickListener {
+        opt<MaterialCardView>(R.id.tileRoots)?.setOnClickListener {
             startActivity(Intent(this, UntangleActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
+        opt<View>(R.id.navResources)?.setOnClickListener {
+            startActivity(Intent(this, CalmToolsActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
@@ -1738,7 +1729,7 @@ class MainActivity : AppCompatActivity() {
             if (!animate) {
                 // Don't let a fresh/empty DB force the tree to 0 and hide the sprout.
                 tree.growth = safeGrowth
-                tv.text = line
+                tv?.text = line // Safe call
                 return@launch
             }
 
@@ -1754,13 +1745,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             // 2) animate narrative (fade in, no cheesy pop)
-            tv.animate().cancel()
-            tv.alpha = 0f
-            tv.text = line
-            tv.animate().alpha(0.86f).setDuration(380L).start()
+            tv?.animate()?.cancel()
+            tv?.alpha = 0f
+            tv?.text = line
+            tv?.animate()?.alpha(0.86f)?.setDuration(380L)?.start()
         }
     }
     private fun maybeShowProgressTreeIntro() {
+        // Feature disabled for homescreen2 migration
+        /*
         // Only once
         if (prefs.getBoolean(KEY_PROGRESS_TREE_INTRO_SHOWN, false)) return
 
@@ -1865,5 +1858,6 @@ class MainActivity : AppCompatActivity() {
                     .start()
             }
         }
+        */
     }
 }

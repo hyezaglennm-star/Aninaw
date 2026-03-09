@@ -32,7 +32,7 @@ class JournalActivity : AppCompatActivity() {
             openEditor("Morning Reflection", "MORNING")
         }
 
-        findViewById<android.view.View>(R.id.cardEmotions).setOnClickListener {
+        findViewById<android.view.View>(R.id.cardCoreFeelings).setOnClickListener {
             startActivity(Intent(this, EmotionStatsActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }

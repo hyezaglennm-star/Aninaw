@@ -207,37 +207,34 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardPromptOne"
                 android:layout_width="0dp"
-                android:layout_height="164dp"
+                android:layout_height="wrap_content"
+                android:minHeight="164dp"
                 android:layout_marginTop="14dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="#EBC1D0"
+                app:cardBackgroundColor="#F8F2EF"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSuggestedHeader"
+                app:layout_constraintTop_toBottomOf="@+id/tvSuggestedHeader"
                 app:strokeColor="#12FFFFFF"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center_vertical"
-                    android:paddingStart="18dp"
-                    android:paddingTop="18dp"
-                    android:paddingEnd="18dp"
-                    android:paddingBottom="18dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pause and notice"
-                        android:textColor="#4A1830"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="30dp"
+                        android:textColor="#5B5049"
+                        android:textSize="20sp"
+                        android:layout_marginBottom="12dp"
                         android:fontFamily="@font/cormorant_garamond_semibold"/>
 
                     <TextView
@@ -245,22 +242,103 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_regular"
-                        android:layout_marginBottom="30dp"
                         android:lineSpacingExtra="4dp"
-                        android:maxLines="4"
                         android:text="What is one feeling or thought that has been quietly asking for your attention today?"
-                        android:textColor="#4A1830"
-                        android:textSize="14sp" />
-
+                        android:textColor="#6F625B"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- QUICK ACTIONS ROW -->
+            <LinearLayout
+                android:id="@+id/quickActionsRow"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/cardPromptOne"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardQuickPause"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="#E6EEF2"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#12FFFFFF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_breath"
+                            app:tint="#5A6D76"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Pause"
+                            android:fontFamily="@font/cormorant_garamond_semibold"
+                            android:textSize="18sp"
+                            android:textColor="#5A6D76"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardQuickIntention"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="#F2E6DD"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#12FFFFFF"
+                    app:strokeWidth="1dp">
+                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_reflect"
+                            app:tint="#7D655C"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Intention"
+                            android:fontFamily="@font/cormorant_garamond_semibold"
+                            android:textSize="18sp"
+                            android:textColor="#7D655C"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="32dp"
-                app:layout_constraintTop_toBottomOf="@id/cardPromptOne"
+                app:layout_constraintTop_toBottomOf="@id/quickActionsRow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

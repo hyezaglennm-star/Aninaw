@@ -87,11 +87,15 @@
 
                     <TextView
                         android:id="@+id/tvStartHereTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/CalmCardTitle"
                         android:text="@string/calm_start_here_title"/>
 
                     <TextView
                         android:id="@+id/tvStartHereSub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/CalmCardSub"
                         android:layout_marginTop="4dp"
                         android:text="@string/calm_start_here_sub"/>
@@ -150,16 +154,22 @@
 
                         <TextView
                             android:id="@+id/tvStretchTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardTitle"
                             android:text="@string/tool_stretch_title"/>
 
                         <TextView
                             android:id="@+id/tvStretchSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardSub"
                             android:text="@string/tool_stretch_sub"/>
 
                         <TextView
                             android:id="@+id/tvStretchMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardMeta"
                             android:text="@string/tool_stretch_meta"/>
                     </LinearLayout>
@@ -218,16 +228,22 @@
 
                         <TextView
                             android:id="@+id/tvGroundingTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardTitle"
                             android:text="@string/tool_ground_title"/>
 
                         <TextView
                             android:id="@+id/tvGroundingSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardSub"
                             android:text="@string/tool_ground_sub"/>
 
                         <TextView
                             android:id="@+id/tvGroundingMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardMeta"
                             android:text="@string/tool_ground_meta"/>
                     </LinearLayout>
@@ -286,16 +302,22 @@
 
                         <TextView
                             android:id="@+id/tvBreathingTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardTitle"
                             android:text="@string/tool_breathe_title"/>
 
                         <TextView
                             android:id="@+id/tvBreathingSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardSub"
                             android:text="@string/tool_breathe_sub"/>
 
                         <TextView
                             android:id="@+id/tvBreathingMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardMeta"
                             android:text="@string/tool_breathe_meta"/>
                     </LinearLayout>
@@ -354,16 +376,22 @@
 
                         <TextView
                             android:id="@+id/tvJournalTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardTitle"
                             android:text="@string/tool_journal_title"/>
 
                         <TextView
                             android:id="@+id/tvJournalSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardSub"
                             android:text="@string/tool_journal_sub"/>
 
                         <TextView
                             android:id="@+id/tvJournalMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardMeta"
                             android:text="@string/tool_journal_meta"/>
                     </LinearLayout>
@@ -421,16 +449,22 @@
 
                         <TextView
                             android:id="@+id/tvCbtTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardTitle"
                             android:text="@string/tool_cbt_title"/>
 
                         <TextView
                             android:id="@+id/tvCbtSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardSub"
                             android:text="@string/tool_cbt_sub"/>
 
                         <TextView
                             android:id="@+id/tvCbtMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             style="@style/CalmCardMeta"
                             android:text="@string/tool_cbt_meta"/>
                     </LinearLayout>

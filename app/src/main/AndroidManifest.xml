@@ -72,6 +72,9 @@
         <activity android:name=".JournalActivity" />
         <activity android:name=".JournalEditorActivity" />
         <activity android:name=".EmotionStatsActivity" />
+        <activity android:name=".CalmToolsActivity" />
+        <activity android:name=".QuickStretchActivity" />
+        <activity android:name=".Grounding54321Activity" />
 
     </application>
 
