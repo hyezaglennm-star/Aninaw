@@ -53,6 +53,10 @@
             android:name=".RhythmActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".DaysTimelineActivity"
+            android:exported="false" />
+
         <activity android:name=".feature.liwanag.LiwanagActivity" />
 
         <activity

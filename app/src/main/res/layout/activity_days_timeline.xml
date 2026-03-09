@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/view_back_button" />
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Your days"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#3A312B" />
+
+        <TextView
+            android:id="@+id/tvHeaderSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Each ring quietly holds a day."
+            android:textSize="14sp"
+            android:textColor="#6A5F57" />
+
+        <TextView
+            android:id="@+id/tvWeekSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="This week: –"
+            android:textSize="14sp"
+            android:textColor="#6A5F57" />
+
+        <TextView
+            android:id="@+id/tvDayOfTree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Day 1 of your tree"
+            android:textSize="13sp"
+            android:textColor="#7A6E66" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#16000000" />
+
+        <LinearLayout
+            android:id="@+id/listDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="14dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

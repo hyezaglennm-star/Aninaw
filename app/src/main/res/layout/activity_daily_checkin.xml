@@ -40,63 +40,73 @@
         android:gravity="center"
         android:layout_marginBottom="24dp">
 
-        <ImageView
+        <TextView
             android:id="@+id/btnMood1"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/mood_happy"
-            android:layout_marginEnd="12dp"
+            android:text="😟"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:tag="Happy"
+            android:background="@drawable/bg_tile_soft_selector"
+            android:tag="Difficult"
             android:alpha="0.5"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/btnMood2"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/mood_loved"
-            android:layout_marginEnd="12dp"
+            android:text="😔"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:tag="Loved"
+            android:background="@drawable/bg_tile_soft_selector"
+            android:tag="Heavy"
             android:alpha="0.5"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/btnMood3"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/mood_okay"
-            android:layout_marginEnd="12dp"
+            android:text="😐"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:tag="Okay"
+            android:background="@drawable/bg_tile_soft_selector"
+            android:tag="Neutral"
             android:alpha="0.5"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/btnMood4"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/mood_shy"
-            android:layout_marginEnd="12dp"
+            android:text="🙂"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:tag="Shy"
+            android:background="@drawable/bg_tile_soft_selector"
+            android:tag="Okay"
             android:alpha="0.5"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/btnMood5"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/mood_sad" 
+            android:text="😌"
+            android:textSize="32sp"
+            android:gravity="center"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:tag="Sad"
+            android:background="@drawable/bg_tile_soft_selector"
+            android:tag="Calm"
             android:alpha="0.5"/>
 
     </LinearLayout>

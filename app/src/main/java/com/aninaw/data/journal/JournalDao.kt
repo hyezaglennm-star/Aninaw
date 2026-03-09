@@ -28,6 +28,9 @@ interface JournalDao {
     @Query("SELECT * FROM journal_entries WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): JournalEntity?
 
+    @Query("SELECT * FROM journal_entries WHERE date = :date ORDER BY timestamp DESC LIMIT 1")
+    suspend fun getLatestForDate(date: String): JournalEntity?
+
     @Query("SELECT mood, COUNT(*) as count FROM journal_entries WHERE mood IS NOT NULL GROUP BY mood")
     suspend fun getMoodCounts(): List<MoodCount>
 

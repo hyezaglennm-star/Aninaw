@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="140dp"
+    android:viewportWidth="400"
+    android:viewportHeight="160">
+
+    <!-- Subtle tree-ring style arcs -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.2"
+        android:strokeColor="#26A08C7A"
+        android:pathData="M 0,120 A 220,220 0 0 1 400,120" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.2"
+        android:strokeColor="#20A08C7A"
+        android:pathData="M 0,105 A 240,240 0 0 1 400,105" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.2"
+        android:strokeColor="#1AA08C7A"
+        android:pathData="M 0,92 A 260,260 0 0 1 400,92" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.2"
+        android:strokeColor="#14A08C7A"
+        android:pathData="M 0,80 A 280,280 0 0 1 400,80" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.2"
+        android:strokeColor="#10A08C7A"
+        android:pathData="M 0,68 A 300,300 0 0 1 400,68" />
+</vector>

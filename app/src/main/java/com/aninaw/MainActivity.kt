@@ -158,6 +158,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnMenu: View
 
     // --------------------------------------------
+    // MOOD CARD
+    // --------------------------------------------
+    private lateinit var cardMood: View
+    private lateinit var tvMoodIcon: TextView
+    private lateinit var tvMoodTitle: TextView
+    private lateinit var tvMoodBody: TextView
+
+    // --------------------------------------------
     // GREETING (TOP OF CANOPY)
     // --------------------------------------------
     private lateinit var greetingGroup: View
@@ -675,20 +683,18 @@ class MainActivity : AppCompatActivity() {
     // --------------------------------------------
     // ADAPTIVE PROMPTS
     // --------------------------------------------
-    private fun applyAdaptivePrompt(mood: String) {
-        // MAPPING:
-        // Happy, Loved -> Calm / Content -> Grounding prompts
-        // Sad -> Sad / Heavy -> Self-compassion prompts
-        // Shy -> Anxious / Overwhelmed -> Slowing prompts
-        // Okay -> Neutral / Reflective -> Awareness prompts
-        
-        val prompt = when(mood) {
+    private fun getAdaptivePromptForMood(mood: String): String {
+        return when(mood) {
             "Happy", "Loved" -> "Feel your feet on the ground. Let this feeling settle." 
             "Sad" -> "It’s okay to not be okay. Be kind to yourself."
             "Shy" -> "Take it one breath at a time. No rush."
             "Okay" -> "Notice what is here, right now, without judgment."
             else -> "You are here, and that is enough."
         }
+    }
+
+    private fun applyAdaptivePrompt(mood: String) {
+        val prompt = getAdaptivePromptForMood(mood)
         
         // Show in bubble
         bubbleText?.text = prompt
@@ -699,14 +705,57 @@ class MainActivity : AppCompatActivity() {
             ?.setDuration(800)
             ?.setStartDelay(500)
             ?.start()
-            
-        // ALSO update the subtitle, so it persists longer
-        textGreetingSub.text = prompt
 
         // Hide bubble after longer delay
         handler.postDelayed({
              bubbleGroup?.animate()?.alpha(0f)?.setDuration(1000)?.start()
         }, 8000)
+    }
+
+    private enum class EmoCategory { STRESS, SAD, ANGER, CALM, OTHER }
+
+    private fun categorizeEmotionLabel(raw: String?): EmoCategory {
+        val t = (raw ?: "").trim().lowercase()
+        return when {
+            t.contains("tense") || t.contains("anx") || t.contains("stress") || t.contains("overwhelm") || t.contains("shy") -> EmoCategory.STRESS
+            t.contains("sad") || t.contains("heavy") || t.contains("fog") || t.contains("tired") -> EmoCategory.SAD
+            t.contains("anger") || t.contains("angry") || t.contains("frustrat") -> EmoCategory.ANGER
+            t.contains("calm") || t.contains("steady") || t.contains("happy") || t.contains("love") || t.contains("grateful") || t == "okay" || t == "steady" -> EmoCategory.CALM
+            else -> EmoCategory.OTHER
+        }
+    }
+
+    private fun intensityToLevel01to5(v: Float?): Int {
+        val x = (v ?: 0.5f).coerceIn(0f, 1f)
+        return when {
+            x >= 0.8f -> 5
+            x >= 0.6f -> 4
+            x >= 0.4f -> 3
+            x >= 0.2f -> 2
+            else -> 1
+        }
+    }
+
+    private fun likertMessageForIntensity(intensity: Float?): String {
+        return when (intensityToLevel01to5(intensity)) {
+            1 -> "Take slow breaths for one minute. Let your shoulders relax."
+            2 -> "Your body might need a short reset."
+            3 -> "Write a few words about what today has been like so far."
+            4 -> "Take a quiet minute to breathe or stretch and stay grounded."
+            else -> "Write whatever is on your mind right now."
+        }
+    }
+
+    private fun pickIconForLabel(label: String?): Int {
+        val t = (label ?: "").trim().lowercase()
+        return when {
+            t.contains("happy") || t.contains("calm") || t.contains("grateful") -> R.drawable.mood_happy
+            t.contains("love") || t.contains("loved") -> R.drawable.mood_loved
+            t.contains("okay") || t.contains("steady") -> R.drawable.mood_okay
+            t.contains("shy") || t.contains("anx") || t.contains("stress") -> R.drawable.mood_shy
+            t.contains("sad") || t.contains("heavy") || t.contains("difficult") || t.contains("tired") -> R.drawable.mood_sad
+            else -> R.drawable.ic_sprout
+        }
     }
 
     private fun refreshTreeFromGrowth() {
@@ -750,6 +799,18 @@ class MainActivity : AppCompatActivity() {
         greetingGroup = req(R.id.greetingGroup)
         textTimeGreeting = req(R.id.tvGreeting)
         textGreetingSub = req(R.id.tvGreetingSub)
+
+        // MOOD CARD
+        cardMood = req(R.id.cardMood)
+        tvMoodIcon = req(R.id.tvMoodIcon)
+        tvMoodTitle = req(R.id.tvMoodTitle)
+        tvMoodBody = req(R.id.tvMoodBody)
+
+        cardMood.setOnClickListener {
+            // Open daily check-in (or anchor if you prefer)
+            startActivity(Intent(this, CheckInAnchorActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 
         bubbleGroup = opt(R.id.bubbleGroup)
         bubbleCard = opt(R.id.cardLiwanagBubble)
@@ -1355,12 +1416,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openTreeRingFromTree() {
-        val visual = TreeVisualEngine.compute(prefs)
-
-        val i = Intent(this, TreeRingActivity::class.java).apply {
-            putExtra(TreeRingActivity.EXTRA_TREE_STAGE, "SAPLING")
-            putExtra(TreeRingActivity.EXTRA_DAYS_ELAPSED, visual.daySinceInstall.coerceAtLeast(0))
-        }
+        val i = Intent(this, DaysTimelineActivity::class.java)
         startActivity(i)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
@@ -1439,7 +1495,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateGreetingTexts() {
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-
         val base = when (hour) {
             in 5..11 -> "Good morning"
             in 12..17 -> "Good afternoon"
@@ -1451,6 +1506,79 @@ class MainActivity : AppCompatActivity() {
             "$base, $nickname."
         } else {
             "$base."
+        }
+        
+        // Reset subtitle to default prompt
+        textGreetingSub.text = "Pause for one slow breath."
+        textGreetingSub.visibility = View.VISIBLE
+
+        // Update the Mood Card separately
+        updateMoodCard()
+    }
+
+    private fun pickEmojiForLabel(label: String?): String {
+        val t = (label ?: "").trim().lowercase()
+        return when {
+            t.contains("happy") || t.contains("calm") || t.contains("grateful") -> "😌" // Calm/Happy
+            t.contains("love") || t.contains("loved") -> "🥰" // Loved
+            t.contains("okay") || t.contains("steady") -> "🙂" // Okay
+            t.contains("shy") || t.contains("anx") || t.contains("stress") -> "😐" // Neutral/Shy (or 😟 for Difficult?)
+            t.contains("difficult") || t.contains("tense") -> "😟" // Difficult
+            t.contains("sad") || t.contains("heavy") || t.contains("tired") -> "😔" // Heavy/Sad
+            t.contains("neutral") -> "😐" // Neutral
+            else -> "🌱" // Sprout
+        }
+    }
+
+    private fun updateMoodCard() {
+        lifecycleScope.launch {
+            val db = AninawDb.getDatabase(this@MainActivity)
+            val ringRepo = com.aninaw.data.treering.TreeRingMemoryRepository(db)
+            val today = LocalDate.now()
+
+            val todayIso = today.toString()
+
+            // Get latest quick/full check-in for today
+            val latestCheckIn = withContext(Dispatchers.IO) {
+                val list = ringRepo.getRange(today, today)
+                list.maxByOrNull { it.timestamp ?: 0L }
+            }
+
+            // Get latest journal for today (one-shot)
+            val latestJournal = withContext(Dispatchers.IO) {
+                runCatching { db.journalDao().getLatestForDate(todayIso) }.getOrNull()
+            }
+
+            // Decide latest mood source (journal vs check-in) by timestamp
+            val latestMoodLabel: String? = when {
+                latestJournal != null && (latestCheckIn?.timestamp ?: 0L) < (latestJournal.timestamp) -> {
+                    latestJournal.mood
+                }
+                else -> latestCheckIn?.emotion
+            }
+
+            // Logic Tree for Mood Card
+            if (latestMoodLabel.isNullOrBlank()) {
+                // Not checked in yet
+                tvMoodTitle.text = "How are you feeling today?"
+                tvMoodBody.text = "You can take a quiet moment to check in."
+                tvMoodBody.visibility = View.VISIBLE
+                tvMoodIcon.text = "🌱"
+                tvMoodIcon.alpha = 0.5f
+            } else {
+                // Checked in
+                val mood = latestMoodLabel
+                tvMoodTitle.text = "Mood: $mood"
+
+                // Update icon
+                val icon = pickEmojiForLabel(mood)
+                tvMoodIcon.text = icon
+                tvMoodIcon.alpha = 1.0f
+
+                // Show Likert-based line ONLY
+                tvMoodBody.text = likertMessageForIntensity(latestCheckIn?.intensity)
+                tvMoodBody.visibility = View.VISIBLE
+            }
         }
     }
 
