@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_HABIT_COMPLETED = "extra_habit_completed"
         const val EXTRA_CHECKIN_COMPLETED = "extra_checkin_completed"
+        const val EXTRA_CHECKIN_MOOD = "EXTRA_CHECKIN_MOOD"
 
         const val KEY_NICKNAME = "user_nickname"
         const val NICKNAME_MAX_LEN = 16
@@ -161,6 +162,7 @@ class MainActivity : AppCompatActivity() {
     // --------------------------------------------
     private lateinit var greetingGroup: View
     private lateinit var textTimeGreeting: TextView
+    private lateinit var textGreetingSub: TextView
     private var greetingBobbingAnimator: ObjectAnimator? = null
 
     // --------------------------------------------
@@ -634,13 +636,19 @@ class MainActivity : AppCompatActivity() {
         // we count that as a "bonus" for today (one bonus is enough to advance a step).
         val didHabit = intent?.getBooleanExtra(EXTRA_HABIT_COMPLETED, false) == true
         val didCheckin = intent?.getBooleanExtra(EXTRA_CHECKIN_COMPLETED, false) == true
+        val checkinMood = intent?.getStringExtra(EXTRA_CHECKIN_MOOD)
 
         if (didHabit) {
             intent.putExtra(EXTRA_HABIT_COMPLETED, false)
         }
         if (didCheckin) {
             intent.putExtra(EXTRA_CHECKIN_COMPLETED, false)
-            // (if you later add growthManager.onCheckinCompleted(), call it here)
+            if (checkinMood != null) {
+                applyAdaptivePrompt(checkinMood)
+            } else {
+                // Fallback if mood is missing but checkin done (rare)
+                applyAdaptivePrompt("Okay")
+            }
         }
 
         // ---- Visual timeline bonus: completion today grows the tree NEXT day ----
@@ -662,6 +670,43 @@ class MainActivity : AppCompatActivity() {
                 "Bonus marked for NEXT epochDay=$nextEpochDay (earned today=$todayEpochDay)"
             )
         }
+    }
+
+    // --------------------------------------------
+    // ADAPTIVE PROMPTS
+    // --------------------------------------------
+    private fun applyAdaptivePrompt(mood: String) {
+        // MAPPING:
+        // Happy, Loved -> Calm / Content -> Grounding prompts
+        // Sad -> Sad / Heavy -> Self-compassion prompts
+        // Shy -> Anxious / Overwhelmed -> Slowing prompts
+        // Okay -> Neutral / Reflective -> Awareness prompts
+        
+        val prompt = when(mood) {
+            "Happy", "Loved" -> "Feel your feet on the ground. Let this feeling settle." 
+            "Sad" -> "It’s okay to not be okay. Be kind to yourself."
+            "Shy" -> "Take it one breath at a time. No rush."
+            "Okay" -> "Notice what is here, right now, without judgment."
+            else -> "You are here, and that is enough."
+        }
+        
+        // Show in bubble
+        bubbleText?.text = prompt
+        bubbleGroup?.alpha = 0f
+        bubbleGroup?.visibility = View.VISIBLE
+        bubbleGroup?.animate()
+            ?.alpha(1f)
+            ?.setDuration(800)
+            ?.setStartDelay(500)
+            ?.start()
+            
+        // ALSO update the subtitle, so it persists longer
+        textGreetingSub.text = prompt
+
+        // Hide bubble after longer delay
+        handler.postDelayed({
+             bubbleGroup?.animate()?.alpha(0f)?.setDuration(1000)?.start()
+        }, 8000)
     }
 
     private fun refreshTreeFromGrowth() {
@@ -704,6 +749,7 @@ class MainActivity : AppCompatActivity() {
 
         greetingGroup = req(R.id.greetingGroup)
         textTimeGreeting = req(R.id.tvGreeting)
+        textGreetingSub = req(R.id.tvGreetingSub)
 
         bubbleGroup = opt(R.id.bubbleGroup)
         bubbleCard = opt(R.id.cardLiwanagBubble)

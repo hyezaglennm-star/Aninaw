@@ -19,15 +19,13 @@ class WelcomeActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
 
-        // If already shown once, skip instantly
+        // If already shown once, skip instantly but check logic
         if (prefs.getBoolean(KEY_SEEN, false)) {
-            startActivity(Intent(this, MainActivity::class.java))
-            overridePendingTransition(0, 0)
-            finish()
+            navigateNext()
             return
         }
 
-        // Mark as seen immediately (so even if app closes mid-animation, it won't replay)
+        // Mark as seen immediately
         prefs.edit().putBoolean(KEY_SEEN, true).apply()
 
         setContentView(R.layout.activity_welcome)
@@ -49,14 +47,20 @@ class WelcomeActivity : AppCompatActivity() {
                         .alpha(0f)
                         .setDuration(600L)
                         .withEndAction {
-                            startActivity(Intent(this, MainActivity::class.java))
-                            overridePendingTransition(0, 0)
-                            finish()
+                            navigateNext()
                         }
                         .start()
                 }, 2000L)
             }
             .start()
+    }
+
+    private fun navigateNext() {
+        // Always show the check-in screen as per user request
+        val intent = Intent(this, DailyCheckInActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
     }
 
     override fun onDestroy() {

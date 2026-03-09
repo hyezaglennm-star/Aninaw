@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#F4F7F4"
+    android:padding="24dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/imgCharacter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/liwanag"
+        android:contentDescription="Liwanag"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kamusta ka?"
+        android:textSize="24sp"
+        android:textColor="#3F4A45"
+        android:fontFamily="@font/font_title"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp">
+
+        <ImageView
+            android:id="@+id/btnMood1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mood_happy"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tag="Happy"
+            android:alpha="0.5"/>
+
+        <ImageView
+            android:id="@+id/btnMood2"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mood_loved"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tag="Loved"
+            android:alpha="0.5"/>
+
+        <ImageView
+            android:id="@+id/btnMood3"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mood_okay"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tag="Okay"
+            android:alpha="0.5"/>
+
+        <ImageView
+            android:id="@+id/btnMood4"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mood_shy"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tag="Shy"
+            android:alpha="0.5"/>
+
+        <ImageView
+            android:id="@+id/btnMood5"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mood_sad" 
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tag="Sad"
+            android:alpha="0.5"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMoodLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a mood"
+        android:textSize="18sp"
+        android:textColor="#4F7F6F"
+        android:layout_marginBottom="48dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:enabled="false"
+        app:backgroundTint="#4F7F6F"
+        app:cornerRadius="28dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/btnSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textSize="14sp"
+        android:textColor="#9AA49F"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

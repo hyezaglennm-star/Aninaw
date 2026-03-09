@@ -28,6 +28,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".DailyCheckInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Aninaw" />
+
         <activity android:name=".lifesnapshot.LifeSnapshotActivity" />
         <activity android:name=".lifesnapshot.LifeSnapshotCompareActivity" />
 

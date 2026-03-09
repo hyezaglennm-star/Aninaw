@@ -152,6 +152,12 @@ class TreeGrowthManager(context: Context) {
         addBonusNow(BONUS_FULL_CHECKIN)
     }
 
+    fun isQuickCheckInDoneToday(): Boolean {
+        val today = epochDayNow()
+        val gateKey = keyDone(PREFIX_DID_QUICKCHECKIN, today)
+        return prefs.getBoolean(gateKey, false)
+    }
+
     fun onQuickCheckInCompleted() {
         ensureFirstUse()
         applyBaselineIfNeeded()
