@@ -13,9 +13,10 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Go back"
         android:padding="12dp"
         android:src="@drawable/ic_back"
-        android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,46 +24,47 @@
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Today"
-        android:textSize="16sp"
         android:textColor="@color/aninaw_text_secondary"
-        app:layout_constraintStart_toEndOf="@id/btnBack"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <ImageView
         android:id="@+id/btnDelete"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="More options"
         android:padding="12dp"
         android:src="@drawable/ic_settings_soft"
-        android:contentDescription="Delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- EDITOR CARD -->
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardEditor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="-24dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="32dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/btnSave">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:padding="24dp"
-            android:paddingBottom="100dp"
-            android:clipToPadding="false">
+            android:paddingBottom="32dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,103 +75,281 @@
                     android:id="@+id/tvPrompt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Let's start your day..."
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"
+                    android:text="Let’s begin with what feels present."
                     android:textColor="@color/aninaw_text_primary"
-                    android:layout_marginBottom="24dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    app:boxBackgroundMode="none">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Start writing here..."
-                        android:textColorHint="@color/aninaw_text_secondary"
-                        android:textSize="18sp"
-                        android:minLines="10"
-                        android:gravity="top|start"
-                        android:background="@android:color/transparent"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:lineSpacingMultiplier="1.2" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE"
-                    android:layout_marginVertical="24dp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvPromptSub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Write as much or as little as you want. Some days are quiet, and that’s okay."
+                    android:textColor="@color/aninaw_text_secondary"
+                    android:textSize="15sp" />
+
+                <!-- MOOD -->
+                <TextView
+                    android:id="@+id/tvMoodLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="How are you feeling?"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:textColor="@color/aninaw_text_primary"
-                    android:layout_marginBottom="16dp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvMoodHelper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Optional. Choose what feels closest right now."
+                    android:textColor="@color/aninaw_text_secondary"
+                    android:textSize="14sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupMood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:singleSelection="true"
-                    app:selectionRequired="false"
+                    android:layout_marginBottom="8dp"
                     app:chipSpacingHorizontal="8dp"
-                    app:chipSpacingVertical="12dp">
+                    app:chipSpacingVertical="12dp"
+                    app:selectionRequired="false"
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chipHappy"
+                        android:id="@+id/chipMoodDifficult"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:text="Happy"
-                        android:textSize="16sp"
+                        android:layout_height="44dp"
+                        android:text="😟 Difficult"
                         android:textAlignment="center"
-                        app:chipCornerRadius="25dp"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
                         app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        android:textColor="@color/aninaw_text_primary" />
+                        app:chipCornerRadius="22dp"
+                        app:chipStartPadding="12dp"
+                        app:chipEndPadding="12dp"/>
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chipSad"
+                        android:id="@+id/chipMoodLow"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:text="Sad"
-                        android:textSize="16sp"
+                        android:layout_height="44dp"
+                        android:text="😔 Heavy"
                         android:textAlignment="center"
-                        app:chipCornerRadius="25dp"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
                         app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        android:textColor="@color/aninaw_text_primary" />
+                        app:chipCornerRadius="22dp"
+                        app:chipStartPadding="12dp"
+                        app:chipEndPadding="12dp"/>
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCalm"
+                        android:id="@+id/chipMoodNeutral"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:text="Calm"
-                        android:textSize="16sp"
+                        android:layout_height="44dp"
+                        android:text="😐 Neutral"
                         android:textAlignment="center"
-                        app:chipCornerRadius="25dp"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
                         app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        android:textColor="@color/aninaw_text_primary" />
+                        app:chipCornerRadius="22dp"
+                        app:chipStartPadding="12dp"
+                        app:chipEndPadding="12dp"/>
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chipAnxious"
+                        android:id="@+id/chipMoodOkay"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:text="Anxious"
-                        android:textSize="16sp"
+                        android:layout_height="44dp"
+                        android:text="🙂 Okay"
                         android:textAlignment="center"
-                        app:chipCornerRadius="25dp"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
                         app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        android:textColor="@color/aninaw_text_primary" />
+                        app:chipCornerRadius="22dp"
+                        app:chipStartPadding="12dp"
+                        app:chipEndPadding="12dp"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipMoodCalm"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="😌 Calm"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp"
+                        app:chipStartPadding="12dp"
+                        app:chipEndPadding="12dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="top|start"
+                        android:hint="Start with a sentence, if it helps."
+                        android:lineSpacingMultiplier="1.25"
+                        android:minLines="10"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textColorHint="@color/aninaw_text_secondary"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="#EEEEEE" />
+
+                <!-- OPTIONAL TOPIC -->
+                <TextView
+                    android:id="@+id/tvTopicLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What feels closest to this?"
+                    android:textColor="@color/aninaw_text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTopicHelper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Choose what feels closest right now. You can also leave it open."
+                    android:textColor="@color/aninaw_text_secondary"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupTopic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:chipSpacingVertical="12dp"
+                    app:selectionRequired="false"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicSelf"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Myself"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicSchool"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="School"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicFamily"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Family"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicFriends"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Friends"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicRelationship"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Relationship"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicHealth"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Health"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicElse"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Something else"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_primary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTopicPreferNot"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="Prefer not to say"
+                        android:textAlignment="center"
+                        android:textColor="@color/aninaw_text_secondary"
+                        android:textSize="15sp"
+                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
+                        app:chipCornerRadius="22dp" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="#EEEEEE" />
+
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -180,15 +360,19 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_margin="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:text="Save Entry"
         android:textAllCaps="false"
-        android:textSize="18sp"
         android:textColor="#3E2723"
+        android:textSize="18sp"
         app:backgroundTint="#FFB300"
         app:cornerRadius="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
