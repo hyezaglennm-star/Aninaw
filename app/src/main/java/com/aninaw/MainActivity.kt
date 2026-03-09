@@ -837,17 +837,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = req(R.id.drawerLayout)
         btnMenu = req(R.id.btnMenu)
 
-        findViewById<TextView?>(R.id.tvDebugDay)?.let { label ->
-            label.setOnClickListener {
-                val current = prefs.getInt("debug_tree_day", 1).coerceIn(1, 21)
-                val next = if (current >= 21) 1 else current + 1
-                prefs.edit().putInt("debug_tree_day", next).apply()
-                updateDebugDayLabel(label, next)
-                refreshTreeFromDb(animate = false)
-            }
-            val initial = prefs.getInt("debug_tree_day", 1).coerceIn(1, 21)
-            updateDebugDayLabel(label, initial)
-        }
+        findViewById<TextView?>(R.id.tvDebugDay)?.visibility = View.GONE
 
         findViewById<View?>(R.id.cardReflection)?.setOnClickListener {
             val intent = Intent(this, JournalEditorActivity::class.java).apply {
@@ -1873,11 +1863,9 @@ class MainActivity : AppCompatActivity() {
                         progress += 1
                         idleAccum = 0
                     } else {
-                        idleAccum += 1
-                        if (idleAccum >= IDLE_DAYS_PER_STEP) {
-                            progress += 1
-                            idleAccum = 0
-                        }
+                        // STRICT MODE: Only grow if the user actively uses the app (bonus day).
+                        // No passive idle growth.
+                        idleAccum = 0
                     }
 
                     progress = progress.coerceAtMost(364)

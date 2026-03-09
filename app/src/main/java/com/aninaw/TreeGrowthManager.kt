@@ -222,6 +222,37 @@ class TreeGrowthManager(context: Context) {
             .apply()
     }
 
+    // --------------------------------------------
+    // DEBUGGING
+    // --------------------------------------------
+    fun debugAddGrowth(amount: Float) {
+        ensureFirstUse()
+        val current = prefs.getFloat(KEY_GROWTH_01, 0f)
+        val next = (current + amount).coerceIn(0f, 1f)
+        prefs.edit().putFloat(KEY_GROWTH_01, next).apply()
+        
+        android.util.Log.d("TreeGrowth", "Debug growth added: +$amount. New total: $next")
+    }
+
+    fun debugResetGrowth() {
+        ensureFirstUse()
+        prefs.edit()
+            .putFloat(KEY_GROWTH_01, 0f)
+            .putInt(KEY_TIMELINE_STEP, 1)
+            .apply()
+        android.util.Log.d("TreeGrowth", "Debug growth reset to 0.")
+    }
+    
+    fun debugGetStats(): String {
+        ensureFirstUse()
+        val growth = prefs.getFloat(KEY_GROWTH_01, 0f)
+        val step = prefs.getInt(KEY_TIMELINE_STEP, 1)
+        val firstUse = prefs.getLong(KEY_FIRST_USE_EPOCH_DAY, -1)
+        val daysActive = if (firstUse != -1L) epochDayNow() - firstUse + 1 else 0
+        
+        return "Growth: ${(growth * 100).toInt()}%\nStep (Day): $step\nActive Days: $daysActive"
+    }
+
     private fun ensureFirstUse() {
         val existing = prefs.getLong(KEY_FIRST_USE_EPOCH_DAY, -1L)
         if (existing != -1L) return
