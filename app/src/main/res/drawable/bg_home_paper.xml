@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- base color -->
+    <item>
+        <shape>
+            <solid android:color="#F3F1EC" />
+        </shape>
+    </item>
+
+    <!-- subtle grain -->
+    <item android:alpha="30">
+        <bitmap
+            android:src="@drawable/paper_texture"
+            android:gravity="fill" />
+    </item>
+
+</layer-list>
