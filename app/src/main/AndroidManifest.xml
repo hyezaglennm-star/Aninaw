@@ -75,6 +75,7 @@
         <activity android:name=".CalmToolsActivity" />
         <activity android:name=".QuickStretchActivity" />
         <activity android:name=".Grounding54321Activity" />
+        <activity android:name=".PracticePathActivity" />
 
     </application>
 

@@ -730,6 +730,27 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = req(R.id.drawerLayout)
         btnMenu = req(R.id.btnMenu)
 
+        findViewById<TextView?>(R.id.tvDebugDay)?.let { label ->
+            label.setOnClickListener {
+                val current = prefs.getInt("debug_tree_day", 1).coerceIn(1, 21)
+                val next = if (current >= 21) 1 else current + 1
+                prefs.edit().putInt("debug_tree_day", next).apply()
+                updateDebugDayLabel(label, next)
+                refreshTreeFromDb(animate = false)
+            }
+            val initial = prefs.getInt("debug_tree_day", 1).coerceIn(1, 21)
+            updateDebugDayLabel(label, initial)
+        }
+
+        findViewById<View?>(R.id.cardReflection)?.setOnClickListener {
+            val intent = Intent(this, JournalEditorActivity::class.java).apply {
+                putExtra(JournalEditorActivity.EXTRA_PROMPT, getString(R.string.tool_journal_sub))
+                putExtra(JournalEditorActivity.EXTRA_TYPE, "QUICK")
+            }
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
         cardCrisisResources = req(R.id.cardCrisisResources)
         btnPlantTree = req(R.id.btnPlantTree)
 
@@ -737,6 +758,10 @@ class MainActivity : AppCompatActivity() {
         textNicknameStatus = req(R.id.textNicknameStatus)
 
         drawerBackButton = req(R.id.incBackRhythm)
+    }
+
+    private fun updateDebugDayLabel(label: TextView, day: Int) {
+        label.text = "Day $day of 21 (tap to change)"
     }
 
     private lateinit var drawerBackButton: View
@@ -1465,6 +1490,16 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
+        opt<View>(R.id.navDays)?.setOnClickListener {
+            startActivity(Intent(this, RhythmActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
+        opt<View>(R.id.navWrite)?.setOnClickListener {
+            startActivity(Intent(this, JournalActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
         opt<MaterialCardView>(R.id.tileJournal)?.setOnClickListener {
             startActivity(Intent(this, JournalActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -1624,6 +1659,7 @@ class MainActivity : AppCompatActivity() {
         private const val KEY_LAST_VISUAL_EPOCH_DAY = "tree_last_visual_epoch_day"
         private const val KEY_VISUAL_PROGRESS = "tree_visual_progress" // int steps
         private const val KEY_IDLE_ACCUM = "tree_visual_idle_accum"     // 0..4
+        private const val KEY_DEBUG_TREE_DAY = "debug_tree_day"
 
         // Must match bonus writer ("tree_bonus_day_$epochDay")
         private const val BONUS_PREFIX = "tree_bonus_day_"
@@ -1687,6 +1723,15 @@ class MainActivity : AppCompatActivity() {
 
             val dayFloat = (baseDay + idleFrac).coerceAtMost(364f)
 
+            val debugDay = prefs.getInt(KEY_DEBUG_TREE_DAY, 0)
+            if (debugDay in 1..21) {
+                val mapped = 1f + ((debugDay - 1).toFloat() / 20f) * (364f - 1f)
+                return VisualState(
+                    timelineDayFloat = mapped,
+                    daySinceInstall = debugDay - 1
+                )
+            }
+
             return VisualState(
                 timelineDayFloat = dayFloat,
                 daySinceInstall = daySinceInstall
@@ -1714,7 +1759,14 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val ui = withContext(Dispatchers.IO) { GrowthManager.load(db) }
 
-            val safeGrowth = ui.growth01.coerceAtLeast(0.12f)
+            val debugDay = prefs.getInt("debug_tree_day", 0)
+            val safeGrowth = if (debugDay in 1..21) {
+                val base = 0.12f
+                val step = 0.04f  // bigger jump per day so leaves change visibly
+                (base + step * (debugDay - 1)).coerceIn(0.12f, 1.0f)
+            } else {
+                ui.growth01.coerceAtLeast(0.12f)
+            }
             val stage = growthToStage(safeGrowth)
 
             val adaptive = withContext(Dispatchers.IO) {

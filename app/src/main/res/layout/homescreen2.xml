@@ -243,7 +243,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="12dp"
                     android:alpha="0.94"
                     android:fontFamily="@font/cormorant_garamond_medium"
                     android:gravity="center"
@@ -254,11 +253,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
+                <TextView
+                    android:id="@+id/tvDebugDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.7"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Day 1 of 21 (tap to change)"
+                    android:textColor="#6F625B"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/tvAffirmation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <Space
                     android:id="@+id/spaceBottom"
                     android:layout_width="0dp"
                     android:layout_height="12dp"
-                    app:layout_constraintTop_toBottomOf="@id/tvAffirmation"
+                    app:layout_constraintTop_toBottomOf="@id/tvDebugDay"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />

@@ -2,6 +2,7 @@
 package com.aninaw
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -155,7 +156,7 @@ class RhythmActivity : AppCompatActivity() {
             refs.cardRoot.isClickable = true
             refs.cardRoot.isFocusable = true
             refs.cardRoot.setOnClickListener {
-                lifecycleScope.launch { toggleOpen(includeId) }
+                openPracticePath(includeId)
             }
 
 // Parent shouldn't compete for taps
@@ -188,6 +189,16 @@ class RhythmActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+    }
+
+    private fun openPracticePath(includeId: Int) {
+        val domain = includeDomain[includeId] ?: return
+
+        val intent = Intent(this, PracticePathActivity::class.java).apply {
+            putExtra(PracticePathActivity.EXTRA_DOMAIN, domain)
+        }
+        startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
 
