@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:paddingTop="14dp"
-    android:paddingBottom="18dp">
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="22dp">
 
-    <!-- little handle -->
+    <!-- Handle -->
     <View
         android:layout_width="48dp"
         android:layout_height="5dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/bg_sheet_handle" />
 
     <TextView
@@ -21,54 +22,57 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Session 7"
-        android:textSize="13sp"
         android:textColor="@color/aninaw_text_secondary"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvSheetTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Take one slow breath."
-        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:text="Take a slow breath"
         android:textColor="@color/aninaw_text_primary"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvSheetDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Notice the air entering and leaving."
-        android:textSize="14sp"
-        android:textColor="@color/aninaw_text_secondary" />
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="2dp"
+        android:text="Notice the air as it enters and leaves"
+        android:textColor="#7A7A74"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSheetClose"
-            style="@style/CheckInButtonStyle"
+            style="@style/SecondaryButtonStyle"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_weight="1"
-            android:text="Close" />
+            android:text="Not now"
+            android:textAllCaps="false" />
 
         <View
             android:layout_width="12dp"
             android:layout_height="1dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSheetBegin"
-            style="@style/CheckInButtonStyle"
+            android:id="@+id/btnSheetDone"
+            style="@style/PrimaryButtonStyle"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_weight="1"
-            android:text="Begin" />
+            android:text="Done"
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </LinearLayout>

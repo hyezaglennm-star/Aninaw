@@ -367,10 +367,8 @@
         android:layout_marginBottom="24dp"
         android:text="Save Entry"
         android:textAllCaps="false"
-        android:textColor="#3E2723"
         android:textSize="18sp"
-        app:backgroundTint="#FFB300"
-        app:cornerRadius="30dp"
+        style="@style/PrimaryButtonStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
