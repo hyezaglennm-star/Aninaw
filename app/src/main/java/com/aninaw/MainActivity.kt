@@ -806,11 +806,13 @@ class MainActivity : AppCompatActivity() {
         tvMoodTitle = req(R.id.tvMoodTitle)
         tvMoodBody = req(R.id.tvMoodBody)
 
-        cardMood.setOnClickListener {
-            // Open daily check-in (or anchor if you prefer)
-            startActivity(Intent(this, CheckInAnchorActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
+        // cardMood.setOnClickListener {
+        //    // Open daily check-in (or anchor if you prefer)
+        //    startActivity(Intent(this, CheckInAnchorActivity::class.java))
+        //    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        // }
+        cardMood.isClickable = false
+        cardMood.isFocusable = false
 
         bubbleGroup = opt(R.id.bubbleGroup)
         bubbleCard = opt(R.id.cardLiwanagBubble)
