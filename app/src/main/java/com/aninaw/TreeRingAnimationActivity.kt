@@ -21,7 +21,7 @@ class TreeRingAnimationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tree_ring_animation)
 
-        val container = findViewById<FrameLayout>(R.id.ringsContainer)
+        val ringsView = findViewById<com.aninaw.TreeRingView>(R.id.ringsView)
         val tvCount = findViewById<TextView>(R.id.tvRingCount)
 
         // Get current day count (rings)
@@ -36,45 +36,23 @@ class TreeRingAnimationActivity : AppCompatActivity() {
         val dayCount = if (firstUse != -1L) (today - firstUse + 1).coerceAtLeast(1) else 1
         tvCount.text = "Day $dayCount"
 
-        // Animate rings
-        // We'll create 3-5 rings that scale up from center
-        val rings = 5
-        val animators = mutableListOf<Animator>()
-
-        for (i in 0 until rings) {
-            val ring = ImageView(this).apply {
-                setImageResource(R.drawable.ring_arc_background) // Reuse existing drawable or shape
-                alpha = 0f
-                scaleX = 0.2f
-                scaleY = 0.2f
-                layoutParams = FrameLayout.LayoutParams(600 + (i * 100), 600 + (i * 100)).apply {
-                    gravity = android.view.Gravity.CENTER
-                }
-            }
-            container.addView(ring)
-
-            val scaleX = ObjectAnimator.ofFloat(ring, View.SCALE_X, 1f + (i * 0.1f))
-            val scaleY = ObjectAnimator.ofFloat(ring, View.SCALE_Y, 1f + (i * 0.1f))
-            val alpha = ObjectAnimator.ofFloat(ring, View.ALPHA, 0f, 0.4f - (i * 0.05f))
-            
-            val set = AnimatorSet().apply {
-                playTogether(scaleX, scaleY, alpha)
-                duration = 2000L
-                startDelay = (i * 200).toLong()
-                interpolator = DecelerateInterpolator()
-            }
-            animators.add(set)
+        ringsView.post {
+            // Configure view for passive display
+            ringsView.setRings(dayCount.toInt(), emptyList()) 
+            ringsView.startIntroAnimation(2000L) // 2s unfold
         }
-        
+
         // Text fade in
         val textAlpha = ObjectAnimator.ofFloat(tvCount, View.ALPHA, 0f, 1f).apply {
             duration = 1000
             startDelay = 500
         }
-        animators.add(textAlpha)
-
+        
         val all = AnimatorSet()
-        all.playTogether(animators)
+        all.play(textAlpha)
+        
+        // Wait for animation + slight pause before transitioning
+        all.duration = 2500 
         all.doOnEnd {
             // Proceed to timeline
             startActivity(Intent(this, DaysTimelineActivity::class.java))

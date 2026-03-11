@@ -63,9 +63,11 @@ class TreeRingView @JvmOverloads constructor(
 
     fun bind(stageName: String, daysElapsed: Int) = bind(stageName, daysElapsed, emptyList())
 
-    fun setDailyMemory(memory: List<DailyMemory>) {
+    fun setRings(count: Int, memory: List<DailyMemory>) {
+        dayCount = count.coerceAtLeast(0)
         dailyMemory = memory
         buildRingsAndAngles()
+        markerIndexF = (rings.size - 1).toFloat().coerceAtLeast(0f)
         rebuildCachesIfPossible()
         postInvalidateOnAnimation()
     }
@@ -465,8 +467,8 @@ class TreeRingView @JvmOverloads constructor(
     private fun cancelZoomAnim() { zoomAnimator?.cancel(); zoomAnimator = null }
 
     // -----------------------------
-// Marker dot smooth animation (scrub-follow)
-// -----------------------------
+    // Marker dot smooth animation (scrub-follow)
+    // -----------------------------
     private var markerIndexF: Float = -1f
     private var markerAnim: ValueAnimator? = null
 
@@ -501,8 +503,8 @@ class TreeRingView @JvmOverloads constructor(
     }
 
     // -----------------------------
-// Scrubber zoom mode
-// -----------------------------
+    // Scrubber zoom mode
+    // -----------------------------
     private var scrubZoomEnabled = false
     private val scrubZoomScale = 3.2f     // zoom level while scrubbing (adjust if needed)
     private val scrubNormalScale = 1.0f   // zoom level when not scrubbing
@@ -1093,8 +1095,30 @@ class TreeRingView @JvmOverloads constructor(
     }
 
     // -----------------------------
-    // Drawing
+    // Animation Mode
     // -----------------------------
+    private var isAnimatingIntro = false
+    private var animationProgress = 1f // 0..1
+
+    fun startIntroAnimation(durationMs: Long) {
+        isAnimatingIntro = true
+        animationProgress = 0f
+        
+        ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = durationMs
+            interpolator = android.view.animation.DecelerateInterpolator()
+            addUpdateListener { 
+                animationProgress = it.animatedValue as Float
+                invalidate()
+            }
+            doOnEnd { 
+                isAnimatingIntro = false 
+                animationProgress = 1f
+            }
+            start()
+        }
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -1161,9 +1185,16 @@ class TreeRingView @JvmOverloads constructor(
         val hasSelection = selectedRingIndex in rings.indices
         val dimOthersFactor = if (hasSelection) 0.92f else 1.0f
 
-        for (idx in rings.indices) {
+        // ANIMATION: Determine how many rings to draw
+        val maxRingIndex = if (isAnimatingIntro) {
+            (rings.size * animationProgress).toInt().coerceIn(0, rings.size)
+        } else {
+            rings.size
+        }
+
+        for (idx in 0 until maxRingIndex) {
             val ring = rings[idx]
-            val path = cachedRingPaths[idx]
+            val path = cachedRingPaths.getOrNull(idx) ?: continue
 
             val mem = dailyMemory.getOrNull(idx)
             val base = emotionBaseColor(mem?.emotion, idx)
@@ -1189,7 +1220,16 @@ class TreeRingView @JvmOverloads constructor(
                 canvas.drawCircle(cx + dx, cy + dy, max(1.5f * resources.displayMetrics.density, ringPaint.strokeWidth * 0.35f), dotPaint)
             }
 
-            ringPaint.color = adjustAlpha(ringColor, ring.alpha / 255f)
+            // ANIMATION: Fade in new rings
+            var alpha = ring.alpha
+            if (isAnimatingIntro) {
+                val ringProgress = (animationProgress * rings.size) - idx
+                if (ringProgress < 1f && ringProgress > 0f) {
+                    alpha = (ringProgress * 255).toInt()
+                }
+            }
+
+            ringPaint.color = adjustAlpha(ringColor, alpha / 255f)
             ringPaint.strokeWidth = radius * ring.thickness
 
             // Minimum stroke at deep zoom so inner rings stay readable

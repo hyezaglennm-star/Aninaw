@@ -1183,7 +1183,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            treeRingOverlayView.setDailyMemory(memoryList)
+            treeRingOverlayView.setRings(visibleDaysElapsed, memoryList)
         }
 
         // --- show overlay (your existing animation code) ---

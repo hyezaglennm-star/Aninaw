@@ -5,11 +5,10 @@
     android:background="@drawable/bg_home">
 
     <!-- Center container for rings -->
-    <FrameLayout
-        android:id="@+id/ringsContainer"
+    <com.aninaw.TreeRingView
+        android:id="@+id/ringsView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/tvRingCount"

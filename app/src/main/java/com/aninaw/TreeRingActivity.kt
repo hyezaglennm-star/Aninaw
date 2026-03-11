@@ -213,7 +213,7 @@ class TreeRingActivity : AppCompatActivity() {
             }
 
             currentMemoryList = memoryList
-            ringView.setDailyMemory(memoryList)
+            ringView.setRings(visibleDaysElapsed, memoryList)
         }
 
         ringView.onRingTapped = { mem ->
