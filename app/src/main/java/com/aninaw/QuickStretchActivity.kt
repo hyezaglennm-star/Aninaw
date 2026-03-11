@@ -19,6 +19,7 @@ class QuickStretchActivity : AppCompatActivity() {
     private lateinit var tvTimerLabel: TextView
     private lateinit var tvCompletion: TextView
     private lateinit var layoutProgress: LinearLayout
+    private lateinit var imgStretch: android.widget.ImageView
     
     private lateinit var btnPause: MaterialButton
     private lateinit var btnNext: MaterialButton
@@ -30,13 +31,15 @@ class QuickStretchActivity : AppCompatActivity() {
     private var timeLeftMillis = 0L
     
     // Config
+    // (Title, Desc, DurationSec, ImageRes)
     private val steps = listOf(
-        // (Title, Desc, DurationSec)
-        Triple("Shoulder roll", "Roll your shoulders slowly back and down. No force.", 15),
-        Triple("Neck stretch", "Tilt your head gently to one side. Breathe into the space.", 15),
-        Triple("Chest stretch", "Open your arms wide. Lift your chest slightly.", 15),
-        Triple("Breathing", "Take three slow breaths. In through nose, out through mouth.", 20)
+        Step("Shoulder roll", "Roll your shoulders slowly back and down. No force.", 15, R.drawable.shoulder_first5),
+        Step("Neck stretch", "Tilt your head gently to one side. Breathe into the space.", 15, R.drawable.neck_stretch),
+        Step("Chest stretch", "Open your arms wide. Lift your chest slightly.", 15, R.drawable.chest_stretch),
+        Step("Breathing", "Take three slow breaths. In through nose, out through mouth.", 20, R.drawable.initial_position)
     )
+
+    data class Step(val title: String, val desc: String, val duration: Int, val imgRes: Int)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +63,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvTimerLabel = findViewById(R.id.tvTimerLabel)
         tvCompletion = findViewById(R.id.tvCompletion)
         layoutProgress = findViewById(R.id.layoutProgress)
+        imgStretch = findViewById(R.id.imgStretch)
         
         btnPause = findViewById(R.id.btnPause)
         btnNext = findViewById(R.id.btnNext)
@@ -98,6 +102,9 @@ class QuickStretchActivity : AppCompatActivity() {
         layoutProgress.visibility = View.GONE
         tvCompletion.visibility = View.GONE
         
+        imgStretch.setImageResource(R.drawable.initial_position)
+        imgStretch.visibility = View.VISIBLE
+
         btnPause.text = "Skip"
         btnNext.text = "Start"
     }
@@ -109,10 +116,14 @@ class QuickStretchActivity : AppCompatActivity() {
         }
 
         currentStep = stepIndex
-        val (title, desc, duration) = steps[stepIndex - 1]
+        val step = steps[stepIndex - 1]
 
-        tvStepTitle.text = title
-        tvStepDesc.text = desc
+        tvStepTitle.text = step.title
+        tvStepDesc.text = step.desc
+        
+        // Update image
+        imgStretch.setImageResource(step.imgRes)
+        imgStretch.visibility = View.VISIBLE
         
         // UI updates
         tvTimer.visibility = View.VISIBLE
@@ -124,7 +135,7 @@ class QuickStretchActivity : AppCompatActivity() {
         btnNext.text = "Next"
         
         updateProgressDots(stepIndex)
-        startTimer(duration * 1000L)
+        startTimer(step.duration * 1000L)
     }
 
     private fun showCompletionState() {
@@ -136,6 +147,9 @@ class QuickStretchActivity : AppCompatActivity() {
         tvTimer.visibility = View.GONE
         tvTimerLabel.visibility = View.GONE
         layoutProgress.visibility = View.GONE
+        
+        // Show relaxed image
+        imgStretch.setImageResource(R.drawable.shoulder_6s) // Reuse relaxed pose or initial
         
         tvCompletion.text = "Nice. Your body should feel lighter."
         tvCompletion.visibility = View.VISIBLE
