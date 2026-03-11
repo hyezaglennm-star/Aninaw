@@ -1406,7 +1406,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openTreeRingFromTree() {
-        val i = Intent(this, DaysTimelineActivity::class.java)
+        val i = Intent(this, TreeRingAnimationActivity::class.java)
         startActivity(i)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }

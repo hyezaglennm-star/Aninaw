@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home">
+
+    <!-- Center container for rings -->
+    <FrameLayout
+        android:id="@+id/ringsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false" />
+
+    <TextView
+        android:id="@+id/tvRingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Day 1"
+        android:textColor="#5D544D"
+        android:textSize="24sp"
+        android:fontFamily="@font/cormorant_garamond_medium"
+        android:alpha="0" />
+
+</FrameLayout>

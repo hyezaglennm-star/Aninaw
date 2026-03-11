@@ -85,6 +85,7 @@
         <activity android:name=".QuickStretchActivity" />
         <activity android:name=".Grounding54321Activity" />
         <activity android:name=".PracticePathActivity" />
+        <activity android:name=".TreeRingAnimationActivity" />
 
     </application>
 
