@@ -31,15 +31,21 @@ class QuickStretchActivity : AppCompatActivity() {
     private var timeLeftMillis = 0L
     
     // Config
-    // (Title, Desc, DurationSec, ImageRes)
+    // (Title, Desc, DurationSec, ImageRes, Phase2ImageRes?)
     private val steps = listOf(
-        Step("Shoulder roll", "Roll your shoulders slowly back and down. No force.", 15, R.drawable.shoulder_first5),
-        Step("Neck stretch", "Tilt your head gently to one side. Breathe into the space.", 15, R.drawable.neck_stretch),
-        Step("Chest stretch", "Open your arms wide. Lift your chest slightly.", 15, R.drawable.chest_stretch),
-        Step("Breathing", "Take three slow breaths. In through nose, out through mouth.", 20, R.drawable.initial_position)
+        Step("Shoulder roll", "Roll your shoulders slowly back and down. No force.", 15, R.drawable.shoulder_first5, R.drawable.shoulder_6s),
+        Step("Neck stretch", "Tilt your head gently to the left. Breathe.", 10, R.drawable.neck_stretch_left, R.drawable.neck_stretch),
+        Step("Chest stretch", "Open your arms wide. Lift your chest slightly.", 15, R.drawable.chest_stretch, null),
+        Step("Breathing", "Take three slow breaths. In through nose, out through mouth.", 20, R.drawable.initial_position, null)
     )
 
-    data class Step(val title: String, val desc: String, val duration: Int, val imgRes: Int)
+    data class Step(
+        val title: String, 
+        val desc: String, 
+        val duration: Int, 
+        val imgRes: Int,
+        val phase2ImgRes: Int? // If non-null, switch to this halfway
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,7 +127,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvStepTitle.text = step.title
         tvStepDesc.text = step.desc
         
-        // Update image
+        // Update image (start with phase 1)
         imgStretch.setImageResource(step.imgRes)
         imgStretch.visibility = View.VISIBLE
         
@@ -135,7 +141,7 @@ class QuickStretchActivity : AppCompatActivity() {
         btnNext.text = "Next"
         
         updateProgressDots(stepIndex)
-        startTimer(step.duration * 1000L)
+        startTimer(step.duration * 1000L, step)
     }
 
     private fun showCompletionState() {
@@ -158,16 +164,33 @@ class QuickStretchActivity : AppCompatActivity() {
         btnNext.text = "Done"
     }
 
-    private fun startTimer(millis: Long) {
+    private fun startTimer(millis: Long, step: Step) {
         timer?.cancel()
         timeLeftMillis = millis
         isPaused = false
         btnPause.text = "Pause"
 
+        val totalDuration = step.duration * 1000L
+        
         timer = object : CountDownTimer(millis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftMillis = millisUntilFinished
                 updateTimerUI(millisUntilFinished)
+                
+                // Check for phase switch (e.g. half time)
+                // Use totalDuration to determine halfway point, regardless of resume
+                val elapsed = totalDuration - millisUntilFinished
+                val halfTime = totalDuration / 2
+                
+                if (step.phase2ImgRes != null && elapsed >= halfTime) {
+                    // Switch to second phase image (e.g. right side)
+                    imgStretch.setImageResource(step.phase2ImgRes)
+                    
+                    // Optional: Update text for Neck Stretch specifically
+                    if (step.title.contains("Neck")) {
+                        tvStepDesc.text = "Now gently tilt to the right."
+                    }
+                }
             }
 
             override fun onFinish() {
@@ -181,7 +204,10 @@ class QuickStretchActivity : AppCompatActivity() {
 
     private fun togglePause() {
         if (isPaused) {
-            startTimer(timeLeftMillis)
+            // Resume with current step config
+            if (currentStep > 0 && currentStep <= steps.size) {
+                 startTimer(timeLeftMillis, steps[currentStep - 1])
+            }
         } else {
             timer?.cancel()
             isPaused = true
