@@ -19,10 +19,6 @@ class CalmToolsActivity : AppCompatActivity() {
     }
 
     private fun bindCards() {
-        findViewById<MaterialButton?>(R.id.btnStartStretch)?.setOnClickListener {
-            openQuickStretch()
-        }
-
         findViewById<MaterialCardView?>(R.id.cardStretch)?.setOnClickListener {
             openQuickStretch()
         }

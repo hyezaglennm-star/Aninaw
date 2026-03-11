@@ -48,7 +48,7 @@ class SessionPreviewBottomSheet : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        view.findViewById<MaterialButton>(R.id.btnSheetBegin).setOnClickListener {
+        view.findViewById<MaterialButton>(R.id.btnSheetDone).setOnClickListener {
             dismiss()
         }
     }

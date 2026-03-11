@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="1200dp"
+    android:viewportWidth="400"
+    android:viewportHeight="1200">
+
+    <!-- Tall tree-ring background -->
+    <!-- Center point for arcs is roughly (200, 1400) to give gentle curve -->
+    
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#188C6A4A"
+        android:pathData="M -50,1100 Q 200,1250 450,1100" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#158C6A4A"
+        android:pathData="M -50,1000 Q 200,1150 450,1000" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#128C6A4A"
+        android:pathData="M -50,900 Q 200,1050 450,900" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#108C6A4A"
+        android:pathData="M -50,800 Q 200,950 450,800" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#0E8C6A4A"
+        android:pathData="M -50,700 Q 200,850 450,700" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#0C8C6A4A"
+        android:pathData="M -50,600 Q 200,750 450,600" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#0A8C6A4A"
+        android:pathData="M -50,500 Q 200,650 450,500" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#088C6A4A"
+        android:pathData="M -50,400 Q 200,550 450,400" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#068C6A4A"
+        android:pathData="M -50,300 Q 200,450 450,300" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#058C6A4A"
+        android:pathData="M -50,200 Q 200,350 450,200" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="1.5"
+        android:strokeColor="#048C6A4A"
+        android:pathData="M -50,100 Q 200,250 450,100" />
+
+</vector>

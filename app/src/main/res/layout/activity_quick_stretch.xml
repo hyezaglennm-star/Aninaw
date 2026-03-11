@@ -200,34 +200,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Initial primary action -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStart"
-            style="@style/PrimaryButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Start" />
-
-        <!-- Initial secondary action -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSkip"
-            style="@style/SecondaryButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="Skip" />
-
-        <!-- Running state -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPause"
             style="@style/CalmSecondaryButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="Pause"
-            android:visibility="gone" />
+            android:text="Pause" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
@@ -236,18 +215,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:text="Next"
-            android:visibility="gone" />
-
-        <!-- Final state -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDone"
-            style="@style/CalmPrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Done"
-            android:visibility="gone" />
-
+            android:text="Next" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
