@@ -28,15 +28,14 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp" />
 
-    <!-- Emotion Chips (chips are added at runtime in Kotlin, preview will look empty) -->
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupEmotion"
+    <!-- Emotion Grid (replacing Chips) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerEmotions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:singleSelection="true"
-        app:selectionRequired="true"
-        app:chipSpacingHorizontal="8dp"
-        app:chipSpacingVertical="8dp" />
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
     <!-- Intensity -->
     <TextView

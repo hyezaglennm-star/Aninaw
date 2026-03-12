@@ -184,15 +184,14 @@
                         android:paddingEnd="16dp"
                         android:paddingBottom="14dp">
 
-                        <TextView
-                            android:id="@+id/tvMoodIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🌱"
-                            android:textSize="32sp"
-                            android:gravity="center"
+                        <ImageView
+                            android:id="@+id/imgMoodIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:layout_marginEnd="12dp"
-                            android:textColor="#554942" />
+                            android:layout_gravity="center_vertical"
+                            android:contentDescription="Mood Icon"
+                            android:src="@drawable/ic_sprout" />
 
                         <LinearLayout
                             android:layout_width="0dp"

@@ -110,85 +110,13 @@
                     android:textColor="@color/aninaw_text_secondary"
                     android:textSize="14sp" />
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupMood"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerMood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:chipSpacingHorizontal="8dp"
-                    app:chipSpacingVertical="12dp"
-                    app:selectionRequired="false"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoodDifficult"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="😟 Difficult"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp"
-                        app:chipStartPadding="12dp"
-                        app:chipEndPadding="12dp"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoodLow"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="😔 Heavy"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp"
-                        app:chipStartPadding="12dp"
-                        app:chipEndPadding="12dp"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoodNeutral"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="😐 Neutral"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp"
-                        app:chipStartPadding="12dp"
-                        app:chipEndPadding="12dp"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoodOkay"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="🙂 Okay"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp"
-                        app:chipStartPadding="12dp"
-                        app:chipEndPadding="12dp"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoodCalm"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="😌 Calm"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp"
-                        app:chipStartPadding="12dp"
-                        app:chipEndPadding="12dp"/>
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -210,149 +138,6 @@
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="#EEEEEE" />
-
-                <!-- OPTIONAL TOPIC -->
-                <TextView
-                    android:id="@+id/tvTopicLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="What feels closest to this?"
-                    android:textColor="@color/aninaw_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvTopicHelper"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Choose what feels closest right now. You can also leave it open."
-                    android:textColor="@color/aninaw_text_secondary"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupTopic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    app:chipSpacingHorizontal="8dp"
-                    app:chipSpacingVertical="12dp"
-                    app:selectionRequired="false"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicSelf"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Myself"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicSchool"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="School"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicFamily"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Family"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicFriends"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Friends"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicRelationship"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Relationship"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicHealth"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Health"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicElse"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Something else"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_primary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipTopicPreferNot"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:text="Prefer not to say"
-                        android:textAlignment="center"
-                        android:textColor="@color/aninaw_text_secondary"
-                        android:textSize="15sp"
-                        app:chipBackgroundColor="@color/bg_tile_soft_selector"
-                        app:chipCornerRadius="22dp" />
-                </com.google.android.material.chip.ChipGroup>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="#EEEEEE" />
-
-
-                </com.google.android.material.chip.ChipGroup>
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -360,17 +145,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        style="@style/CalmPrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:elevation="4dp"
         android:text="Save Entry"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        style="@style/PrimaryButtonStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,6 +108,16 @@ class Grounding54321Activity : AppCompatActivity() {
         if (stepItems.size >= needed) {
             btnNext.isEnabled = true
             btnNext.alpha = 1.0f
+
+            // Auto-advance
+            etItem.isEnabled = false
+            
+            val stepWhenTriggered = currentStep
+            listItems.postDelayed({
+                if (currentStep == stepWhenTriggered) {
+                    advanceStep()
+                }
+            }, 300)
         } else {
             // Keep disabled if not enough items
             btnNext.isEnabled = false
@@ -127,6 +137,10 @@ class Grounding54321Activity : AppCompatActivity() {
         listItems.removeAllViews()
         btnNext.isEnabled = false
         btnNext.alpha = 0.55f
+        
+        etItem.isEnabled = true
+        etItem.text.clear()
+        etItem.requestFocus()
         
         // Update dots
         for (i in 0 until layoutProgress.childCount) {
