@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     // MOOD CARD
     // --------------------------------------------
     private lateinit var cardMood: View
-    private lateinit var tvMoodIcon: TextView
+    private lateinit var imgMoodIcon: ImageView
     private lateinit var tvMoodTitle: TextView
     private lateinit var tvMoodBody: TextView
 
@@ -747,15 +747,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pickIconForLabel(label: String?): Int {
-        val t = (label ?: "").trim().lowercase()
-        return when {
-            t.contains("happy") || t.contains("calm") || t.contains("grateful") -> R.drawable.mood_happy
-            t.contains("love") || t.contains("loved") -> R.drawable.mood_loved
-            t.contains("okay") || t.contains("steady") -> R.drawable.mood_okay
-            t.contains("shy") || t.contains("anx") || t.contains("stress") -> R.drawable.mood_shy
-            t.contains("sad") || t.contains("heavy") || t.contains("difficult") || t.contains("tired") -> R.drawable.mood_sad
-            else -> R.drawable.ic_sprout
-        }
+        return getMoodDrawable(label)
     }
 
     private fun refreshTreeFromGrowth() {
@@ -802,7 +794,7 @@ class MainActivity : AppCompatActivity() {
 
         // MOOD CARD
         cardMood = req(R.id.cardMood)
-        tvMoodIcon = req(R.id.tvMoodIcon)
+        imgMoodIcon = req(R.id.imgMoodIcon)
         tvMoodTitle = req(R.id.tvMoodTitle)
         tvMoodBody = req(R.id.tvMoodBody)
 
@@ -1508,17 +1500,16 @@ class MainActivity : AppCompatActivity() {
         updateMoodCard()
     }
 
-    private fun pickEmojiForLabel(label: String?): String {
+    private fun getMoodDrawable(label: String?): Int {
         val t = (label ?: "").trim().lowercase()
         return when {
-            t.contains("happy") || t.contains("calm") || t.contains("grateful") -> "😌" // Calm/Happy
-            t.contains("love") || t.contains("loved") -> "🥰" // Loved
-            t.contains("okay") || t.contains("steady") -> "🙂" // Okay
-            t.contains("shy") || t.contains("anx") || t.contains("stress") -> "😐" // Neutral/Shy (or 😟 for Difficult?)
-            t.contains("difficult") || t.contains("tense") -> "😟" // Difficult
-            t.contains("sad") || t.contains("heavy") || t.contains("tired") -> "😔" // Heavy/Sad
-            t.contains("neutral") -> "😐" // Neutral
-            else -> "🌱" // Sprout
+            t.contains("happy") || t.contains("calm") || t.contains("grateful") -> R.drawable.happy_mood
+            t.contains("love") || t.contains("loved") -> R.drawable.happy_mood
+            t.contains("okay") || t.contains("steady") -> R.drawable.okay_mood
+            t.contains("shy") || t.contains("neutral") || t.contains("numb") || t.contains("tired") -> R.drawable.neutral_mood
+            t.contains("difficult") || t.contains("tense") || t.contains("anx") || t.contains("angry") || t.contains("stress") -> R.drawable.tense_mood1
+            t.contains("sad") || t.contains("heavy") -> R.drawable.sad_mood
+            else -> R.drawable.ic_sprout
         }
     }
 
@@ -1555,17 +1546,17 @@ class MainActivity : AppCompatActivity() {
                 tvMoodTitle.text = "How are you feeling today?"
                 tvMoodBody.text = "You can take a quiet moment to check in."
                 tvMoodBody.visibility = View.VISIBLE
-                tvMoodIcon.text = "🌱"
-                tvMoodIcon.alpha = 0.5f
+                imgMoodIcon.setImageResource(R.drawable.ic_sprout)
+                imgMoodIcon.alpha = 0.5f
             } else {
                 // Checked in
                 val mood = latestMoodLabel
                 tvMoodTitle.text = "Mood: $mood"
 
                 // Update icon
-                val icon = pickEmojiForLabel(mood)
-                tvMoodIcon.text = icon
-                tvMoodIcon.alpha = 1.0f
+                val iconRes = getMoodDrawable(mood)
+                imgMoodIcon.setImageResource(iconRes)
+                imgMoodIcon.alpha = 1.0f
 
                 // Show Likert-based line ONLY
                 tvMoodBody.text = likertMessageForIntensity(latestCheckIn?.intensity)

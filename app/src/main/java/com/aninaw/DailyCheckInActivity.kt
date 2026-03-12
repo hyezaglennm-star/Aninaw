@@ -30,14 +30,14 @@ class DailyCheckInActivity : AppCompatActivity() {
         val btnSkip = findViewById<TextView>(R.id.btnSkip)
 
         val moods = listOf(
-            findViewById<TextView>(R.id.btnMood1) to "Difficult",
-            findViewById<TextView>(R.id.btnMood2) to "Heavy",
-            findViewById<TextView>(R.id.btnMood3) to "Neutral",
-            findViewById<TextView>(R.id.btnMood4) to "Okay",
-            findViewById<TextView>(R.id.btnMood5) to "Calm"
+            findViewById<ImageView>(R.id.btnMood1) to "Difficult",
+            findViewById<ImageView>(R.id.btnMood2) to "Heavy",
+            findViewById<ImageView>(R.id.btnMood3) to "Neutral",
+            findViewById<ImageView>(R.id.btnMood4) to "Okay",
+            findViewById<ImageView>(R.id.btnMood5) to "Calm"
         )
 
-        fun selectMood(view: TextView, label: String) {
+        fun selectMood(view: ImageView, label: String) {
             selectedMood = label
             tvMoodLabel.text = label
             tvMoodLabel.setTextColor(0xFF3F4A45.toInt()) // Darker color
@@ -49,12 +49,13 @@ class DailyCheckInActivity : AppCompatActivity() {
                     v.alpha = 1.0f
                     v.scaleX = 1.2f
                     v.scaleY = 1.2f
-                    v.setBackgroundResource(R.drawable.bg_tile_soft_selector) // Ensure background is set
+                    // v.setBackgroundResource(R.drawable.bg_tile_soft_selector) // Optional: remove background if we just want the icon to pop
                     v.isSelected = true
                 } else {
                     v.alpha = 0.4f
                     v.scaleX = 1.0f
                     v.scaleY = 1.0f
+                    // v.background = null
                     v.isSelected = false
                 }
             }

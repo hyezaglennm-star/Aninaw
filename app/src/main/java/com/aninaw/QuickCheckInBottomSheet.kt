@@ -29,9 +29,20 @@ class QuickCheckInBottomSheet(
     )
 
     private val emotions = listOf(
-        "Calm", "Okay", "Tense", "Heavy", "Tired",
-        "Anxious", "Sad", "Angry", "Grateful", "Numb"
+        Pair("Calm", R.drawable.happy_mood),
+        Pair("Okay", R.drawable.okay_mood),
+        Pair("Tense", R.drawable.tense_mood1),
+        Pair("Heavy", R.drawable.sad_mood),
+        Pair("Tired", R.drawable.neutral_mood),
+        // Additional mappings (fallback or new PNGs needed if specific ones requested)
+        Pair("Anxious", R.drawable.tense_mood1),
+        Pair("Sad", R.drawable.sad_mood),
+        Pair("Angry", R.drawable.tense_mood1),
+        Pair("Grateful", R.drawable.happy_mood),
+        Pair("Numb", R.drawable.neutral_mood)
     )
+
+    private var selectedEmotion: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +55,14 @@ class QuickCheckInBottomSheet(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Views
-        val chipGroup = view.findViewById<ChipGroup>(R.id.chipGroupEmotion)
+        val recycler = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerEmotions)
+        recycler.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 5)
+
+        val adapter = MoodAdapter(emotions) { label ->
+            selectedEmotion = label
+            updateSaveEnabled(view)
+        }
+        recycler.adapter = adapter
 
         val toggleIntensity = view.findViewById<MaterialButtonToggleGroup>(R.id.toggleIntensity)
         val toggleCapacity = view.findViewById<MaterialButtonToggleGroup>(R.id.toggleCapacity)
@@ -54,17 +72,6 @@ class QuickCheckInBottomSheet(
         val etNote = view.findViewById<TextInputEditText>(R.id.etNote)
 
         val btnSave = view.findViewById<MaterialButton>(R.id.btnSave)
-
-        // Build emotion chips dynamically (preview will look empty, runtime will be fine)
-        chipGroup.removeAllViews()
-        emotions.forEach { label ->
-            val chip = Chip(requireContext()).apply {
-                text = label
-                isCheckable = true
-                isClickable = true
-            }
-            chipGroup.addView(chip)
-        }
 
         // Defaults
         toggleIntensity.check(R.id.btnIntensityMedium) // medium default
@@ -76,12 +83,7 @@ class QuickCheckInBottomSheet(
             if (!noteContainer.isVisible) etNote.setText("")
         }
 
-        // Enable save only if an emotion is selected
-        fun updateSaveEnabled() {
-            btnSave.isEnabled = chipGroup.checkedChipId != View.NO_ID
-        }
-        chipGroup.setOnCheckedStateChangeListener { _, _ -> updateSaveEnabled() }
-        updateSaveEnabled()
+        updateSaveEnabled(view)
 
         // Calm checked-state tint for toggle buttons (compatible approach)
         val checkedColor = Color.parseColor("#CFE8D6")
@@ -91,12 +93,7 @@ class QuickCheckInBottomSheet(
 
         // Save
         btnSave.setOnClickListener {
-            val checkedChipId = chipGroup.checkedChipId
-            if (checkedChipId == View.NO_ID) return@setOnClickListener
-
-            val emotion = chipGroup.findViewById<Chip>(checkedChipId)
-                ?.text?.toString()?.trim().orEmpty()
-            if (emotion.isBlank()) return@setOnClickListener
+            val emotion = selectedEmotion ?: return@setOnClickListener
 
             val intensity = when (toggleIntensity.checkedButtonId) {
                 R.id.btnIntensityLight -> 1
@@ -128,6 +125,52 @@ class QuickCheckInBottomSheet(
             dismissAllowingStateLoss()
 
         }
+    }
+
+    private fun updateSaveEnabled(view: View) {
+        val btnSave = view.findViewById<MaterialButton>(R.id.btnSave)
+        btnSave.isEnabled = selectedEmotion != null
+    }
+
+    // Adapter class
+    inner class MoodAdapter(
+        private val items: List<Pair<String, Int>>,
+        private val onClick: (String) -> Unit
+    ) : androidx.recyclerview.widget.RecyclerView.Adapter<MoodAdapter.MoodViewHolder>() {
+
+        private var selectedPos = -1
+
+        inner class MoodViewHolder(v: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
+            val img: android.widget.ImageView = v.findViewById(R.id.imgMood)
+            val txt: android.widget.TextView = v.findViewById(R.id.tvMoodLabel)
+            val container: View = v
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodViewHolder {
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.item_mood_grid, parent, false)
+            return MoodViewHolder(v)
+        }
+
+        override fun onBindViewHolder(holder: MoodViewHolder, position: Int) {
+            val (label, resId) = items[position]
+            holder.txt.text = label
+            holder.img.setImageResource(resId)
+            
+            val isSelected = (position == selectedPos)
+            holder.container.alpha = if (isSelected || selectedPos == -1) 1.0f else 0.4f
+            holder.container.scaleX = if (isSelected) 1.1f else 1.0f
+            holder.container.scaleY = if (isSelected) 1.1f else 1.0f
+
+            holder.container.setOnClickListener {
+                val prev = selectedPos
+                selectedPos = holder.adapterPosition
+                notifyItemChanged(prev)
+                notifyItemChanged(selectedPos)
+                onClick(label)
+            }
+        }
+
+        override fun getItemCount() = items.size
     }
 
     // Put this at CLASS LEVEL (not inside onViewCreated)

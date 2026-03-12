@@ -40,74 +40,69 @@
         android:gravity="center"
         android:layout_marginBottom="24dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/btnMood1"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="😟"
-            android:textSize="32sp"
-            android:gravity="center"
+            android:src="@drawable/tense_mood1"
+            android:contentDescription="Difficult"
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_tile_soft_selector"
             android:tag="Difficult"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:scaleType="fitCenter"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/btnMood2"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="😔"
-            android:textSize="32sp"
-            android:gravity="center"
+            android:src="@drawable/sad_mood"
+            android:contentDescription="Heavy"
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_tile_soft_selector"
             android:tag="Heavy"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:scaleType="fitCenter"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/btnMood3"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="😐"
-            android:textSize="32sp"
-            android:gravity="center"
+            android:src="@drawable/neutral_mood"
+            android:contentDescription="Neutral"
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_tile_soft_selector"
             android:tag="Neutral"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:scaleType="fitCenter"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/btnMood4"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="🙂"
-            android:textSize="32sp"
-            android:gravity="center"
+            android:src="@drawable/okay_mood"
+            android:contentDescription="Okay"
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_tile_soft_selector"
             android:tag="Okay"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:scaleType="fitCenter"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/btnMood5"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="😌"
-            android:textSize="32sp"
-            android:gravity="center"
+            android:src="@drawable/happy_mood"
+            android:contentDescription="Calm"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_tile_soft_selector"
             android:tag="Calm"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:scaleType="fitCenter"/>
 
     </LinearLayout>
 
