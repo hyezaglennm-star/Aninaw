@@ -8,6 +8,12 @@
     android:layout_height="match_parent">
 
     <!-- ================= MAIN CONTENT ================= -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDDCDF" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootHome"
         android:layout_width="match_parent"
@@ -76,10 +82,12 @@
                         android:id="@+id/tvGreeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/cormorant_garamond_semibold"
+                        android:fontFamily="@font/cormorant_garamond_medium"
+                        app:fontFamily="@font/cormorant_garamond_medium"
                         android:text="Good evening,"
                         android:textColor="#544840"
-                        android:textSize="31sp" />
+                        android:textSize="31sp"
+                        android:letterSpacing="0.05"/>
 
                     <TextView
                         android:id="@+id/tvGreetingSub"
@@ -87,9 +95,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/cormorant_garamond_medium"
+                        app:fontFamily="@font/cormorant_garamond_medium"
                         android:text="Pause for one slow breath."
                         android:textColor="#6B5E58"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:letterSpacing="0.05"/>
                 </LinearLayout>
 
                 <!-- Tree hero: half-screen emphasis -->
@@ -105,7 +115,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
-                    app:layout_constraintHeight_percent="0.50">
+                    app:layout_constraintHeight_percent="0.40"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.80">
 
                     <com.aninaw.views.HybridTreeView
                         android:id="@+id/hybridTreeView"
@@ -124,6 +136,7 @@
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="28dp"
                         android:fontFamily="@font/cormorant_garamond_medium"
+                        app:fontFamily="@font/cormorant_garamond_medium"
                         android:text="Tap the tree to see your days."
                         android:textColor="#5F544D"
                         android:textSize="18sp" />
@@ -138,7 +151,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <!-- Mood summary: lighter so the tree remains primary -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardMood"
                     android:layout_width="0dp"
@@ -147,11 +159,16 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="#F8F1EE"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardBackgroundColor="#F7E5E9"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp"
                     app:strokeColor="#10FFFFFF"
                     app:strokeWidth="1dp"
+
+
                     app:layout_constraintTop_toBottomOf="@id/layoutTreeHero"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
@@ -187,20 +204,24 @@
                                 android:id="@+id/tvMoodTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/cormorant_garamond_semibold"
+                                android:fontFamily="@font/cormorant_garamond_medium"
+                                app:fontFamily="@font/cormorant_garamond_medium"
                                 android:text="Mood: Calm"
                                 android:textColor="#554942"
-                                android:textSize="19sp" />
+                                android:textSize="19sp"
+                                android:letterSpacing="0.05"/>
 
                             <TextView
                                 android:id="@+id/tvMoodBody"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:fontFamily="@font/inter_regular"
+                                android:fontFamily="@font/cormorant_garamond_medium"
+                                app:fontFamily="@font/cormorant_garamond_medium"
                                 android:text="You wrote about school today."
                                 android:textColor="#80736D"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:letterSpacing="0.05"/>
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -214,11 +235,16 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="#F8F2EF"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="1.5dp"
+
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardBackgroundColor="#F7E5E9"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="3dp"
                     app:strokeColor="#10FFFFFF"
                     app:strokeWidth="1dp"
+
                     app:layout_constraintTop_toBottomOf="@id/cardMood"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
@@ -240,14 +266,16 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/cormorant_garamond_medium"
+                            app:fontFamily="@font/cormorant_garamond_medium"
                             android:text="If you’d like, write a short reflection."
                             android:textColor="#5B5049"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:letterSpacing="0.05"/>
 
                         <ImageView
                             android:id="@+id/imgReflectionArrow"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:alpha="0.72"
                             android:contentDescription="Open reflection"
                             android:src="@drawable/ic_chevron_right_soft" />
@@ -262,8 +290,10 @@
                     android:layout_marginTop="20dp"
                     android:alpha="0.94"
                     android:fontFamily="@font/cormorant_garamond_medium"
+                    app:fontFamily="@font/cormorant_garamond_medium"
                     android:gravity="center"
                     android:text="You showed up today. That matters."
+                    android:letterSpacing="0.05"
                     android:textColor="#6F625B"
                     android:textSize="17sp"
                     app:layout_constraintTop_toBottomOf="@id/cardReflection"
@@ -276,10 +306,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:alpha="0.7"
-                    android:fontFamily="@font/inter_regular"
                     android:gravity="center"
-                    android:text="Day 1 of 21 (tap to change)"
+                    android:fontFamily="@font/cormorant_garamond_medium"
+                    app:fontFamily="@font/cormorant_garamond_medium"
                     android:textColor="#6F625B"
+                    android:letterSpacing="0.05"
                     android:textSize="12sp"
                     app:layout_constraintTop_toBottomOf="@id/tvAffirmation"
                     app:layout_constraintStart_toStartOf="parent"
@@ -301,11 +332,11 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardBottomNav"
             android:layout_width="0dp"
-            android:layout_height="88dp"
+            android:layout_height="80dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="14dp"
-            app:cardBackgroundColor="#F6EFEC"
+            app:cardBackgroundColor="#FFEEEE"
             app:cardCornerRadius="30dp"
             app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
