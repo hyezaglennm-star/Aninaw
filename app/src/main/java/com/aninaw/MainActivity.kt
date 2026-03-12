@@ -712,39 +712,19 @@ class MainActivity : AppCompatActivity() {
         }, 8000)
     }
 
-    private enum class EmoCategory { STRESS, SAD, ANGER, CALM, OTHER }
-
-    private fun categorizeEmotionLabel(raw: String?): EmoCategory {
-        val t = (raw ?: "").trim().lowercase()
-        return when {
-            t.contains("tense") || t.contains("anx") || t.contains("stress") || t.contains("overwhelm") || t.contains("shy") -> EmoCategory.STRESS
-            t.contains("sad") || t.contains("heavy") || t.contains("fog") || t.contains("tired") -> EmoCategory.SAD
-            t.contains("anger") || t.contains("angry") || t.contains("frustrat") -> EmoCategory.ANGER
-            t.contains("calm") || t.contains("steady") || t.contains("happy") || t.contains("love") || t.contains("grateful") || t == "okay" || t == "steady" -> EmoCategory.CALM
-            else -> EmoCategory.OTHER
-        }
-    }
-
-    private fun intensityToLevel01to5(v: Float?): Int {
-        val x = (v ?: 0.5f).coerceIn(0f, 1f)
-        return when {
-            x >= 0.8f -> 5
-            x >= 0.6f -> 4
-            x >= 0.4f -> 3
-            x >= 0.2f -> 2
-            else -> 1
-        }
-    }
-
-    private fun likertMessageForIntensity(intensity: Float?): String {
-        return when (intensityToLevel01to5(intensity)) {
-            1 -> "Take slow breaths for one minute. Let your shoulders relax."
-            2 -> "Your body might need a short reset."
-            3 -> "Write a few words about what today has been like so far."
-            4 -> "Take a quiet minute to breathe or stretch and stay grounded."
-            else -> "Write whatever is on your mind right now."
-        }
-    }
+    // private enum class EmoCategory { STRESS, SAD, ANGER, CALM, OTHER }
+    //
+    // private fun categorizeEmotionLabel(raw: String?): EmoCategory {
+    //    // ...
+    // }
+    //
+    // private fun intensityToLevel01to5(v: Float?): Int {
+    //    // ...
+    // }
+    //
+    // private fun likertMessageForIntensity(intensity: Float?): String {
+    //    // ...
+    // }
 
     private fun pickIconForLabel(label: String?): Int {
         return getMoodDrawable(label)
@@ -1559,7 +1539,12 @@ class MainActivity : AppCompatActivity() {
                 imgMoodIcon.alpha = 1.0f
 
                 // Show Likert-based line ONLY
-                tvMoodBody.text = likertMessageForIntensity(latestCheckIn?.intensity)
+                // tvMoodBody.text = likertMessageForIntensity(latestCheckIn?.intensity)
+                val start = today.minusDays(6)
+                val recentLogs = withContext(Dispatchers.IO) { ringRepo.getRange(start, today) }
+                val cats = recentLogs.map { com.aninaw.prompts.AdaptivePromptEngine.categorizeEmotionLabel(it.emotion) }
+                
+                tvMoodBody.text = com.aninaw.prompts.AdaptivePromptEngine.computeReflectionLine(mood, latestCheckIn?.intensity, cats)
                 tvMoodBody.visibility = View.VISIBLE
             }
         }

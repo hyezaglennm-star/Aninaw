@@ -129,6 +129,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <View
+                    android:id="@+id/pulseField"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0"
+                    android:background="@drawable/soft_pulse_field"
+                    android:visibility="gone" />
+
                 <ImageView
                     android:id="@+id/imgStretch"
                     android:layout_width="match_parent"
