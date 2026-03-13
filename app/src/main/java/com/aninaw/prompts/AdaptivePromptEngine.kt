@@ -30,24 +30,38 @@ object AdaptivePromptEngine {
 
     fun computeReflectionLine(mood: String?, intensity: Float?, recentCats: List<EmoCategory>): String {
         val level = intensityToLevel01to5(intensity)
+        val m = (mood ?: "").lowercase(Locale.getDefault())
 
+        // 1. Prioritize HIGH INTENSITY current emotion
+        if (level >= 5) {
+            return "Take slow breaths for one minute. Let your shoulders relax."
+        }
+        if (level >= 4) {
+            return "Your body might need a short reset."
+        }
+
+        // 2. Then check CURRENT mood specifically (before checking history)
+        // This fixes the bug where "Calm" users got "Slow down" messages due to history
+        if (m.contains("calm") || m.contains("happy") || m.contains("love") || m.contains("grateful")) {
+            return "Name one thing you’re grateful for today."
+        }
+        if (m.contains("steady") || m == "okay") {
+            return "Write whatever is on your mind right now."
+        }
+        if (m.contains("sad") || m.contains("heavy") || m.contains("tired") || m.contains("difficult")) {
+            return "Be gentle with yourself today. What needs care?"
+        }
+        if (m.contains("tense") || m.contains("anx") || m.contains("stress")) {
+            return "Slow down. What’s one thing you can control right now?"
+        }
+
+        // 3. Fallback to HISTORY patterns only if current mood is vague or missing
         val stressCount = recentCats.count { it == EmoCategory.STRESS }
         val sadCount = recentCats.count { it == EmoCategory.SAD }
-        val angerCount = recentCats.count { it == EmoCategory.ANGER }
-        val calmCount = recentCats.count { it == EmoCategory.CALM }
-
+        
         return when {
-            level >= 5 -> "Take slow breaths for one minute. Let your shoulders relax."
-            level >= 4 -> "Your body might need a short reset."
             stressCount >= 3 -> "Slow down. What’s one thing you can control right now?"
             sadCount >= 3 -> "Be gentle with yourself today. What needs care?"
-            angerCount >= 3 -> "Release some tension—try a short shake, walk, or exhale."
-            calmCount >= 3 -> "Name one thing you’re grateful for today."
-            level <= 3 -> when ((mood ?: "").lowercase(Locale.getDefault())) {
-                "calm", "happy", "loved", "steady", "okay" -> "Write whatever is on your mind right now."
-                "heavy", "difficult", "sad", "tired" -> "Write a few words about what today has been like so far."
-                else -> "Notice what is here, right now, without judgment."
-            }
             else -> "Notice what is here, right now, without judgment."
         }
     }

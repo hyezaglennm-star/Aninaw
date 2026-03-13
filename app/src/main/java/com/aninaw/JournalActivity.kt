@@ -103,34 +103,49 @@ class JournalActivity : AppCompatActivity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
+    override fun onResume() {
+        super.onResume()
+        updatePauseAndNoticePrompt()
+    }
+
     private fun updatePauseAndNoticePrompt() {
+        // "Pause and Notice" now prioritizes LATEST JOURNAL MOOD for Adaptive Intelligence.
+        // It does NOT use the Quick Check-in (Home Screen) mood.
         lifecycleScope.launch {
             val db = AninawDb.getDatabase(this@JournalActivity)
-            val ringRepo = TreeRingMemoryRepository(db)
-            val today = LocalDate.now()
-            val todayIso = today.toString()
-
-            val latestCheckIn = withContext(Dispatchers.IO) {
-                val list = ringRepo.getRange(today, today)
-                list.maxByOrNull { it.timestamp ?: 0L }
-            }
+            val todayIso = LocalDate.now().toString()
 
             val latestJournal = withContext(Dispatchers.IO) {
                 runCatching { db.journalDao().getLatestForDate(todayIso) }.getOrNull()
             }
-
-            val mood: String? = when {
-                latestJournal != null && (latestCheckIn?.timestamp ?: 0L) < (latestJournal.timestamp) -> latestJournal.mood
-                else -> latestCheckIn?.emotion
+            
+            val mood = latestJournal?.mood
+            
+            // If no journal mood yet, fall back to random generic prompts
+            if (mood.isNullOrBlank()) {
+                 val prompts = listOf(
+                     "What is one feeling or thought that has been quietly asking for your attention today?",
+                     "If your body could speak right now, what would it say?",
+                     "What is one thing you can soften around right now?",
+                     "Where is your breath landing in your body?",
+                     "What is the texture of your mind right now?"
+                 )
+                 findViewById<TextView>(R.id.tvPromptOneBody).text = prompts.random()
+            } else {
+                // Adaptive Logic based on Journal Mood
+                // We mock intensity/history here or fetch if needed, but primary trigger is Journal Mood.
+                val ringRepo = TreeRingMemoryRepository(db)
+                val today = LocalDate.now()
+                val start = today.minusDays(6)
+                
+                // Get recent history for context (optional but good for "Adaptive")
+                val recentLogs = withContext(Dispatchers.IO) { ringRepo.getRange(start, today) }
+                val cats = recentLogs.map { com.aninaw.prompts.AdaptivePromptEngine.categorizeEmotionLabel(it.emotion) }
+                
+                // Use Journal Mood data for "Pause and Notice" message
+                val line = com.aninaw.prompts.AdaptivePromptEngine.computeReflectionLine(mood, 0.5f, cats)
+                findViewById<TextView>(R.id.tvPromptOneBody).text = line
             }
-            val intensity: Float? = latestCheckIn?.intensity
-
-            val start = today.minusDays(6)
-            val recentLogs = withContext(Dispatchers.IO) { ringRepo.getRange(start, today) }
-            val cats = recentLogs.map { com.aninaw.prompts.AdaptivePromptEngine.categorizeEmotionLabel(it.emotion) }
-
-            val line = com.aninaw.prompts.AdaptivePromptEngine.computeReflectionLine(mood, intensity, cats)
-            findViewById<TextView>(R.id.tvPromptOneBody).text = line
         }
     }
 }

@@ -778,13 +778,13 @@ class MainActivity : AppCompatActivity() {
         tvMoodTitle = req(R.id.tvMoodTitle)
         tvMoodBody = req(R.id.tvMoodBody)
 
-        // cardMood.setOnClickListener {
-        //    // Open daily check-in (or anchor if you prefer)
-        //    startActivity(Intent(this, CheckInAnchorActivity::class.java))
-        //    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        // }
-        cardMood.isClickable = false
-        cardMood.isFocusable = false
+        cardMood.setOnClickListener {
+           // Open daily check-in
+           startActivity(Intent(this, DailyCheckInActivity::class.java))
+           overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+        // cardMood.isClickable = false
+        // cardMood.isFocusable = false
 
         bubbleGroup = opt(R.id.bubbleGroup)
         bubbleCard = opt(R.id.cardLiwanagBubble)
@@ -1508,17 +1508,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             // Get latest journal for today (one-shot)
-            val latestJournal = withContext(Dispatchers.IO) {
-                runCatching { db.journalDao().getLatestForDate(todayIso) }.getOrNull()
-            }
+            // IGNORE journal for home screen mood card as per user request
+            val latestJournal: com.aninaw.data.journal.JournalEntity? = null 
 
             // Decide latest mood source (journal vs check-in) by timestamp
-            val latestMoodLabel: String? = when {
-                latestJournal != null && (latestCheckIn?.timestamp ?: 0L) < (latestJournal.timestamp) -> {
-                    latestJournal.mood
-                }
-                else -> latestCheckIn?.emotion
-            }
+            val latestMoodLabel: String? = latestCheckIn?.emotion
 
             // Logic Tree for Mood Card
             if (latestMoodLabel.isNullOrBlank()) {
@@ -1544,6 +1538,7 @@ class MainActivity : AppCompatActivity() {
                 val recentLogs = withContext(Dispatchers.IO) { ringRepo.getRange(start, today) }
                 val cats = recentLogs.map { com.aninaw.prompts.AdaptivePromptEngine.categorizeEmotionLabel(it.emotion) }
                 
+                // Use Quick Check-in data for Home Screen message
                 tvMoodBody.text = com.aninaw.prompts.AdaptivePromptEngine.computeReflectionLine(mood, latestCheckIn?.intensity, cats)
                 tvMoodBody.visibility = View.VISIBLE
             }
