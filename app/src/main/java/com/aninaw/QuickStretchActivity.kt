@@ -20,7 +20,7 @@ class QuickStretchActivity : AppCompatActivity() {
     private lateinit var tvStepTitle: TextView
     private lateinit var tvStepDesc: TextView
     private lateinit var tvTimer: TextView
-    private lateinit var tvTimerLabel: TextView
+    // private lateinit var tvTimerLabel: TextView
     private lateinit var tvCompletion: TextView
     private lateinit var layoutProgress: LinearLayout
     private lateinit var imgStretch: android.widget.ImageView
@@ -84,7 +84,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvStepTitle = findViewById(R.id.tvStepTitle)
         tvStepDesc = findViewById(R.id.tvStepDesc)
         tvTimer = findViewById(R.id.tvTimer)
-        tvTimerLabel = findViewById(R.id.tvTimerLabel)
+        // tvTimerLabel = findViewById(R.id.tvTimerLabel)
         tvCompletion = findViewById(R.id.tvCompletion)
         layoutProgress = findViewById(R.id.layoutProgress)
         imgStretch = findViewById(R.id.imgStretch)
@@ -141,7 +141,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvStepTitle.text = "Ready to reset?"
         tvStepDesc.text = "This takes about 1 minute. Follow along gently."
         tvTimer.visibility = View.GONE
-        tvTimerLabel.visibility = View.GONE
+        // tvTimerLabel.visibility = View.GONE
         layoutProgress.visibility = View.GONE
         tvCompletion.visibility = View.GONE
         
@@ -154,6 +154,9 @@ class QuickStretchActivity : AppCompatActivity() {
     }
 
     private fun startStep(stepIndex: Int) {
+        // Stop any running timer from previous step
+        timer?.cancel()
+        
         if (stepIndex > steps.size) {
             showCompletionState()
             return
@@ -199,32 +202,55 @@ class QuickStretchActivity : AppCompatActivity() {
         
         // UI updates
         tvTimer.visibility = View.VISIBLE
-        tvTimerLabel.visibility = View.VISIBLE
+        // tvTimerLabel.visibility = View.VISIBLE
         layoutProgress.visibility = View.VISIBLE
         tvCompletion.visibility = View.GONE
         
         // "Before" state buttons
         btnPause.text = "Skip"
         btnNext.text = "Start"
+        btnPause.isEnabled = true
+        btnNext.isEnabled = true
         
         updateProgressDots(stepIndex)
-        updateTimerUI(step.duration * 1000L)
+        tvTimer.text = step.duration.toString()
+        // Removed tvTimerLabel update
     }
 
     private fun activateStep() {
         if (currentStep < 1 || currentStep > steps.size) return
         
-        isStepActive = true
-        val step = steps[currentStep - 1]
+        // Disable buttons during countdown
+        btnPause.isEnabled = false
+        btnNext.isEnabled = false
         
-        btnPause.text = "Pause"
-        btnNext.text = "Next"
+        // Explicitly show "3" before timer starts ticking
+        tvTimer.text = "3"
         
-        if (step.title == "Breathing") {
-            startBreathAnimation()
-        }
-        
-        startTimer(step.duration * 1000L, step)
+        // 3-2-1 Countdown
+        timer = object : CountDownTimer(3000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                // millisUntilFinished starts around 2999
+                val sec = (millisUntilFinished / 1000) + 1
+                tvTimer.text = sec.toString()
+            }
+
+            override fun onFinish() {
+                isStepActive = true
+                val step = steps[currentStep - 1]
+                
+                btnPause.text = "Pause"
+                btnNext.text = "Next"
+                btnPause.isEnabled = true
+                btnNext.isEnabled = true
+                
+                if (step.title == "Breathing") {
+                    startBreathAnimation()
+                }
+                
+                startTimer(step.duration * 1000L, step)
+            }
+        }.start()
     }
 
     private fun showCompletionState() {
@@ -235,7 +261,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvStepTitle.text = "All done"
         tvStepDesc.visibility = View.GONE
         tvTimer.visibility = View.GONE
-        tvTimerLabel.visibility = View.GONE
+        // tvTimerLabel.visibility = View.GONE
         layoutProgress.visibility = View.GONE
         
         // Show relaxed image
@@ -309,7 +335,7 @@ class QuickStretchActivity : AppCompatActivity() {
     private fun updateTimerUI(millis: Long) {
         val sec = (millis / 1000).toInt()
         tvTimer.text = sec.toString()
-        tvTimerLabel.text = "$sec seconds"
+        // tvTimerLabel.text = "$sec seconds" // Removed
     }
 
     private fun updateProgressDots(step: Int) {

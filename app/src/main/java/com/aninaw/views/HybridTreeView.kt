@@ -143,9 +143,12 @@ class HybridTreeView @JvmOverloads constructor(
     // ---------------- Sway clock ----------------
     private var timeSec = 0f
     private var lastFrameNanos = 0L
+    private var isRunning = false
 
     private val frameCallback = object : Choreographer.FrameCallback {
         override fun doFrame(frameTimeNanos: Long) {
+            if (!isRunning) return
+
             if (lastFrameNanos == 0L) lastFrameNanos = frameTimeNanos
             val dt = (frameTimeNanos - lastFrameNanos) / 1_000_000_000f
             lastFrameNanos = frameTimeNanos
@@ -155,6 +158,18 @@ class HybridTreeView @JvmOverloads constructor(
             invalidate()
             Choreographer.getInstance().postFrameCallback(this)
         }
+    }
+
+    fun start() {
+        if (isRunning) return
+        isRunning = true
+        lastFrameNanos = 0L
+        Choreographer.getInstance().postFrameCallback(frameCallback)
+    }
+
+    fun stop() {
+        isRunning = false
+        Choreographer.getInstance().removeFrameCallback(frameCallback)
     }
 
     fun rebuild() {
@@ -173,14 +188,12 @@ class HybridTreeView @JvmOverloads constructor(
         super.onAttachedToWindow()
         // Needed for BlurMaskFilter to render reliably
         setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        lastFrameNanos = 0L
-        Choreographer.getInstance().postFrameCallback(frameCallback)
+        start()
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        Choreographer.getInstance().removeFrameCallback(frameCallback)
+        stop()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {

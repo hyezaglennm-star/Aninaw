@@ -14,6 +14,7 @@ class Grounding54321Activity : AppCompatActivity() {
 
     private lateinit var etItem: EditText
     private lateinit var listItems: LinearLayout
+    private lateinit var scrollContainer: androidx.core.widget.NestedScrollView
     private lateinit var tvStepCounter: TextView
     private lateinit var tvPrompt: TextView
     private lateinit var tvSubtitle: TextView
@@ -41,6 +42,7 @@ class Grounding54321Activity : AppCompatActivity() {
 
         etItem = findViewById(R.id.etItem)
         listItems = findViewById(R.id.listItems)
+        scrollContainer = findViewById(R.id.scrollContainer)
         tvStepCounter = findViewById(R.id.tvStepCounter)
         tvPrompt = findViewById(R.id.tvPrompt)
         tvSubtitle = findViewById(R.id.tvSubtitle)
@@ -100,6 +102,11 @@ class Grounding54321Activity : AppCompatActivity() {
         // 3. Track progress
         stepItems.add(text)
         checkStepCompletion()
+        
+        // 4. Scroll to keep the input field and new item visible (prevent keyboard obscuring)
+        listItems.post {
+            scrollContainer.smoothScrollTo(0, etItem.top)
+        }
     }
 
     private fun checkStepCompletion() {

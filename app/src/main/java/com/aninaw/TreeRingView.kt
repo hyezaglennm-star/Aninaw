@@ -43,6 +43,11 @@ class TreeRingView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
 
+    init {
+        // Fix flickering issues with complex paths/shaders on some devices
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
+    }
+
     // -----------------------------
     // Public API
     // -----------------------------
