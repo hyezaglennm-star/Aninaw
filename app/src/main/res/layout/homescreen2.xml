@@ -214,12 +214,13 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Reflection prompt -->
+                <!-- Reflection prompt (Hidden: Moved to Journal only) -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardReflection"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:visibility="gone"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
