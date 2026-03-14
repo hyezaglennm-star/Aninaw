@@ -1,38 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="360dp"
-    android:height="140dp"
+    android:width="400dp"
+    android:height="160dp"
     android:viewportWidth="400"
     android:viewportHeight="160">
 
-    <!-- Subtle tree-ring style arcs -->
+    <!-- inner ring -->
     <path
         android:fillColor="@android:color/transparent"
-        android:strokeWidth="1.2"
-        android:strokeColor="#26A08C7A"
-        android:pathData="M 0,120 A 220,220 0 0 1 400,120" />
+        android:pathData="M 0,122 A 210,210 0 0 1 400,122"
+        android:strokeColor="#2AA08C7A"
+        android:strokeWidth="1.4"/>
 
+    <!-- ring -->
     <path
         android:fillColor="@android:color/transparent"
-        android:strokeWidth="1.2"
-        android:strokeColor="#20A08C7A"
-        android:pathData="M 0,105 A 240,240 0 0 1 400,105" />
+        android:pathData="M 0,108 A 232,232 0 0 1 400,108"
+        android:strokeColor="#22A08C7A"
+        android:strokeWidth="1.2"/>
 
+    <!-- ring -->
     <path
         android:fillColor="@android:color/transparent"
-        android:strokeWidth="1.2"
-        android:strokeColor="#1AA08C7A"
-        android:pathData="M 0,92 A 260,260 0 0 1 400,92" />
+        android:pathData="M 0,94 A 255,255 0 0 1 400,94"
+        android:strokeColor="#1DA08C7A"
+        android:strokeWidth="1.1"/>
 
+    <!-- ring -->
     <path
         android:fillColor="@android:color/transparent"
-        android:strokeWidth="1.2"
-        android:strokeColor="#14A08C7A"
-        android:pathData="M 0,80 A 280,280 0 0 1 400,80" />
+        android:pathData="M 0,76 A 285,285 0 0 1 400,76"
+        android:strokeColor="#17A08C7A"
+        android:strokeWidth="1"/>
 
+    <!-- outer ring -->
     <path
         android:fillColor="@android:color/transparent"
-        android:strokeWidth="1.2"
-        android:strokeColor="#10A08C7A"
-        android:pathData="M 0,68 A 300,300 0 0 1 400,68" />
+        android:pathData="M 0,56 A 320,320 0 0 1 400,56"
+        android:strokeColor="#12A08C7A"
+        android:strokeWidth="0.9"/>
 </vector>

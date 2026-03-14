@@ -1,3 +1,4 @@
+//GroundingActivity.kt
 package com.aninaw
 
 import android.os.Bundle
@@ -9,9 +10,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import androidx.lifecycle.lifecycleScope
+import com.aninaw.data.AninawDb
+import com.aninaw.data.calmhistory.CalmToolHistoryEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Grounding54321Activity : AppCompatActivity() {
 
+    private var startedAt: Long = 0L
+    private var hasSavedHistory = false
     private lateinit var etItem: EditText
     private lateinit var listItems: LinearLayout
     private lateinit var tvStepCounter: TextView
@@ -36,6 +45,8 @@ class Grounding54321Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grounding_54321)
+
+        startedAt = System.currentTimeMillis()
 
         com.aninaw.util.BackButton.bind(this)
 
@@ -65,7 +76,8 @@ class Grounding54321Activity : AppCompatActivity() {
             currentStep++
             updateUiForStep()
         } else {
-            finish() // Done
+            saveHistoryIfNeeded("completed")
+            finish()
         }
     }
 
@@ -122,6 +134,28 @@ class Grounding54321Activity : AppCompatActivity() {
             // Keep disabled if not enough items
             btnNext.isEnabled = false
             btnNext.alpha = 0.55f
+        }
+    }
+    private fun saveHistoryIfNeeded(completionState: String) {
+        if (hasSavedHistory) return
+        hasSavedHistory = true
+
+        val durationSeconds = ((System.currentTimeMillis() - startedAt) / 1000L).toInt()
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                AninawDb.getDatabase(this@Grounding54321Activity)
+                    .calmToolHistoryDao()
+                    .insert(
+                        CalmToolHistoryEntity(
+                            toolType = "grounding",
+                            toolTitle = "Ground",
+                            completedAt = System.currentTimeMillis(),
+                            durationSeconds = durationSeconds,
+                            completionState = completionState
+                        )
+                    )
+            }
         }
     }
 

@@ -36,6 +36,16 @@ interface JournalDao {
 
     @Query("SELECT COUNT(*) FROM journal_entries")
     suspend fun getTotalEntries(): Int
+
+    @Query("SELECT * FROM journal_entries ORDER BY timestamp DESC")
+    suspend fun getAllEntriesList(): List<JournalEntity>
+
+    @Query("""
+        SELECT * FROM journal_entries
+        WHERE type = :type
+        ORDER BY timestamp DESC
+    """)
+    suspend fun getEntriesByTypeList(type: String): List<JournalEntity>
 }
 
 data class MoodCount(

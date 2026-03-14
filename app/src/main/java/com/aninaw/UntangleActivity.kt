@@ -26,9 +26,11 @@ import java.time.format.DateTimeFormatter
 import android.content.Intent
 import com.aninaw.data.AninawDb
 import com.aninaw.data.treering.TreeRingMemoryRepository
+import com.aninaw.data.calmhistory.CalmToolHistoryEntity
 
 class UntangleActivity : AppCompatActivity() {
 
+    private var startedAt: Long = 0L
     private lateinit var stepContainer: FrameLayout
     private lateinit var btnContinue: MaterialButton
     private lateinit var tvStep: TextView
@@ -66,6 +68,8 @@ class UntangleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_untangle)
+
+        startedAt = System.currentTimeMillis()
 
         capacityMode = intent.getStringExtra("CAPACITY_MODE") ?: "STEADY"
 
@@ -381,6 +385,17 @@ class UntangleActivity : AppCompatActivity() {
                     capacity = capacityMode,
                     payloadJson = payload
                 )
+
+                db.calmToolHistoryDao().insert(
+                    CalmToolHistoryEntity(
+                        toolType = "cbt",
+                        toolTitle = "CBT Reflection",
+                        completedAt = System.currentTimeMillis(),
+                        durationSeconds = ((System.currentTimeMillis() - startedAt) / 1000L).toInt(),
+                        completionState = "completed"
+                    )
+                )
+
             }
 // 3️⃣ Trigger tree growth bonus (only after save succeeded)
             TreeGrowthManager(this@UntangleActivity).onCheckInCompleted()

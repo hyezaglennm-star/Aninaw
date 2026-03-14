@@ -79,6 +79,7 @@
 
         <activity android:name=".CrisisResourcesActivity" />
         <activity android:name=".JournalActivity" />
+        <activity android:name=".JournalHistoryActivity" />
         <activity android:name=".JournalEditorActivity" />
         <activity android:name=".EmotionStatsActivity" />
         <activity android:name=".CalmToolsActivity" />
@@ -86,6 +87,7 @@
         <activity android:name=".Grounding54321Activity" />
         <activity android:name=".PracticePathActivity" />
         <activity android:name=".TreeRingAnimationActivity" />
+        <activity android:name=".CalmToolsHistoryActivity" />
 
     </application>
 
