@@ -523,9 +523,12 @@ class MainActivity : AppCompatActivity() {
 
         updateDayCounterText()
 
+        restoreTreeFromCache()
         refreshTreeFromDb(animate = false)
 
         ensureGreetingAnimationRunning()
+        
+        hybridTreeView.start()
 
         // Keep drawer nickname subtitle accurate
         refreshNicknameUi()
@@ -570,7 +573,8 @@ class MainActivity : AppCompatActivity() {
             applySilentPoseRefreshesIfNeeded()
             setPose(getCurrentDailyPose(), restartLeafLoop = false)
 
-            refreshTreeFromGrowth()
+            restoreTreeFromCache() // Use cached growth to avoid flicker
+            refreshTreeFromDb(animate = false) // Async update
             startAmbient()
 
             bubbleArmed = true
@@ -588,6 +592,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+
+        hybridTreeView.stop()
 
         stopGreetingAnimations()
 
@@ -1897,11 +1903,15 @@ class MainActivity : AppCompatActivity() {
             val debugDay = prefs.getInt("debug_tree_day", 0)
             val safeGrowth = if (debugDay in 1..21) {
                 val base = 0.12f
-                val step = 0.04f  // bigger jump per day so leaves change visibly
+                val step = 0.04f
                 (base + step * (debugDay - 1)).coerceIn(0.12f, 1.0f)
             } else {
                 ui.growth01.coerceAtLeast(0.12f)
             }
+            
+            // Cache the calculated growth for next launch
+            prefs.edit().putFloat("cached_tree_growth", safeGrowth).apply()
+
             val stage = growthToStage(safeGrowth)
 
             val adaptive = withContext(Dispatchers.IO) {
@@ -1914,9 +1924,9 @@ class MainActivity : AppCompatActivity() {
             val line = ui.milestone ?: adaptive
 
             if (!animate) {
-                // Don't let a fresh/empty DB force the tree to 0 and hide the sprout.
                 tree.growth = safeGrowth
-                tv?.text = line // Safe call
+                tv?.text = line 
+                tv?.alpha = 0.86f // Ensure visible
                 return@launch
             }
 
@@ -1931,12 +1941,16 @@ class MainActivity : AppCompatActivity() {
                 start()
             }
 
-            // 2) animate narrative (fade in, no cheesy pop)
             tv?.animate()?.cancel()
             tv?.alpha = 0f
             tv?.text = line
             tv?.animate()?.alpha(0.86f)?.setDuration(380L)?.start()
         }
+    }
+    
+    private fun restoreTreeFromCache() {
+        val cached = prefs.getFloat("cached_tree_growth", 0.12f)
+        hybridTreeView.growth = cached
     }
     private fun maybeShowProgressTreeIntro() {
         // Feature disabled for homescreen2 migration

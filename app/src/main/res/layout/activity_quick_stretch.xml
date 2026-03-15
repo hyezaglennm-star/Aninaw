@@ -160,25 +160,17 @@
 
         <!-- Timer state -->
         <TextView
-            android:id="@+id/tvTimerLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:text="10 seconds"
-            android:textColor="#8A8A84"
-            android:textSize="12sp" />
-
-        <TextView
             android:id="@+id/tvTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="20dp"
             android:text="10"
             android:textColor="#4A4A44"
             android:textSize="22sp"
             android:textStyle="bold" />
+
+        <!-- Removed tvTimerLabel -->
 
         <!-- Completion message, hidden until final state -->
         <TextView

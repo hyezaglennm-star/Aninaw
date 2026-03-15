@@ -43,8 +43,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <LinearLayout
-        android:id="@+id/panelInput"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="18dp"
@@ -52,7 +52,7 @@
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="18dp"
         android:background="@drawable/bg_soft_panel"
-        android:orientation="vertical"
+        android:fillViewport="true"
         android:padding="18dp"
         app:layout_constraintBottom_toTopOf="@id/panelBottom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,13 @@
         app:layout_constraintVertical_bias="0.714">
 
         <LinearLayout
-            android:id="@+id/layoutProgress"
+            android:id="@+id/panelInputContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layoutProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -157,8 +163,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical" />
+            
+        </LinearLayout>
 
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/panelBottom"
