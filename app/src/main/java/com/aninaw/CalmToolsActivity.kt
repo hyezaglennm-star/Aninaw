@@ -1,17 +1,22 @@
+//CalmToolsActivity.kt
 package com.aninaw
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
+import android.widget.TextView
 
 class CalmToolsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calm_tools)
+
+        findViewById<TextView>(R.id.btnHistory).setOnClickListener {
+            startActivity(Intent(this, CalmToolsHistoryActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 
         com.aninaw.util.BackButton.bind(this)
 

@@ -8,17 +8,11 @@
     android:layout_height="match_parent">
 
     <!-- ================= MAIN CONTENT ================= -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EDDCDF" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_home_soft">
+        android:background="@drawable/bg_home">
 
         <!-- Strong and messy sunray (Overlay) -->
         <ImageView
@@ -38,7 +32,6 @@
             android:id="@+id/sceneCanvas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_home"
             android:clipToPadding="false"
             android:fillViewport="true"
             android:overScrollMode="never"
@@ -105,19 +98,15 @@
                 <!-- Tree hero: half-screen emphasis -->
                 <FrameLayout
                     android:id="@+id/layoutTreeHero"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
                     android:layout_marginTop="14dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     app:layout_constraintTop_toBottomOf="@id/greetingGroup"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_default="percent"
-                    app:layout_constraintHeight_percent="0.40"
-                    app:layout_constraintWidth_default="percent"
-                    app:layout_constraintWidth_percent="0.80">
+                    app:layout_constraintEnd_toEndOf="parent">
 
                     <com.aninaw.views.HybridTreeView
                         android:id="@+id/hybridTreeView"
@@ -137,7 +126,7 @@
                         android:layout_marginBottom="28dp"
                         android:fontFamily="@font/cormorant_garamond_medium"
                         app:fontFamily="@font/cormorant_garamond_medium"
-                        android:text="Tap the tree to see your days."
+                        android:text="Tap the tree to revisit your days."
                         android:textColor="#5F544D"
                         android:textSize="18sp" />
                 </FrameLayout>
@@ -164,7 +153,7 @@
                     android:layout_marginBottom="14dp"
                     app:cardBackgroundColor="#F7E5E9"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="3dp"
+                    app:cardElevation="2dp"
                     app:strokeColor="#10FFFFFF"
                     app:strokeWidth="1dp"
 
@@ -338,7 +327,7 @@
             android:layout_marginBottom="14dp"
             app:cardBackgroundColor="#FFEEEE"
             app:cardCornerRadius="30dp"
-            app:cardElevation="4dp"
+            app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

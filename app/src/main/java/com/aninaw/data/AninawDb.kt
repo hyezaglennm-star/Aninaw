@@ -19,6 +19,9 @@
     import com.aninaw.data.growth.GrowthEntity
     import com.aninaw.data.journal.JournalDao
     import com.aninaw.data.journal.JournalEntity
+    import com.aninaw.data.calmhistory.CalmToolHistoryDao
+    import com.aninaw.data.calmhistory.CalmToolHistoryEntity
+
 
     @Database(
         entities = [
@@ -29,12 +32,14 @@
             BlockEntity::class,
             GrowthEntity::class,
             JournalEntity::class,
+            CalmToolHistoryEntity::class,
         ],
-        version = 9,
+        version = 10,
         exportSchema = true
     )
     abstract class AninawDb : RoomDatabase() {
 
+        abstract fun calmToolHistoryDao(): CalmToolHistoryDao
         abstract fun growthDao(): GrowthDao
         abstract fun systemsDao(): SystemsDao
         abstract fun blocksDao(): BlocksDao

@@ -1,3 +1,4 @@
+//QuickStretchActivity.kt
 package com.aninaw
 
 import android.animation.ValueAnimator
@@ -11,10 +12,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
+import androidx.lifecycle.lifecycleScope
+import com.aninaw.data.AninawDb
+import com.aninaw.data.calmhistory.CalmToolHistoryEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class QuickStretchActivity : AppCompatActivity() {
 
     // UI
+    private var startedAt: Long = 0L
+    private var hasSavedHistory = false
     private lateinit var tvTitle: TextView
     private lateinit var tvHint: TextView
     private lateinit var tvStepTitle: TextView
@@ -69,6 +78,8 @@ class QuickStretchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quick_stretch)
+
+        startedAt = System.currentTimeMillis()
 
         com.aninaw.util.BackButton.bind(this)
 
@@ -133,6 +144,7 @@ class QuickStretchActivity : AppCompatActivity() {
                 }
             } else {
                 // "Done" behavior
+                saveHistoryIfNeeded("completed")
                 finish()
             }
         }
@@ -424,6 +436,29 @@ class QuickStretchActivity : AppCompatActivity() {
 
     private fun resumeBreathAnimation() {
         breathAnimator?.resume()
+    }
+
+    private fun saveHistoryIfNeeded(completionState: String) {
+        if (hasSavedHistory) return
+        hasSavedHistory = true
+
+        val durationSeconds = ((System.currentTimeMillis() - startedAt) / 1000L).toInt()
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                AninawDb.getDatabase(this@QuickStretchActivity)
+                    .calmToolHistoryDao()
+                    .insert(
+                        CalmToolHistoryEntity(
+                            toolType = "stretch",
+                            toolTitle = "Quick Stretch",
+                            completedAt = System.currentTimeMillis(),
+                            durationSeconds = durationSeconds,
+                            completionState = completionState
+                        )
+                    )
+            }
+        }
     }
 
     override fun onDestroy() {

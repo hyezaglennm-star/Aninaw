@@ -1,3 +1,4 @@
+//JournalEditorActivity.kt
 package com.aninaw
 
 import android.os.Bundle
@@ -77,10 +78,11 @@ class JournalEditorActivity : AppCompatActivity() {
         entryPrompt = intent.getStringExtra(EXTRA_PROMPT) ?: "Journal Entry"
 
         tvPrompt.text = entryPrompt
-        tvDate.text = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
 
         if (entryId != -1L) {
             loadEntry(entryId)
+        } else {
+            tvDate.text = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
         }
 
         btnSave.setOnClickListener { saveEntry() }

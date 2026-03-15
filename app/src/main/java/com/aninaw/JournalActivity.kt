@@ -1,3 +1,4 @@
+//JournalActivity.kt
 package com.aninaw
 
 import android.content.Context
@@ -26,6 +27,11 @@ class JournalActivity : AppCompatActivity() {
         
         findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
             finish()
+        }
+
+        findViewById<TextView>(R.id.tvSeeAllMain).setOnClickListener {
+            startActivity(Intent(this, JournalHistoryActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
         val prefs = getSharedPreferences("AninawPrefs", Context.MODE_PRIVATE)

@@ -1,3 +1,4 @@
+//JournalEntity.kt
 package com.aninaw.data.journal
 
 import androidx.room.Entity
