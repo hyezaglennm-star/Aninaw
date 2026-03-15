@@ -20,6 +20,7 @@ class QuickStretchActivity : AppCompatActivity() {
     private lateinit var tvStepTitle: TextView
     private lateinit var tvStepDesc: TextView
     private lateinit var tvTimer: TextView
+    private lateinit var tvCountdownOverlay: TextView
     // private lateinit var tvTimerLabel: TextView
     private lateinit var tvCompletion: TextView
     private lateinit var layoutProgress: LinearLayout
@@ -84,6 +85,7 @@ class QuickStretchActivity : AppCompatActivity() {
         tvStepTitle = findViewById(R.id.tvStepTitle)
         tvStepDesc = findViewById(R.id.tvStepDesc)
         tvTimer = findViewById(R.id.tvTimer)
+        tvCountdownOverlay = findViewById(R.id.tvCountdownOverlay)
         // tvTimerLabel = findViewById(R.id.tvTimerLabel)
         tvCompletion = findViewById(R.id.tvCompletion)
         layoutProgress = findViewById(R.id.layoutProgress)
@@ -224,19 +226,22 @@ class QuickStretchActivity : AppCompatActivity() {
         btnPause.isEnabled = false
         btnNext.isEnabled = false
         
-        // Explicitly show "3" before timer starts ticking
-        tvTimer.text = "3"
+        // Show overlay countdown
+        tvCountdownOverlay.visibility = View.VISIBLE
+        tvCountdownOverlay.text = "3"
+        tvTimer.text = steps[currentStep - 1].duration.toString() // Keep bottom timer static
         
         // 3-2-1 Countdown
         timer = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 // millisUntilFinished starts around 2999
                 val sec = (millisUntilFinished / 1000) + 1
-                tvTimer.text = sec.toString()
+                tvCountdownOverlay.text = sec.toString()
             }
 
             override fun onFinish() {
                 isStepActive = true
+                tvCountdownOverlay.visibility = View.GONE // Hide overlay
                 val step = steps[currentStep - 1]
                 
                 btnPause.text = "Pause"
