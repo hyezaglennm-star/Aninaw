@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F0E8">
+    android:background="@drawable/bg_home">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollDays"
@@ -22,21 +22,6 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <!-- SCROLLING PNG BACKGROUND -->
-            <ImageView
-                android:id="@+id/imgTreeRingBg"
-                android:layout_width="match_parent"
-                android:layout_height="1800dp"
-                android:src="@drawable/bg_tree_rings_scroll"
-                android:scaleType="fitXY"
-                android:contentDescription="@null" />
-
-            <!-- SOFT OVERLAY THAT ALSO SCROLLS -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1800dp"
-                android:background="#14FFF8F0" />
 
             <!-- CONTENT -->
             <LinearLayout
